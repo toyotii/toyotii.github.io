@@ -64,8 +64,19 @@
       <button class="tool" id="wx-btn" type="button" aria-expanded="false" aria-controls="wx-pop" title="Погода в Москве">
         <span class="wx-icon" id="wx-icon" aria-hidden="true"></span><span id="wx-temp">MSK</span><span class="wx-temp-label" id="clock">--:--</span>
       </button>
+      <button class="tool" id="theme-btn" type="button" aria-expanded="false" aria-controls="theme-pop" title="Тема" aria-label="Тема"><span class="swatch" aria-hidden="true"></span></button>
       <button class="tool" id="lang-btn" type="button" title="Language">EN</button>
       <button class="tool" id="term-btn" type="button" title="Терминал (~)" aria-label="Терминал">&gt;_</button>
+    </div>
+  </div>
+
+  <div class="panel pop pop-sm" id="theme-pop" hidden>
+    <div class="panel-bar"><span>TIM://theme</span><span data-i18n="ft.themes">ТЕМЫ</span></div>
+    <div class="pop-body themes" role="radiogroup" aria-label="Тема">
+      <button class="chip" type="button" role="radio" data-theme-set="cdb" aria-checked="true"><span class="swatch" style="--sw1:#0E3020;--sw2:#E86A1A"></span>CDB</button>
+      <button class="chip" type="button" role="radio" data-theme-set="phosphor" aria-checked="false"><span class="swatch" style="--sw1:#061008;--sw2:#33ff66"></span><span data-i18n="ft.phosphor">ФОСФОР</span></button>
+      <button class="chip" type="button" role="radio" data-theme-set="paper" aria-checked="false"><span class="swatch" style="--sw1:#EFE7D8;--sw2:#C4540F"></span><span data-i18n="ft.paper">БУМАГА</span></button>
+      <button class="chip" type="button" role="radio" data-theme-set="broadcast" aria-checked="false" hidden><span class="swatch" style="--sw1:#140d33;--sw2:#ff2fb3"></span><span data-i18n="ft.broadcast">ЭФИР-80</span></button>
     </div>
   </div>
 
@@ -507,13 +518,6 @@
 <footer>
   <div class="wrap">
     <span class="brand">TIM//DEV</span>
-    <div class="themes" role="radiogroup" aria-label="Тема">
-      <span data-i18n="ft.theme">ТЕМА:</span>
-      <button class="chip" type="button" role="radio" data-theme-set="cdb" aria-checked="true">CDB</button>
-      <button class="chip" type="button" role="radio" data-theme-set="phosphor" aria-checked="false" data-i18n="ft.phosphor">ФОСФОР</button>
-      <button class="chip" type="button" role="radio" data-theme-set="paper" aria-checked="false" data-i18n="ft.paper">БУМАГА</button>
-      <button class="chip" type="button" role="radio" data-theme-set="broadcast" aria-checked="false" data-i18n="ft.broadcast" hidden>ЭФИР-80</button>
-    </div>
     <span><span data-i18n="ft.term">ТЕРМИНАЛ:</span> <span class="kbd">~</span> · © <span id="year">2026</span> · <span data-i18n="ft.notrack">БЕЗ ТРЕКЕРОВ</span></span>
   </div>
 </footer>

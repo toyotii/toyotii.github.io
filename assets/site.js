@@ -276,15 +276,22 @@
   }
   onLang(renderWeather);
 
-  const wxBtn = $('#wx-btn'), wxPop = $('#wx-pop');
-  wxBtn.addEventListener('click', e => {
+  /* Выпадашки в шапке: погода и темы. Открыта только одна. */
+  const pops = [[$('#wx-btn'), $('#wx-pop')], [$('#theme-btn'), $('#theme-pop')]];
+  const closePops = except => pops.forEach(([btn, pop]) => { if (pop !== except) { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); } });
+  pops.forEach(([btn, pop]) => btn.addEventListener('click', e => {
     e.stopPropagation();
-    const open = wxPop.hidden;
-    wxPop.hidden = !open;
-    wxBtn.setAttribute('aria-expanded', String(open));
+    const open = pop.hidden;
+    closePops(pop);
+    pop.hidden = !open;
+    btn.setAttribute('aria-expanded', String(open));
+  }));
+  document.addEventListener('click', e => { if (!pops.some(([, pop]) => pop.contains(e.target))) closePops(); });
+  addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+    const open = pops.find(([, pop]) => !pop.hidden);
+    if (open) { closePops(); open[0].focus(); }
   });
-  document.addEventListener('click', e => { if (!wxPop.hidden && !wxPop.contains(e.target)) { wxPop.hidden = true; wxBtn.setAttribute('aria-expanded', 'false'); } });
-  addEventListener('keydown', e => { if (e.key === 'Escape' && !wxPop.hidden) { wxPop.hidden = true; wxBtn.setAttribute('aria-expanded', 'false'); wxBtn.focus(); } });
 
   /* ─────────────── Небо: дождь, снег, гроза поверх сайта ─────────────── */
   let atmo = store.get('atmo') || 'auto';

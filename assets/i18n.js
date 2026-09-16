@@ -73,7 +73,7 @@ window.I18N_EN = {
   'cv.sub': 'FOR APPLICATIONS AND HR', 'cv.title': 'Résumé', 'cv.lead': 'Everything from this site on one A4 page. No animations, but it prints.',
   'ct.label': '// 06 — CONTACT', 'ct.title': 'Get in touch', 'ct.lead': 'Message me with a task, even if it\'s not in the services. Telegram is the fastest.',
   'ct.name': 'CALLSIGN:', 'ct.nameph': 'What should I call you', 'ct.msg': 'MESSAGE:', 'ct.msgph': 'What needs to be done and by when', 'ct.send': 'Send →', 'ct.hint': 'Your mail client will open with the email ready.',
-  'ft.theme': 'THEME:', 'ft.phosphor': 'PHOSPHOR', 'ft.paper': 'PAPER', 'ft.broadcast': 'BROADCAST-80', 'ft.term': 'TERMINAL:', 'ft.notrack': 'NO TRACKERS',
+  'ft.theme': 'THEME:', 'ft.themes': 'THEMES', 'ft.phosphor': 'PHOSPHOR', 'ft.paper': 'PAPER', 'ft.broadcast': 'BROADCAST-80', 'ft.term': 'TERMINAL:', 'ft.notrack': 'NO TRACKERS',
   'lb.title': 'CDB // GROUP 106 WEEK · REAL RENDER'
 };
 
