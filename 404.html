@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="cdb">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 // Signal lost</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0E3020">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<script>try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Unbounded:wght@800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
+<style>
+  .lost { min-height: 100vh; display: grid; place-items: center; padding: 40px 16px; position: relative; z-index: 2; }
+  .box { width: min(640px, 100%); }
+  .code { font-family: var(--display); font-weight: 800; font-size: clamp(90px, 26vw, 200px); line-height: .9; color: var(--accent); text-shadow: 0 0 20px rgba(var(--accent-rgb), calc(.45 * var(--gs))), 0 0 60px rgba(var(--accent-rgb), calc(.18 * var(--gs))); animation: glitch 3.2s steps(1) infinite; }
+  @keyframes glitch { 0%, 88%, 100% { transform: none; clip-path: none; } 90% { transform: translate(-4px, 1px); clip-path: inset(10% 0 55% 0); } 92% { transform: translate(5px, -2px); clip-path: inset(55% 0 12% 0); } 94% { transform: translate(-2px, 0); clip-path: none; } }
+  .panel-body { padding: 18px 20px 22px; }
+  .panel-body p { color: var(--muted); margin-bottom: 6px; font-size: 13px; }
+  .panel-body p b { color: var(--accent-text); font-weight: 400; text-shadow: var(--glow); }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+  #static { position: fixed; inset: 0; z-index: 0; opacity: .07; pointer-events: none; width: 100%; height: 100%; image-rendering: pixelated; }
+</style>
+</head>
+<body>
+<div class="vignette" aria-hidden="true"></div>
+<canvas id="static" aria-hidden="true"></canvas>
+<main class="lost">
+  <div class="box">
+    <div class="code" aria-hidden="true">404</div>
+    <div class="panel" style="margin-top:24px">
+      <div class="panel-bar"><span id="path">TIM://unknown</span><span class="live"><span class="pip"></span>SIGNAL LOST</span></div>
+      <div class="panel-body">
+        <p><b>&gt;</b> <span id="l1">Сканирую частоту... пусто.</span></p>
+        <p><b>&gt;</b> <span id="l2">Такой страницы нет. Возможно, её и не было.</span></p>
+        <p><b>&gt;</b> <span id="l3">Зато главная на месте, и там идёт погода.</span><span class="cur"></span></p>
+        <div class="actions">
+          <a class="btn btn-solid" href="/" id="home">На главную →</a>
+          <a class="btn btn-ghost" href="/#contact" id="contact">Сообщить о битой ссылке</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+<script>
+  (function () {
+    document.getElementById('path').textContent = 'TIM:/' + location.pathname.slice(0, 40);
+    let en = false;
+    try { en = localStorage.getItem('lang') === 'en'; } catch (e) {}
+    if (en) {
+      document.documentElement.lang = 'en';
+      document.getElementById('l1').textContent = 'Scanning the frequency... nothing.';
+      document.getElementById('l2').textContent = 'This page does not exist. Maybe it never did.';
+      document.getElementById('l3').textContent = 'The home page is still there though, and it has weather.';
+      document.getElementById('home').textContent = 'Back home →';
+      document.getElementById('contact').textContent = 'Report a broken link';
+    }
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const cv = document.getElementById('static'), ctx = cv.getContext('2d');
+    cv.width = 160; cv.height = 90;
+    const img = ctx.createImageData(160, 90);
+    setInterval(() => {
+      for (let i = 0; i < img.data.length; i += 4) {
+        const v = Math.random() * 255;
+        img.data[i] = img.data[i + 1] = img.data[i + 2] = v;
+        img.data[i + 3] = 255;
+      }
+      ctx.putImageData(img, 0, 0);
+    }, 70);
+  })();
+</script>
+</body>
+</html>

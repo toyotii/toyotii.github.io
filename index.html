@@ -1,385 +1,97 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="cdb">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TIM // Security & Dev</title>
 <meta name="description" content="Тим, студент ИБ в ITHUB College. Telegram-боты, автоматизация на LLM, торговые системы. Код, который доходит до прода.">
-<meta property="og:title" content="TIM // Security & Dev">
-<meta property="og:description" content="Telegram-боты, автоматизация на LLM, торговые системы. Код, который доходит до прода.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://toyotii.github.io/">
+<meta property="og:title" content="TIM // Security & Dev Engineer">
+<meta property="og:description" content="Telegram-боты, автоматизация на LLM, торговые системы. Код, который доходит до прода.">
+<meta property="og:image" content="https://toyotii.github.io/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://toyotii.github.io/assets/og.png">
 <meta name="theme-color" content="#0E3020">
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='438 98 404 404'%3E%3Crect x='438' y='98' width='404' height='404' rx='80' fill='%230E3020'/%3E%3Cg transform='rotate(15 640 300)' fill='%23EDE3D2'%3E%3Crect x='624' y='112' width='32' height='70' rx='16'/%3E%3Crect x='624' y='112' width='32' height='70' rx='16' transform='rotate(60 640 300)'/%3E%3Crect x='624' y='112' width='32' height='70' rx='16' transform='rotate(120 640 300)'/%3E%3Crect x='624' y='112' width='32' height='70' rx='16' transform='rotate(180 640 300)'/%3E%3Crect x='624' y='112' width='32' height='70' rx='16' transform='rotate(240 640 300)'/%3E%3Crect x='624' y='112' width='32' height='70' rx='16' transform='rotate(300 640 300)'/%3E%3C/g%3E%3Ccircle cx='640' cy='300' r='96' fill='none' stroke='%23E86A1A' stroke-width='26'/%3E%3Ccircle cx='640' cy='300' r='34' fill='%23E86A1A'/%3E%3C/svg%3E">
-<script>document.documentElement.classList.add('js')</script>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<script>
+  document.documentElement.classList.add('js');
+  try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-<style>
-  /* Палитра CDB — из Bot/assets/welcome.svg */
-  :root {
-    --bg: #0E3020;
-    --bg-deep: #0A2518;
-    --card: #113826;
-    --card-hi: #18492F;
-    --cream: #EDE3D2;
-    --muted: rgba(237, 227, 210, .64);
-    --dim: rgba(237, 227, 210, .38);
-    --line: rgba(237, 227, 210, .09);
-    --accent: #E86A1A;
-    --accent-text: #F4843A;
-    --accent-line: rgba(232, 106, 26, .22);
-    --accent-soft: rgba(232, 106, 26, .08);
-    --glow: 0 0 8px rgba(232, 106, 26, .35), 0 0 22px rgba(232, 106, 26, .12);
-    --mono: 'JetBrains Mono', ui-monospace, monospace;
-    --display: 'Unbounded', 'JetBrains Mono', sans-serif;
-    --radius: 4px;
-    --wrap: 1200px;
-    --gutter: 40px;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; background: var(--bg-deep); }
-
-  body {
-    background: radial-gradient(ellipse 90% 60% at 50% 0%, var(--card-hi) 0%, var(--bg) 45%, var(--bg-deep) 100%) fixed;
-    color: var(--cream);
-    font-family: var(--mono);
-    font-size: 14px;
-    line-height: 1.7;
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    text-shadow: 0 0 4px rgba(237, 227, 210, .12);
-  }
-
-  ::selection { background: var(--accent); color: var(--bg-deep); text-shadow: none; }
-  ::-webkit-scrollbar { width: 6px; }
-  ::-webkit-scrollbar-track { background: var(--bg-deep); }
-  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 3px; }
-
-  a { color: inherit; }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-
-  @media (pointer: fine) {
-    * { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20'%3E%3Cpath d='M2 2L10 18L12 11L19 9Z' fill='%23E86A1A' stroke='%230A2518' stroke-width='1'/%3E%3C/svg%3E") 2 2, auto; }
-    a, button, [role="button"], label { cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'%3E%3Cpath d='M4 2L4 22L8 17L12 22L15 20L11 15L17 15Z' fill='%23EDE3D2' stroke='%230A2518' stroke-width='1'/%3E%3C/svg%3E") 4 2, pointer; }
-    input, textarea { cursor: text; }
-  }
-
-  /* ── ЭЛТ: строки развёртки, шум, виньетка ── */
-  body::after {
-    content: ''; position: fixed; inset: 0; z-index: 9999; pointer-events: none;
-    background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,.07) 2px, rgba(0,0,0,.07) 4px);
-  }
-  body::before {
-    content: ''; position: fixed; inset: -50%; z-index: 9998; pointer-events: none;
-    background:
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
-    animation: noise-shift .5s steps(4) infinite;
-  }
-  .vignette {
-    position: fixed; inset: 0; z-index: 9997; pointer-events: none;
-    background: radial-gradient(ellipse at center, transparent 55%, rgba(5,20,12,.35) 85%, rgba(5,20,12,.7) 100%);
-  }
-  @keyframes noise-shift {
-    0% { transform: translate(0,0); } 25% { transform: translate(-6%,4%); }
-    50% { transform: translate(5%,-3%); } 75% { transform: translate(-3%,6%); } 100% { transform: translate(0,0); }
-  }
-
-  .screen { position: relative; z-index: 2; animation: crt-boot 1.1s ease-out both, crt-flicker 9s ease-in-out 1.1s infinite; }
-  @keyframes crt-boot {
-    0% { opacity: 0; filter: brightness(2) saturate(0); transform: scale(.985); }
-    35% { opacity: 1; filter: brightness(1.4) saturate(.5); transform: scale(.996); }
-    100% { opacity: 1; filter: none; transform: none; }
-  }
-  @keyframes crt-flicker { 0%,100% { opacity: 1; } 4% { opacity: .975; } 8% { opacity: 1; } 51% { opacity: .985; } 53% { opacity: 1; } }
-
-  #grid { position: fixed; inset: 0; z-index: 1; pointer-events: none; }
-
-  /* ── Экран загрузки ── */
-  .boot {
-    position: fixed; inset: 0; z-index: 10000; background: var(--bg-deep);
-    padding: 48px var(--gutter); font-size: 13px; color: var(--muted);
-    transition: opacity .45s ease;
-  }
-  .boot.done { opacity: 0; pointer-events: none; }
-  .boot p { min-height: 1.7em; white-space: pre; }
-  .boot .hl { color: var(--accent-text); font-weight: 700; text-shadow: var(--glow); }
-  .boot .skip { position: absolute; bottom: 32px; left: var(--gutter); color: var(--dim); font-size: 11px; letter-spacing: .15em; }
-  .cur { display: inline-block; width: 8px; height: 15px; background: var(--accent); vertical-align: -2px; animation: blink 1s steps(1) infinite; box-shadow: var(--glow); }
-  @keyframes blink { 50% { opacity: 0; } }
-
-  /* ── Общее ── */
-  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
-  section { padding: 120px 0 0; scroll-margin-top: 60px; }
-
-  .label {
-    font-size: 11px; letter-spacing: .25em; text-transform: uppercase; color: var(--accent-text);
-    margin-bottom: 14px; text-shadow: var(--glow);
-  }
-  .h2 {
-    font-family: var(--display); font-weight: 800; text-transform: uppercase;
-    font-size: clamp(34px, 6vw, 64px); line-height: 1; letter-spacing: .01em; margin-bottom: 20px;
-  }
-  .lead { color: var(--muted); max-width: 620px; margin-bottom: 56px; }
-  .path { font-size: 11px; color: var(--dim); letter-spacing: .08em; }
-  .glow { color: var(--accent-text); text-shadow: var(--glow); }
-
-  .pip { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); animation: pip 2s ease-in-out infinite; flex-shrink: 0; }
-  @keyframes pip { 0%,100% { box-shadow: 0 0 5px var(--accent), 0 0 10px rgba(232,106,26,.5); } 50% { box-shadow: 0 0 9px var(--accent), 0 0 20px rgba(232,106,26,.7), 0 0 30px rgba(232,106,26,.25); } }
-
-  .panel {
-    position: relative; background: rgba(10, 37, 24, .72); border: 1px solid var(--accent-line); border-radius: var(--radius);
-    box-shadow: 0 0 6px rgba(232,106,26,.05), inset 0 0 6px rgba(232,106,26,.02);
-    animation: border-pulse 3.5s ease-in-out infinite; transition: border-color .3s, box-shadow .3s, transform .3s;
-    backdrop-filter: blur(2px);
-  }
-  @keyframes border-pulse {
-    0%,100% { border-color: rgba(232,106,26,.18); box-shadow: 0 0 6px rgba(232,106,26,.05); }
-    50% { border-color: rgba(232,106,26,.3); box-shadow: 0 0 14px rgba(232,106,26,.09); }
-  }
-  .panel.hover:hover { border-color: rgba(232,106,26,.55); box-shadow: 0 0 22px rgba(232,106,26,.16), 0 0 44px rgba(232,106,26,.06), inset 0 0 12px rgba(232,106,26,.05); transform: translateY(-3px); animation: none; }
-
-  .panel-bar {
-    display: flex; justify-content: space-between; align-items: center; gap: 12px;
-    padding: 10px 16px; border-bottom: 1px solid var(--line); font-size: 11px; color: var(--dim); letter-spacing: .08em;
-  }
-  .live { display: inline-flex; align-items: center; gap: 8px; color: var(--accent-text); letter-spacing: .18em; }
-
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; border-radius: var(--radius);
-    font: 700 12px/1 var(--mono); letter-spacing: .16em; text-transform: uppercase; text-decoration: none;
-    border: 1px solid var(--accent); transition: filter .2s, background .2s, color .2s;
-  }
-  .btn-solid { background: var(--accent); color: var(--bg-deep); text-shadow: none; box-shadow: 0 0 22px rgba(232,106,26,.35); }
-  .btn-solid:hover { filter: brightness(1.15); }
-  .btn-ghost { color: var(--accent-text); background: var(--accent-soft); text-shadow: var(--glow); border-color: var(--accent-line); }
-  .btn-ghost:hover { background: rgba(232,106,26,.16); }
-
-  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
-  .tag { font-size: 10px; padding: 3px 9px; border: 1px solid var(--line); border-radius: 2px; color: var(--muted); letter-spacing: .1em; text-transform: uppercase; }
-
-  .js .reveal { opacity: 0; transform: translateY(20px); transition: opacity .6s ease-out, transform .6s ease-out; }
-  .js .reveal.in { opacity: 1; transform: none; }
-
-  /* ── Навигация ── */
-  nav {
-    position: sticky; top: 0; z-index: 50; border-bottom: 1px solid var(--line);
-    background: rgba(10, 37, 24, .82); backdrop-filter: blur(10px);
-  }
-  nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 60px; }
-  .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; letter-spacing: .12em; font-size: 13px; }
-  .logo svg { width: 26px; height: 26px; }
-  .logo span { color: var(--dim); }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a { font-size: 11px; letter-spacing: .18em; color: var(--muted); text-decoration: none; transition: color .2s; }
-  .nav-links a:hover { color: var(--accent-text); text-shadow: var(--glow); }
-  .clock { display: flex; align-items: center; gap: 8px; font-size: 11px; color: var(--muted); letter-spacing: .1em; font-variant-numeric: tabular-nums; }
-
-  /* ── Hero ── */
-  .hero { padding-top: 90px; display: grid; grid-template-columns: 1.25fr 1fr; gap: 56px; align-items: center; min-height: calc(100vh - 60px); padding-bottom: 40px; }
-  .hero-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 11px; letter-spacing: .2em; color: var(--accent-text); border: 1px solid var(--accent-line); background: var(--accent-soft); padding: 7px 14px; border-radius: 2px; margin-bottom: 30px; text-shadow: var(--glow); }
-  .hero h1 { font-family: var(--display); font-weight: 800; text-transform: uppercase; font-size: clamp(38px, 7vw, 86px); line-height: .98; letter-spacing: .005em; margin-bottom: 30px; }
-  .hero h1 .outline { color: transparent; -webkit-text-stroke: 1px rgba(237,227,210,.35); text-shadow: none; }
-  .hero h1 .hot { color: var(--accent); text-shadow: 0 0 10px rgba(232,106,26,.45), 0 0 26px rgba(232,106,26,.18), 0 0 50px rgba(232,106,26,.06); animation: phosphor 4s ease-in-out infinite; }
-  @keyframes phosphor { 50% { text-shadow: 0 0 14px rgba(232,106,26,.55), 0 0 34px rgba(232,106,26,.24), 0 0 60px rgba(232,106,26,.1); } }
-  .hero-sub { font-size: 15px; color: var(--cream); margin-bottom: 10px; }
-  .hero-desc { color: var(--muted); max-width: 520px; margin-bottom: 40px; }
-  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-
-  .status { font-size: 12px; }
-  .status dl { padding: 8px 18px 4px; }
-  .status .row { display: flex; justify-content: space-between; gap: 16px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
-  .status .row:last-child { border-bottom: 0; }
-  .status dt { color: var(--dim); letter-spacing: .12em; }
-  .status dd { text-align: right; letter-spacing: .04em; font-variant-numeric: tabular-nums; }
-  .conf { padding: 14px 18px 18px; border-top: 1px solid var(--line); }
-  .conf-head { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: .14em; color: var(--dim); margin-bottom: 8px; }
-  .conf-bar { height: 8px; display: grid; grid-template-columns: repeat(24, 1fr); gap: 3px; }
-  .conf-bar i { background: var(--accent); box-shadow: 0 0 6px rgba(232,106,26,.5); border-radius: 1px; }
-  .conf-note { margin-top: 10px; font-size: 11px; color: var(--dim); }
-  .typed { padding: 14px 18px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; min-height: 52px; }
-  .typed b { color: var(--accent-text); font-weight: 400; }
-
-  /* ── Принципы ── */
-  .principles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  .principle { background: rgba(10,37,24,.8); padding: 28px 24px; transition: background .25s; }
-  .principle:hover { background: var(--card); }
-  .principle .n { font-size: 11px; color: var(--accent-text); letter-spacing: .2em; margin-bottom: 18px; text-shadow: var(--glow); }
-  .principle h3 { font-family: var(--display); font-weight: 700; font-size: 15px; text-transform: uppercase; letter-spacing: .02em; margin-bottom: 10px; line-height: 1.25; }
-  .principle p { color: var(--muted); font-size: 12.5px; }
-
-  /* ── Обо мне ── */
-  .about { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: start; }
-  .modes { display: flex; flex-wrap: wrap; gap: 6px; padding: 14px 16px; border-bottom: 1px solid var(--line); }
-  .mode {
-    font: 700 11px/1 var(--mono); letter-spacing: .14em; padding: 9px 12px; border-radius: 2px;
-    color: var(--muted); background: transparent; border: 1px solid var(--line); transition: all .2s;
-  }
-  .mode:hover { color: var(--cream); border-color: var(--accent-line); }
-  .mode[aria-pressed="true"] { color: var(--bg-deep); background: var(--accent); border-color: var(--accent); box-shadow: 0 0 16px rgba(232,106,26,.35); }
-  .mode-hint { width: 100%; font-size: 11px; color: var(--dim); margin-top: 4px; }
-  .mode-body { padding: 22px 22px 26px; min-height: 250px; }
-  .mode-body p + p { margin-top: 14px; }
-  .mode-body p { color: var(--muted); }
-  .mode-body strong { color: var(--cream); font-weight: 500; }
-
-  .facts { list-style: none; }
-  .facts li { display: flex; gap: 16px; padding: 18px 20px; border-bottom: 1px solid var(--line); }
-  .facts li:last-child { border-bottom: 0; }
-  .facts .k { font-size: 10px; letter-spacing: .2em; color: var(--accent-text); min-width: 58px; padding-top: 3px; text-shadow: var(--glow); }
-  .facts .t { font-weight: 500; margin-bottom: 2px; }
-  .facts .s { font-size: 12px; color: var(--muted); line-height: 1.6; }
-
-  /* ── Проекты ── */
-  .projects { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .project { display: flex; flex-direction: column; }
-  .project.wide { grid-column: 1 / -1; }
-  .project-body { padding: 26px 26px 24px; display: flex; flex-direction: column; flex: 1; }
-  .badge { display: inline-flex; align-items: center; gap: 8px; font-size: 10px; letter-spacing: .18em; padding: 4px 10px; border-radius: 2px; border: 1px solid var(--accent-line); color: var(--accent-text); background: var(--accent-soft); }
-  .badge.quiet { color: var(--muted); border-color: var(--line); background: transparent; }
-  .project h3 { font-family: var(--display); font-weight: 700; text-transform: uppercase; font-size: clamp(20px, 2.4vw, 28px); line-height: 1.1; margin: 18px 0 10px; }
-  .pitch { color: var(--cream); margin-bottom: 18px; max-width: 760px; }
-  .points { list-style: none; margin-bottom: 22px; }
-  .points li { position: relative; padding-left: 20px; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
-  .points li::before { content: '›'; position: absolute; left: 4px; color: var(--accent-text); }
-  .project-foot { margin-top: auto; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 14px; padding-top: 18px; border-top: 1px dashed var(--line); }
-  .plink { font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--accent-text); text-decoration: none; text-shadow: var(--glow); transition: letter-spacing .2s; white-space: nowrap; }
-  .plink:hover { letter-spacing: .24em; }
-  .note { font-size: 11px; color: var(--dim); }
-
-  .wide-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 36px; }
-
-  /* Схема конвейера */
-  .pipe { margin: 4px 0 22px; padding: 18px; background: rgba(5, 22, 14, .6); border: 1px solid var(--line); border-radius: var(--radius); position: relative; overflow: hidden; }
-  .pipe::before { content: ''; position: absolute; inset: 0; pointer-events: none; background: repeating-linear-gradient(to bottom, transparent 0, transparent 2px, rgba(0,0,0,.12) 2px, rgba(0,0,0,.12) 4px); }
-  .pipe-title { font-size: 10px; letter-spacing: .2em; color: var(--dim); margin-bottom: 14px; }
-  .nodes { list-style: none; display: grid; gap: 0; }
-  .node { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; align-items: center; padding: 9px 0; position: relative; font-size: 12px; }
-  .node .dot { width: 9px; height: 9px; border: 1px solid var(--accent); border-radius: 50%; margin-left: 6px; background: var(--bg-deep); position: relative; z-index: 1; }
-  .node:not(:last-child)::after { content: ''; position: absolute; left: 10px; top: 24px; bottom: -9px; width: 1px; background: var(--accent-line); }
-  .node .nm { color: var(--cream); }
-  .node .nm small { color: var(--dim); font-size: 11px; margin-left: 6px; }
-  .node .tg { font-size: 10px; color: var(--muted); letter-spacing: .1em; text-align: right; }
-  .node.on .dot { background: var(--accent); box-shadow: 0 0 8px var(--accent), 0 0 18px rgba(232,106,26,.5); }
-  .node.on .nm { color: var(--accent-text); text-shadow: var(--glow); }
-  .node.human .dot { border-radius: 2px; }
-
-  /* Карточка CDB */
-  .cdb-head { display: flex; align-items: center; gap: 18px; margin: 18px 0 10px; }
-  .cdb-head svg { width: 64px; height: 64px; flex-shrink: 0; filter: drop-shadow(0 0 10px rgba(232,106,26,.25)); }
-  .cdb-head h3 { margin: 0; }
-  .cdb-mark .petals { transform-origin: 640px 300px; animation: iris 14s linear infinite; }
-  @keyframes iris { to { transform: rotate(360deg); } }
-
-  /* Неделя расписания — точками */
-  .week { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; margin: 2px 0 22px; }
-  .day { text-align: center; font-size: 10px; color: var(--dim); letter-spacing: .1em; }
-  .day .cells { display: grid; gap: 3px; margin-top: 6px; }
-  .day .cells i { height: 9px; border-radius: 1px; background: var(--line); }
-  .day .cells i.b { background: rgba(237,227,210,.55); }
-  .day .cells i.a { background: var(--accent); box-shadow: 0 0 6px rgba(232,106,26,.6); }
-  .day.today { color: var(--accent-text); }
-
-  /* ── Стек ── */
-  .stack { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
-  .readout { list-style: none; padding: 8px 20px 12px; }
-  .readout li { display: flex; align-items: baseline; gap: 10px; padding: 9px 0; font-size: 13px; }
-  .readout .key { white-space: nowrap; }
-  .readout .lead-dots { flex: 1; border-bottom: 1px dotted rgba(237,227,210,.2); transform: translateY(-4px); min-width: 20px; }
-  .readout .val { color: var(--muted); text-align: right; font-size: 12px; }
-  .readout .val.hot { color: var(--accent-text); text-shadow: var(--glow); }
-
-  /* ── Связь ── */
-  .contact { position: relative; }
-  #rain { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
-  .contact-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: start; }
-  .links { display: grid; gap: 12px; }
-  .link {
-    display: flex; align-items: center; gap: 16px; padding: 18px 20px; text-decoration: none;
-  }
-  .link .ico { width: 36px; height: 36px; display: grid; place-items: center; border: 1px solid var(--accent-line); border-radius: 2px; color: var(--accent-text); font-size: 12px; font-weight: 700; flex-shrink: 0; }
-  .link .l { font-size: 10px; letter-spacing: .2em; color: var(--dim); }
-  .link .v { font-size: 14px; }
-  .link .arr { margin-left: auto; color: var(--accent-text); transition: transform .2s; }
-  .link:hover .arr { transform: translateX(4px); }
-
-  .form { padding: 0 0 20px; }
-  .form .fields { padding: 18px 20px 0; display: grid; gap: 14px; }
-  .form label { display: block; font-size: 10px; letter-spacing: .2em; color: var(--accent-text); margin-bottom: 6px; }
-  .form input, .form textarea {
-    width: 100%; font: 13px/1.6 var(--mono); color: var(--cream); background: rgba(5,22,14,.7);
-    border: 1px solid var(--line); border-radius: 2px; padding: 10px 12px; resize: vertical;
-  }
-  .form input:focus, .form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 12px rgba(232,106,26,.18); }
-  .form input::placeholder, .form textarea::placeholder { color: var(--dim); }
-  .form .btn { margin: 16px 20px 0; width: calc(100% - 40px); justify-content: center; }
-  .form .hint { padding: 10px 20px 0; font-size: 11px; color: var(--dim); }
-
-  footer { margin-top: 120px; border-top: 1px solid var(--line); box-shadow: 0 -1px 10px rgba(232,106,26,.06); }
-  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding-top: 26px; padding-bottom: 34px; font-size: 11px; color: var(--dim); letter-spacing: .08em; }
-  footer .brand { color: var(--cream); font-weight: 800; letter-spacing: .14em; }
-
-  /* ── Адаптив ── */
-  @media (max-width: 1080px) {
-    .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 70px; }
-    .principles { grid-template-columns: repeat(2, 1fr); }
-    .about, .wide-grid { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 820px) {
-    :root { --gutter: 16px; }
-    .nav-links { display: none; }
-    section { padding-top: 88px; }
-    .projects, .stack, .contact-grid { grid-template-columns: 1fr; }
-    .project.wide { grid-column: auto; }
-    .boot { padding-top: 32px; font-size: 11px; }
-    .boot p { white-space: pre-wrap; }
-  }
-  @media (max-width: 520px) {
-    .principles { grid-template-columns: 1fr; }
-    .project-body { padding: 22px 18px 20px; }
-    .node { grid-template-columns: 22px 1fr; }
-    .node .tg { display: none; }
-    .readout .val { font-size: 11px; }
-    .hero-tag { letter-spacing: .12em; }
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    *, *::before, *::after { animation: none !important; transition: none !important; }
-    html { scroll-behavior: auto; }
-    .js .reveal { opacity: 1; transform: none; }
-  }
-</style>
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
 <div class="vignette" aria-hidden="true"></div>
+<div class="sun-glow" aria-hidden="true"></div>
+<div class="fog" aria-hidden="true"></div>
+<div class="flash" aria-hidden="true"></div>
+<canvas id="sky" aria-hidden="true"></canvas>
 <canvas id="grid" aria-hidden="true"></canvas>
 
 <div class="screen">
 
 <nav>
   <div class="wrap">
-    <a class="logo" href="#top" aria-label="Наверх">
+    <a class="logo" href="#top" id="logo" aria-label="TIM//DEV">
       <svg viewBox="438 98 404 404" aria-hidden="true">
-        <g transform="rotate(15 640 300)" fill="#EDE3D2">
+        <g class="petals"><g transform="rotate(15 640 300)" fill="currentColor" style="color:var(--cream)">
           <rect x="624" y="112" width="32" height="70" rx="16"/>
           <rect x="624" y="112" width="32" height="70" rx="16" transform="rotate(60 640 300)"/>
           <rect x="624" y="112" width="32" height="70" rx="16" transform="rotate(120 640 300)"/>
           <rect x="624" y="112" width="32" height="70" rx="16" transform="rotate(180 640 300)"/>
           <rect x="624" y="112" width="32" height="70" rx="16" transform="rotate(240 640 300)"/>
           <rect x="624" y="112" width="32" height="70" rx="16" transform="rotate(300 640 300)"/>
-        </g>
-        <circle cx="640" cy="300" r="96" fill="none" stroke="#E86A1A" stroke-width="26"/>
-        <circle cx="640" cy="300" r="34" fill="#E86A1A"/>
+        </g></g>
+        <circle cx="640" cy="300" r="96" fill="none" stroke="var(--accent)" stroke-width="26"/>
+        <circle cx="640" cy="300" r="34" fill="var(--accent)"/>
       </svg>
-      TIM<span>//DEV</span>
+      TIM<span class="full">//DEV</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#about">ОБО МНЕ</a></li>
-      <li><a href="#projects">ПРОЕКТЫ</a></li>
-      <li><a href="#stack">СТЕК</a></li>
-      <li><a href="#contact">СВЯЗЬ</a></li>
+      <li><a href="#about" data-i18n="nav.about">ОБО МНЕ</a></li>
+      <li><a href="#projects" data-i18n="nav.projects">ПРОЕКТЫ</a></li>
+      <li><a href="#services" data-i18n="nav.services">УСЛУГИ</a></li>
+      <li><a href="#stack" data-i18n="nav.stack">СТЕК</a></li>
+      <li><a href="#log" data-i18n="nav.log">ЖУРНАЛ</a></li>
+      <li><a href="#contact" data-i18n="nav.contact">СВЯЗЬ</a></li>
     </ul>
-    <div class="clock" title="Время в Москве"><span class="pip"></span><span id="clock">MSK --:--:--</span></div>
+    <div class="nav-tools">
+      <button class="tool" id="wx-btn" type="button" aria-expanded="false" aria-controls="wx-pop" title="Погода в Москве">
+        <span class="wx-icon" id="wx-icon" aria-hidden="true"></span><span id="wx-temp">MSK</span><span class="wx-temp-label" id="clock">--:--</span>
+      </button>
+      <button class="tool" id="lang-btn" type="button" title="Language">EN</button>
+      <button class="tool" id="term-btn" type="button" title="Терминал (~)" aria-label="Терминал">&gt;_</button>
+    </div>
+  </div>
+
+  <div class="panel pop" id="wx-pop" hidden>
+    <div class="panel-bar"><span>TIM://weather/moscow</span><span class="live"><span class="pip"></span>LIVE</span></div>
+    <div class="pop-body">
+      <div class="wx-now">
+        <span id="wx-now-icon" aria-hidden="true"></span>
+        <div>
+          <div class="big" id="wx-now-t">--°</div>
+          <div class="cond" id="wx-now-c" data-i18n="wx.loading">ЗАГРУЖАЮ...</div>
+          <div class="sub" id="wx-now-s"></div>
+        </div>
+      </div>
+      <div class="wx-days" id="wx-days"></div>
+      <p class="wx-comment" id="wx-comment"></p>
+      <div class="atmo-title" data-i18n="wx.atmo">АТМОСФЕРА САЙТА</div>
+      <div class="atmo" role="radiogroup" aria-label="Атмосфера сайта">
+        <button class="chip" type="button" role="radio" data-atmo="auto" aria-checked="true" data-i18n="wx.auto">АВТО</button>
+        <button class="chip" type="button" role="radio" data-atmo="clear" aria-checked="false" data-i18n="wx.clear">ЯСНО</button>
+        <button class="chip" type="button" role="radio" data-atmo="rain" aria-checked="false" data-i18n="wx.rain">ДОЖДЬ</button>
+        <button class="chip" type="button" role="radio" data-atmo="snow" aria-checked="false" data-i18n="wx.snow">СНЕГ</button>
+        <button class="chip" type="button" role="radio" data-atmo="storm" aria-checked="false" data-i18n="wx.storm">ГРОЗА</button>
+      </div>
+      <div class="src" data-i18n="wx.src">Данные: Open-Meteo. В режиме «авто» сайт повторяет погоду в Москве.</div>
+    </div>
   </div>
 </nav>
 
@@ -388,92 +100,78 @@
   <!-- HERO -->
   <div class="wrap hero">
     <div>
-      <div class="hero-tag"><span class="pip"></span>ОТКРЫТ К ЗАКАЗАМ</div>
-      <h1>
-        Security<br>
-        <span class="outline">&amp; Dev</span><br>
-        <span class="hot">Engineer</span>
-      </h1>
-      <p class="hero-sub">Тим. Студент ИБ, 2 курс, ITHUB College.</p>
-      <p class="hero-desc">Строю то, что работает у живых людей: Telegram-боты, автоматизация на LLM, торговые системы. Код доходит до прода, сроки называю честно.</p>
+      <div class="hero-tag"><span class="pip"></span><span data-i18n="hero.tag">ОТКРЫТ К ЗАКАЗАМ</span></div>
+      <h1>Security<br><span class="outline">&amp; Dev</span><br><span class="hot">Engineer</span></h1>
+      <p class="hero-sub" data-i18n="hero.sub">Тим. Студент ИБ, 2 курс, ITHUB College.</p>
+      <p class="hero-desc" data-i18n="hero.desc">Строю то, что работает у живых людей: Telegram-боты, автоматизация на LLM, торговые системы. Код доходит до прода, сроки называю честно.</p>
       <div class="cta">
-        <a href="#projects" class="btn btn-solid">Смотреть проекты →</a>
-        <a href="#contact" class="btn btn-ghost">Написать</a>
+        <a href="#projects" class="btn btn-solid" data-i18n="hero.cta1">Смотреть проекты →</a>
+        <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">Прогноз по проекту</a>
       </div>
     </div>
 
-    <aside class="panel status" aria-label="Статус">
+    <aside class="panel status">
       <div class="panel-bar"><span>TIM://system-status</span><span class="live"><span class="pip"></span>LIVE</span></div>
       <dl>
-        <div class="row"><dt>СТАТУС</dt><dd class="glow">ОТКРЫТ К ЗАКАЗАМ</dd></div>
-        <div class="row"><dt>ЛОКАЦИЯ</dt><dd>МОСКВА · <span id="clock2">--:--</span></dd></div>
-        <div class="row"><dt>УЧЁБА</dt><dd>ITHUB · ИБ · 2 КУРС</dd></div>
-        <div class="row"><dt>В ПРОДЕ</dt><dd>3 СИСТЕМЫ</dd></div>
-        <div class="row"><dt>ОТВЕТ</dt><dd>~ НЕСКОЛЬКО ЧАСОВ</dd></div>
+        <div class="row"><dt data-i18n="st.status">СТАТУС</dt><dd class="glow" data-i18n="st.open">ОТКРЫТ К ЗАКАЗАМ</dd></div>
+        <div class="row"><dt data-i18n="st.loc">ЛОКАЦИЯ</dt><dd><span data-i18n="st.msk">МОСКВА</span> · <span id="clock2">--:--</span></dd></div>
+        <div class="row"><dt data-i18n="st.wx">ЗА ОКНОМ</dt><dd id="st-wx">—</dd></div>
+        <div class="row"><dt data-i18n="st.edu">УЧЁБА</dt><dd data-i18n="st.eduv">ITHUB · ИБ · 2 КУРС</dd></div>
+        <div class="row"><dt data-i18n="st.prod">В ПРОДЕ</dt><dd data-i18n="st.prodv">3 СИСТЕМЫ</dd></div>
+        <div class="row"><dt data-i18n="st.reply">ОТВЕТ</dt><dd data-i18n="st.replyv">~ НЕСКОЛЬКО ЧАСОВ</dd></div>
       </dl>
       <div class="conf">
-        <div class="conf-head"><span>ДОСТОВЕРНОСТЬ</span><span class="glow">100%</span></div>
+        <div class="conf-head"><span data-i18n="st.conf">ДОСТОВЕРНОСТЬ</span><span class="glow">100%</span></div>
         <div class="conf-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="conf-note">Всё на этой странице работает на самом деле. Без приукрас.</div>
+        <div class="conf-note" data-i18n="st.confnote">Всё на этой странице работает на самом деле. Без приукрас.</div>
       </div>
-      <div class="typed" aria-live="off"><b>&gt;</b> <span id="typed">сейчас: торговая система и CDB</span><span class="cur"></span></div>
+      <div class="typed"><b>&gt;</b> <span id="typed"></span><span class="cur"></span></div>
     </aside>
   </div>
 
-  <!-- ПРИНЦИПЫ -->
+  <!-- ПРИНЦИПЫ + ЦИФРЫ -->
   <div class="wrap">
     <div class="principles reveal">
-      <div class="principle">
-        <div class="n">01</div>
-        <h3>До прода, а не «у меня работает»</h3>
-        <p>Сервисы под systemd, боты 24/7, деплой одним скриптом. Работает на сервере, а не только на ноутбуке.</p>
-      </div>
-      <div class="principle">
-        <div class="n">02</div>
-        <h3>Честные сроки</h3>
-        <p>Называю реальный срок и сразу говорю, где будет сложно. Без сюрпризов в последний день.</p>
-      </div>
-      <div class="principle">
-        <div class="n">03</div>
-        <h3>Безопасность по умолчанию</h3>
-        <p>Секреты не в коде, защита от prompt injection, реальные деньги только по явному включению.</p>
-      </div>
-      <div class="principle">
-        <div class="n">04</div>
-        <h3>Тесты, а не надежда</h3>
-        <p>Где в логике есть деньги, сначала офлайн-проверки и тесты с моками сети. Потом деплой.</p>
-      </div>
+      <div class="principle"><div class="n">01</div><h3 data-i18n="pr.1t">До прода, а не «у меня работает»</h3><p data-i18n="pr.1">Сервисы под systemd, боты 24/7, деплой одним скриптом. Работает на сервере, а не только на ноутбуке.</p></div>
+      <div class="principle"><div class="n">02</div><h3 data-i18n="pr.2t">Честные сроки</h3><p data-i18n="pr.2">Называю реальный срок и сразу говорю, где будет сложно. Без сюрпризов в последний день.</p></div>
+      <div class="principle"><div class="n">03</div><h3 data-i18n="pr.3t">Безопасность по умолчанию</h3><p data-i18n="pr.3">Секреты не в коде, защита от prompt injection, реальные деньги только по явному включению.</p></div>
+      <div class="principle"><div class="n">04</div><h3 data-i18n="pr.4t">Тесты, а не надежда</h3><p data-i18n="pr.4">Где в логике есть деньги, сначала офлайн-проверки и тесты с моками сети. Потом деплой.</p></div>
+    </div>
+
+    <div class="panel numbers reveal" id="numbers">
+      <div class="num"><div class="v" data-count="121">121</div><div class="k" data-i18n="num.1">учебная группа в парсере расписания</div></div>
+      <div class="num"><div class="v" data-count="3">3</div><div class="k" data-i18n="num.2">системы работают в проде прямо сейчас</div></div>
+      <div class="num"><div class="v" data-count="7">7</div><div class="k" data-i18n="num.3">звеньев в конвейере торговой системы</div></div>
+      <div class="num"><div class="v" data-count="34">34</div><div class="k" data-i18n="num.4">модуля тестов в торговой системе</div></div>
+      <div class="num"><div class="v" data-count="24" data-suffix="/7">24/7</div><div class="k" data-i18n="num.5">сервисы под systemd, без ручных перезапусков</div></div>
     </div>
   </div>
 
   <!-- ОБО МНЕ -->
   <section id="about">
     <div class="wrap">
-      <div class="label">// 01 — ОБО МНЕ</div>
-      <h2 class="h2">Кто я</h2>
-      <p class="lead">Выбери, насколько подробно рассказать.</p>
+      <div class="label" data-i18n="about.label">// 01 — ОБО МНЕ</div>
+      <h2 class="h2" data-i18n="about.title">Кто я</h2>
+      <p class="lead" data-i18n="about.lead">Выбери, насколько подробно рассказать.</p>
 
       <div class="about reveal">
         <div class="panel">
-          <div class="panel-bar"><span>TIM://about</span><span id="mode-name">ДЛЯ ТЕХЛИДА</span></div>
-          <div class="modes" role="group" aria-label="Уровень подробности">
-            <button class="mode" type="button" data-mode="short" aria-pressed="false">КОРОТКО</button>
-            <button class="mode" type="button" data-mode="tech" aria-pressed="true">ДЛЯ ТЕХЛИДА</button>
-            <button class="mode" type="button" data-mode="raw" aria-pressed="false">БЕЗ ФИЛЬТРА</button>
-            <div class="mode-hint" id="mode-hint">Стек, подход, как я пишу код.</div>
+          <div class="panel-bar"><span>TIM://about</span><span id="mode-name"></span></div>
+          <div class="modes" role="group">
+            <button class="chip" type="button" data-mode="short" aria-pressed="false" data-i18n="mode.short">КОРОТКО</button>
+            <button class="chip" type="button" data-mode="tech" aria-pressed="true" data-i18n="mode.tech">ДЛЯ ТЕХЛИДА</button>
+            <button class="chip" type="button" data-mode="raw" aria-pressed="false" data-i18n="mode.raw">БЕЗ ФИЛЬТРА</button>
+            <div class="mode-hint" id="mode-hint"></div>
           </div>
-          <div class="mode-body" id="mode-body" aria-live="polite">
-            <p>Основной язык <strong>Python</strong>. Для Telegram беру <strong>aiogram</strong> и <strong>Telethon</strong>, для сети aiohttp и httpx, фоновые задачи держу на APScheduler. Храню данные в SQLite и Google Sheets.</p>
-            <p><strong>LLM встраиваю как деталь с ограничениями</strong>, а не как магию: Groq, Cloudflare Workers AI, vision-модели. Машинный текст всегда помечен, чтобы его не спутали со словами человека.</p>
-            <p>Деплою на Linux: systemd, nginx, bash. Из облаков работал с Yandex Cloud и Cloudflare. Если логика трогает деньги, перед изменением гоняю офлайн-selftest и тесты с моками сети.</p>
-          </div>
+          <div class="mode-body" id="mode-body" aria-live="polite"></div>
         </div>
 
         <ul class="panel facts">
-          <li><div class="k">УЧЁБА</div><div><div class="t">ITHUB College, Москва</div><div class="s">Информационная безопасность, 2 курс</div></div></li>
-          <li><div class="k">РАБОТА</div><div><div class="t">Коммерческая разработка</div><div class="s">Торговая система сигналов для заказчика: от парсинга до ордеров на бирже</div></div></li>
-          <li><div class="k">БРЕНД</div><div><div class="t">CDB</div><div class="s">Мои боты и сообщество под одним знаком</div></div></li>
-          <li><div class="k">ХОББИ</div><div><div class="t">Радиоэфир и железо</div><div class="s">LilyGO T-Embed CC1101, Bruce firmware: Sub-GHz, NFC, BLE</div></div></li>
+          <li><div class="k" data-i18n="fact.edu">УЧЁБА</div><div><div class="t" data-i18n="fact.edut">ITHUB College, Москва</div><div class="s" data-i18n="fact.edus">Информационная безопасность, 2 курс</div></div></li>
+          <li><div class="k" data-i18n="fact.work">РАБОТА</div><div><div class="t" data-i18n="fact.workt">Коммерческая разработка</div><div class="s" data-i18n="fact.works">Торговая система сигналов для заказчика: от парсинга до ордеров на бирже</div></div></li>
+          <li><div class="k" data-i18n="fact.brand">БРЕНД</div><div><div class="t">CDB</div><div class="s" data-i18n="fact.brands">Мои боты и сообщество под одним знаком</div></div></li>
+          <li><div class="k" data-i18n="fact.oss">OPEN SOURCE</div><div><div class="t">yandex-calendar-timetable</div><div class="s" data-i18n="fact.osss">Ядро бота расписания, открытый код и тесты</div></div></li>
+          <li><div class="k" data-i18n="fact.hobby">ХОББИ</div><div><div class="t" data-i18n="fact.hobbyt">Радиоэфир и железо</div><div class="s" data-i18n="fact.hobbys">LilyGO T-Embed CC1101, Bruce firmware: Sub-GHz, NFC, BLE</div></div></li>
         </ul>
       </div>
     </div>
@@ -482,54 +180,65 @@
   <!-- ПРОЕКТЫ -->
   <section id="projects">
     <div class="wrap">
-      <div class="label">// 02 — ПОРТФОЛИО</div>
-      <h2 class="h2">Проекты</h2>
-      <p class="lead">Не учебные задачки. Каждая из этих систем работает у реальных людей.</p>
+      <div class="label" data-i18n="proj.label">// 02 — ПОРТФОЛИО</div>
+      <h2 class="h2" data-i18n="proj.title">Проекты</h2>
+      <p class="lead" data-i18n="proj.lead">Не учебные задачки. Каждая из этих систем работает у реальных людей. Карточки ниже можно трогать.</p>
 
       <div class="projects">
 
-        <!-- 01 Торговая система -->
+        <!-- Торговая система -->
         <article class="panel project wide reveal">
-          <div class="panel-bar"><span>TIM://projects/signals</span><span class="live"><span class="pip"></span>В РАБОТЕ</span></div>
+          <div class="panel-bar"><span>TIM://projects/signals</span><span class="live"><span class="pip"></span><span data-i18n="proj.inwork">В РАБОТЕ</span></span></div>
           <div class="project-body">
-            <div><span class="badge">КОММЕРЧЕСКИЙ ПРОЕКТ</span></div>
-            <h3>Торговая система сигналов</h3>
-            <p class="pitch">Превращает сообщения из Telegram-каналов в сделки на бирже. Решение о сделке принимает человек-оператор.</p>
+            <div><span class="badge" data-i18n="proj.commercial">КОММЕРЧЕСКИЙ ПРОЕКТ</span></div>
+            <h3 data-i18n="sig.title">Торговая система сигналов</h3>
+            <p class="pitch" data-i18n="sig.pitch">Превращает сообщения из Telegram-каналов в сделки на бирже. Решение о сделке принимает человек-оператор.</p>
             <div class="wide-grid">
-              <div class="pipe" aria-label="Схема системы">
-                <div class="pipe-title">КОНВЕЙЕР // 7 ЗВЕНЬЕВ</div>
+              <div class="pipe">
+                <div class="sub-title" data-i18n="sig.pipe">КОНВЕЙЕР // 7 ЗВЕНЬЕВ</div>
                 <ol class="nodes" id="pipe">
-                  <li class="node"><span class="dot"></span><span class="nm">Telegram-каналы<small>текст + скриншоты</small></span><span class="tg">ИСТОЧНИК</span></li>
-                  <li class="node"><span class="dot"></span><span class="nm">Парсер<small>Telethon</small></span><span class="tg">СБОР</span></li>
-                  <li class="node"><span class="dot"></span><span class="nm">Vision-модель<small>текст с картинок</small></span><span class="tg">OCR</span></li>
-                  <li class="node"><span class="dot"></span><span class="nm">n8n + LLM<small>Groq</small></span><span class="tg">РАЗБОР</span></li>
-                  <li class="node"><span class="dot"></span><span class="nm">Реестр сигналов<small>Google Sheets</small></span><span class="tg">ДАННЫЕ</span></li>
-                  <li class="node human"><span class="dot"></span><span class="nm">Оператор-бот<small>карточка + кнопки</small></span><span class="tg">ЧЕЛОВЕК</span></li>
-                  <li class="node"><span class="dot"></span><span class="nm">Биржа Bybit<small>demo · real по флагу</small></span><span class="tg">ИСПОЛНЕНИЕ</span></li>
+                  <li class="node"><span class="dot"></span><span class="nm"><span data-i18n="sig.n1">Telegram-каналы</span><small data-i18n="sig.n1s">текст + скриншоты</small></span><span class="tg" data-i18n="sig.n1t">ИСТОЧНИК</span></li>
+                  <li class="node"><span class="dot"></span><span class="nm"><span data-i18n="sig.n2">Парсер</span><small>Telethon</small></span><span class="tg" data-i18n="sig.n2t">СБОР</span></li>
+                  <li class="node"><span class="dot"></span><span class="nm"><span data-i18n="sig.n3">Vision-модель</span><small data-i18n="sig.n3s">текст с картинок</small></span><span class="tg">OCR</span></li>
+                  <li class="node"><span class="dot"></span><span class="nm">n8n + LLM<small>Groq</small></span><span class="tg" data-i18n="sig.n4t">РАЗБОР</span></li>
+                  <li class="node"><span class="dot"></span><span class="nm"><span data-i18n="sig.n5">Реестр сигналов</span><small>Google Sheets</small></span><span class="tg" data-i18n="sig.n5t">ДАННЫЕ</span></li>
+                  <li class="node human"><span class="dot"></span><span class="nm"><span data-i18n="sig.n6">Оператор-бот</span><small data-i18n="sig.n6s">карточка + кнопки</small></span><span class="tg" data-i18n="sig.n6t">ЧЕЛОВЕК</span></li>
+                  <li class="node"><span class="dot"></span><span class="nm"><span data-i18n="sig.n7">Биржа Bybit</span><small data-i18n="sig.n7s">demo · real по флагу</small></span><span class="tg" data-i18n="sig.n7t">ИСПОЛНЕНИЕ</span></li>
                 </ol>
               </div>
               <div>
-                <ul class="points">
-                  <li>LLM переводит свободный текст автора в структуру: пара, направление, вход, стоп, тейки.</li>
-                  <li>Скриншоты тоже идут в разбор: vision-модель переписывает текст с картинки под явной пометкой. Так описание графика не превращается в выдуманную сделку.</li>
-                  <li>Оператор получает карточку сигнала и подтверждает кнопкой. По умолчанию всё идёт на demo-счёт, реальный подключается только явно.</li>
-                  <li>Симулятор ведёт виртуальные сделки с MFE/MAE. Бэктест прогоняет историю по каналам, рисует свечные графики и собирает отчёты.</li>
-                  <li>4 systemd-сервиса на сервере, 34 модуля тестов.</li>
-                </ul>
+                <div class="sub-title" data-i18n="sig.mock">ТАК ВЫГЛЯДИТ У ОПЕРАТОРА // НАЖМИ КНОПКУ</div>
+                <div class="tg-chat">
+                  <div class="tg-head"><div class="tg-ava">OP</div><div><div class="tg-name" data-i18n="sig.bot">Оператор-бот</div><div class="tg-status" data-i18n="sig.botst">бот</div></div></div>
+                  <div class="tg-msg" id="tg-msg" aria-live="polite"></div>
+                  <div class="tg-kb" id="tg-kb">
+                    <button type="button" data-act="ok" data-i18n="sig.ok">✅ Подтвердить</button>
+                    <button type="button" data-act="no" data-i18n="sig.no">❌ Отклонить</button>
+                    <button type="button" data-act="sim" data-i18n="sig.sim">📊 Симуляция</button>
+                    <button type="button" data-act="next" class="wide" data-i18n="sig.next">↻ Следующий сигнал</button>
+                  </div>
+                </div>
+                <div class="mock-foot"><span data-i18n="sig.mocknote">Макет: пары и цены вымышлены, формат как в проде.</span></div>
               </div>
             </div>
+            <ul class="points cols">
+              <li data-i18n="sig.p1">LLM переводит свободный текст автора в структуру: пара, направление, вход, стоп, тейки.</li>
+              <li data-i18n="sig.p2">Скриншоты тоже идут в разбор: vision-модель переписывает текст с картинки под явной пометкой. Так описание графика не превращается в выдуманную сделку.</li>
+              <li data-i18n="sig.p3">Оператор подтверждает сигнал кнопкой. По умолчанию всё идёт на demo-счёт, реальный подключается только явно, а защита режет слишком крупные сделки.</li>
+              <li data-i18n="sig.p4">Симулятор ведёт виртуальные сделки с MFE/MAE. Бэктест прогоняет историю по каналам, рисует свечные графики и собирает отчёты.</li>
+            </ul>
             <div class="project-foot">
               <div class="tags"><span class="tag">Python</span><span class="tag">Telethon</span><span class="tag">n8n</span><span class="tag">Groq</span><span class="tag">Vision LLM</span><span class="tag">Bybit API</span><span class="tag">Google Sheets</span><span class="tag">matplotlib</span></div>
-              <span class="note">Название и детали заказчика не раскрываю</span>
+              <span class="note" data-i18n="sig.nda">Название и детали заказчика не раскрываю</span>
             </div>
           </div>
         </article>
 
-        <!-- 02 CDB -->
+        <!-- CDB -->
         <article class="panel hover project reveal">
           <div class="panel-bar"><span>TIM://projects/cdb</span><span class="live"><span class="pip"></span>LIVE</span></div>
           <div class="project-body">
-            <div><span class="badge">МОЙ БРЕНД</span></div>
+            <div><span class="badge" data-i18n="cdb.badge">МОЙ БРЕНД</span></div>
             <div class="cdb-head">
               <svg class="cdb-mark" viewBox="438 98 404 404" aria-hidden="true">
                 <g class="petals"><g transform="rotate(15 640 300)" fill="#EDE3D2">
@@ -545,37 +254,33 @@
               </svg>
               <h3>CDB</h3>
             </div>
-            <p class="pitch">Бренд, под которым живут мои боты и сообщество. Главный продукт — бот расписания для студентов нескольких вузов.</p>
-            <div class="week" aria-hidden="true">
-              <div class="day">ПН<div class="cells"><i class="b"></i><i class="b"></i><i></i><i></i></div></div>
-              <div class="day">ВТ<div class="cells"><i></i><i class="b"></i><i class="b"></i><i class="b"></i></div></div>
-              <div class="day today">СР<div class="cells"><i class="b"></i><i class="a"></i><i class="b"></i><i></i></div></div>
-              <div class="day">ЧТ<div class="cells"><i class="b"></i><i class="b"></i><i></i><i></i></div></div>
-              <div class="day">ПТ<div class="cells"><i></i><i class="b"></i><i class="b"></i><i></i></div></div>
-              <div class="day">СБ<div class="cells"><i class="b"></i><i></i><i></i><i></i></div></div>
-            </div>
+            <p class="pitch" data-i18n="cdb.pitch">Бренд, под которым живут мои боты и сообщество. Главный продукт — бот расписания для студентов нескольких вузов.</p>
+            <button class="shot" type="button" id="shot" data-cap="НАСТОЯЩАЯ КАРТИНКА ИЗ БОТА · НАЖМИ, ЧТОБЫ ОТКРЫТЬ">
+              <img src="assets/cdb-week.webp" width="1384" height="1294" loading="lazy" alt="Расписание недели, которое рисует бот CDB">
+            </button>
             <ul class="points">
-              <li>Сам забирает расписание из публичных источников вуза. Правки подхватываются без ручной загрузки.</li>
-              <li>Рисует день и неделю картинкой, месяц присылает альбомом.</li>
-              <li>Напоминает о паре заранее, вечером присылает план на завтра, отдаёт календарь подпиской.</li>
+              <li data-i18n="cdb.p1">Сам забирает расписание из публичных источников вуза. Правки подхватываются без ручной загрузки.</li>
+              <li data-i18n="cdb.p2">Рисует день и неделю картинкой, месяц присылает альбомом.</li>
+              <li data-i18n="cdb.p3">Напоминает о паре заранее, вечером присылает план на завтра, отдаёт календарь подпиской.</li>
             </ul>
             <div class="project-foot">
               <div class="tags"><span class="tag">aiogram</span><span class="tag">APScheduler</span><span class="tag">SQLite</span><span class="tag">SVG → PNG</span><span class="tag">iCal</span></div>
+              <a class="plink" href="https://github.com/toyotii/yandex-calendar-timetable" target="_blank" rel="noopener" data-i18n="cdb.code">Код ядра ↗</a>
             </div>
           </div>
         </article>
 
-        <!-- 03 ScrewSec -->
+        <!-- ScrewSec -->
         <article class="panel hover project reveal">
           <div class="panel-bar"><span>TIM://projects/screwsec</span><span class="live"><span class="pip"></span>LIVE</span></div>
           <div class="project-body">
             <div><span class="badge">SAAS</span></div>
             <h3>ScrewSec</h3>
-            <p class="pitch">Генератор политик информационной безопасности для малого бизнеса под 152-ФЗ и ГОСТ Р 57580.</p>
+            <p class="pitch" data-i18n="ss.pitch">Генератор политик информационной безопасности для малого бизнеса под 152-ФЗ и ГОСТ Р 57580.</p>
             <ul class="points">
-              <li>Пользователь отвечает на 13 вопросов конструктора, LLM собирает готовый документ, на выходе PDF.</li>
-              <li>Фронт в Yandex Object Storage, логика в Cloud Functions, модель на Cloudflare Workers AI.</li>
-              <li>Аутентификация на SHA-256, CSP, защита от prompt injection. Заявки приходят в Telegram через Bot API.</li>
+              <li data-i18n="ss.p1">Пользователь отвечает на 13 вопросов конструктора, LLM собирает готовый документ, на выходе PDF.</li>
+              <li data-i18n="ss.p2">Фронт в Yandex Object Storage, логика в Cloud Functions, модель на Cloudflare Workers AI.</li>
+              <li data-i18n="ss.p3">Аутентификация на SHA-256, CSP, защита от prompt injection. Заявки приходят в Telegram через Bot API.</li>
             </ul>
             <div class="project-foot">
               <div class="tags"><span class="tag">Yandex Cloud</span><span class="tag">Cloudflare AI</span><span class="tag">CSP</span><span class="tag">PDF</span></div>
@@ -584,20 +289,42 @@
           </div>
         </article>
 
-        <!-- 04 RF -->
-        <article class="panel hover project wide reveal">
-          <div class="panel-bar"><span>TIM://projects/rf-lab</span><span class="live" style="color:var(--dim)">ХОББИ</span></div>
+        <!-- Open source -->
+        <article class="panel hover project reveal">
+          <div class="panel-bar"><span>TIM://projects/open-source</span><span class="live"><span class="pip"></span>PUBLIC</span></div>
+          <div class="project-body">
+            <div><span class="badge">OPEN SOURCE · MIT</span></div>
+            <h3>yandex-calendar-timetable</h3>
+            <p class="pitch" data-i18n="oss.pitch">Ядро бота расписания в открытом доступе: забирает пары из публичного слоя Яндекс.Календаря, рисует неделю и собирает .ics.</p>
+            <div class="term-snippet"><b>$</b> python cli.py week --group 106 --svg week.svg
+Среда, 16 сентября
+  10:30–12:00  Введение в психологию (сем.) — 782 ауд
+  12:50–14:20  Высшая математика (сем.) — 64 ауд</div>
+            <ul class="points">
+              <li data-i18n="oss.p1">Разбирает грязные названия пар: капс, незакрытые скобки, адрес в поле аудитории, ссылки на онлайн-пары.</li>
+              <li data-i18n="oss.p2">12 тестов. Пока выносил код, нашёл и починил разбор адреса без скобок.</li>
+            </ul>
+            <div class="project-foot">
+              <div class="tags"><span class="tag">Python</span><span class="tag">httpx</span><span class="tag">SVG</span><span class="tag">iCalendar</span><span class="tag">pytest</span></div>
+              <a class="plink" href="https://github.com/toyotii/yandex-calendar-timetable" target="_blank" rel="noopener">GitHub ↗</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- RF -->
+        <article class="panel hover project reveal">
+          <div class="panel-bar"><span>TIM://projects/rf-lab</span><span class="live" style="color:var(--dim)" data-i18n="rf.hobby">ХОББИ</span></div>
           <div class="project-body">
             <div><span class="badge quiet">RESEARCH</span></div>
             <h3>RF / Hardware</h3>
-            <p class="pitch">Разбираюсь, как на практике атакуют беспроводные системы, чтобы понимать, как их защищать.</p>
+            <p class="pitch" data-i18n="rf.pitch">Разбираюсь, как на практике атакуют беспроводные системы, чтобы понимать, как их защищать.</p>
             <ul class="points">
-              <li>LilyGO T-Embed CC1101 на Bruce firmware: Sub-GHz, NFC, BLE, BadUSB.</li>
-              <li>Экосистема Flipper Zero, пентест-концепты на Kali Linux и Parrot OS.</li>
+              <li data-i18n="rf.p1">LilyGO T-Embed CC1101 на Bruce firmware: Sub-GHz, NFC, BLE, BadUSB.</li>
+              <li data-i18n="rf.p2">Экосистема Flipper Zero, пентест-концепты на Kali Linux и Parrot OS.</li>
             </ul>
             <div class="project-foot">
               <div class="tags"><span class="tag">CC1101</span><span class="tag">Bruce FW</span><span class="tag">Sub-GHz</span><span class="tag">NFC / BLE</span><span class="tag">Kali</span></div>
-              <a class="plink" href="#contact">Обсудить →</a>
+              <a class="plink" href="#contact" data-i18n="rf.talk">Обсудить →</a>
             </div>
           </div>
         </article>
@@ -606,71 +333,170 @@
     </div>
   </section>
 
+  <!-- УСЛУГИ -->
+  <section id="services">
+    <div class="wrap">
+      <div class="label" data-i18n="svc.label">// 03 — УСЛУГИ</div>
+      <h2 class="h2" data-i18n="svc.title">Что могу сделать</h2>
+      <p class="lead" data-i18n="svc.lead">Основные форматы работы. Сроки указаны для типичной задачи, точные назову после разговора.</p>
+
+      <div class="services reveal">
+        <div class="service"><div class="top"><span class="n">01</span><span class="eta" data-i18n="svc.1e">3–14 ДНЕЙ</span></div><h3 data-i18n="svc.1t">Telegram-бот под ключ</h3><p data-i18n="svc.1">Заявки, запись, рассылки, выдача доступа, расписание. С базой, админ-командами и деплоем на сервер.</p></div>
+        <div class="service"><div class="top"><span class="n">02</span><span class="eta" data-i18n="svc.2e">2–10 ДНЕЙ</span></div><h3 data-i18n="svc.2t">Автоматизация и интеграции</h3><p data-i18n="svc.2">Связать сервисы, которые не хотят дружить: n8n, вебхуки, Google Sheets, API, отчёты по расписанию.</p></div>
+        <div class="service"><div class="top"><span class="n">03</span><span class="eta" data-i18n="svc.3e">5–14 ДНЕЙ</span></div><h3 data-i18n="svc.3t">LLM внутри продукта</h3><p data-i18n="svc.3">Разбор свободного текста в структуру, классификация, текст со скриншотов. С защитой от prompt injection.</p></div>
+        <div class="service"><div class="top"><span class="n">04</span><span class="eta" data-i18n="svc.4e">2–7 ДНЕЙ</span></div><h3 data-i18n="svc.4t">Парсеры и сбор данных</h3><p data-i18n="svc.4">Забрать данные с сайта, из Telegram-каналов или закрытого виджета и сложить туда, где с ними удобно работать.</p></div>
+        <div class="service"><div class="top"><span class="n">05</span><span class="eta" data-i18n="svc.5e">ОТ 1 ДНЯ</span></div><h3 data-i18n="svc.5t">Доработка чужого кода</h3><p data-i18n="svc.5">Бот упал, скрипт делает не то, прошлый разработчик пропал. Разберусь, починю, объясню, что было не так.</p></div>
+        <div class="service"><div class="top"><span class="n">06</span><span class="eta" data-i18n="svc.6e">1–3 ДНЯ</span></div><h3 data-i18n="svc.6t">Сервер и деплой</h3><p data-i18n="svc.6">Поднять Linux-сервер, настроить systemd, nginx и TLS, закрыть лишнее наружу. Чтобы работало без тебя.</p></div>
+      </div>
+
+      <div class="panel anything reveal">
+        <div class="q" data-i18n="svc.anyq">Нет в списке?</div>
+        <p data-i18n-html="svc.any"><strong>Берусь почти за всё на своём уровне.</strong> Если задачу можно решить кодом, пиши, обсудим. Если пойму, что не потяну или выйдет дороже, чем стоит, скажу сразу, а не через две недели.</p>
+        <a href="#contact" class="btn btn-solid" data-i18n="svc.anybtn">Обсудить задачу →</a>
+      </div>
+
+      <ol class="steps reveal">
+        <li data-i18n-html="step.1"><b>Пишешь задачу</b>Как есть, своими словами. ТЗ не обязательно.</li>
+        <li data-i18n-html="step.2"><b>Уточняем</b>Задаю вопросы, называю срок и цену, предупреждаю о подводных камнях.</li>
+        <li data-i18n-html="step.3"><b>Показываю по ходу</b>Промежуточные версии, а не чёрный ящик до дедлайна.</li>
+        <li data-i18n-html="step.4"><b>Сдаю и деплою</b>Запускаю, объясняю, как пользоваться. После сдачи на связи.</li>
+      </ol>
+      <p class="price-note" data-i18n="svc.price">Цена считается под задачу: от объёма, сроков и того, что уже есть.</p>
+
+      <!-- Прогноз -->
+      <div class="panel forecast reveal" id="forecast">
+        <div class="fc-form">
+          <div class="sub-title" style="color:var(--accent-text)" data-i18n="fc.title">TIM://forecast // ПРОГНОЗ ПО ПРОЕКТУ</div>
+          <p style="color:var(--muted);font-size:12.5px;margin-bottom:18px" data-i18n="fc.lead">Отметь, что нужно, и посмотри прогноз погоды на свой проект.</p>
+          <div class="fc-group">
+            <div class="sub-title" data-i18n="fc.type">ЧТО ДЕЛАЕМ</div>
+            <div class="fc-opts" id="fc-type" role="radiogroup"></div>
+          </div>
+          <div class="fc-group">
+            <div class="sub-title" data-i18n="fc.extra">ЧТО ВНУТРИ</div>
+            <div class="fc-opts" id="fc-extra"></div>
+          </div>
+        </div>
+        <div class="fc-out" aria-live="polite">
+          <div class="tone" role="radiogroup">
+            <button class="chip" type="button" role="radio" data-tone="honest" aria-checked="true" data-i18n="fc.honest">ЧЕСТНО</button>
+            <button class="chip" type="button" role="radio" data-tone="raw" aria-checked="false" data-i18n="fc.raw">БЕЗ ФИЛЬТРА</button>
+          </div>
+          <div class="fc-sky"><span id="fc-icon" class="wx"></span><div><div class="cond" id="fc-cond"></div><div class="eta" id="fc-eta"></div></div></div>
+          <ul class="fc-rows">
+            <li><span data-i18n="fc.conf">УВЕРЕННОСТЬ</span><span id="fc-conf"></span></li>
+            <li><span data-i18n="fc.rain">ОСАДКИ (ПРАВКИ)</span><span id="fc-rain"></span></li>
+            <li><span data-i18n="fc.wind">ВЕТЕР (ВНЕШНИЕ API)</span><span id="fc-wind"></span></li>
+            <li><span data-i18n="fc.vis">ВИДИМОСТЬ (ТЗ)</span><span id="fc-vis"></span></li>
+          </ul>
+          <p class="fc-comment" id="fc-comment"></p>
+          <div class="fc-actions">
+            <button class="btn btn-solid btn-sm" type="button" id="fc-send" data-i18n="fc.send">Отправить прогноз →</button>
+            <button class="btn btn-ghost btn-sm" type="button" id="fc-copy" data-i18n="fc.copy">Скопировать</button>
+          </div>
+          <p class="fc-disclaimer" data-i18n="fc.disc">Это оценка на глаз по опыту. Точный срок и цену назову после разговора.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- СТЕК -->
   <section id="stack">
     <div class="wrap">
-      <div class="label">// 03 — СТЕК</div>
-      <h2 class="h2">Чем работаю</h2>
-      <p class="lead">Инструменты, которые уже были в проде, а не просто в резюме.</p>
+      <div class="label" data-i18n="stack.label">// 04 — СТЕК</div>
+      <h2 class="h2" data-i18n="stack.title">Чем работаю</h2>
+      <p class="lead" data-i18n="stack.lead">Инструменты, которые уже были в проде, а не просто в резюме. Наведи на точку на радаре.</p>
 
       <div class="stack">
-        <div class="panel reveal">
-          <div class="panel-bar"><span>TIM://stack/build</span><span>РАЗРАБОТКА</span></div>
-          <ul class="readout">
-            <li><span class="key">Python</span><span class="lead-dots"></span><span class="val hot">ОСНОВНОЙ</span></li>
-            <li><span class="key">aiogram / Telethon</span><span class="lead-dots"></span><span class="val hot">ПРОД</span></li>
-            <li><span class="key">aiohttp / httpx</span><span class="lead-dots"></span><span class="val">ПРОД</span></li>
-            <li><span class="key">n8n / вебхуки</span><span class="lead-dots"></span><span class="val">ПРОД</span></li>
-            <li><span class="key">Groq / Workers AI / vision</span><span class="lead-dots"></span><span class="val">ПРОД</span></li>
-            <li><span class="key">SQLite / Google Sheets API</span><span class="lead-dots"></span><span class="val">ПРОД</span></li>
-            <li><span class="key">matplotlib / SVG</span><span class="lead-dots"></span><span class="val">ОТЧЁТЫ</span></li>
-          </ul>
+        <div class="panel radar-wrap reveal">
+          <div class="radar" id="radar">
+            <canvas id="radar-cv" aria-hidden="true"></canvas>
+            <div class="radar-tip" id="radar-tip"><b></b><span></span></div>
+          </div>
+          <div class="radar-read" id="radar-read"></div>
+          <div class="radar-legend" id="radar-legend"></div>
         </div>
-        <div class="panel reveal">
-          <div class="panel-bar"><span>TIM://stack/ops</span><span>ИНФРА И ИБ</span></div>
-          <ul class="readout">
-            <li><span class="key">Linux / systemd / nginx</span><span class="lead-dots"></span><span class="val hot">ПРОД</span></li>
-            <li><span class="key">Yandex Cloud / Cloudflare</span><span class="lead-dots"></span><span class="val">ПРОД</span></li>
-            <li><span class="key">Docker</span><span class="lead-dots"></span><span class="val">УВЕРЕННО</span></li>
-            <li><span class="key">152-ФЗ / ГОСТ Р 57580</span><span class="lead-dots"></span><span class="val">В ПРОДУКТЕ</span></li>
-            <li><span class="key">Prompt injection / CSP</span><span class="lead-dots"></span><span class="val">В ПРОДУКТЕ</span></li>
-            <li><span class="key">Пентест, основы</span><span class="lead-dots"></span><span class="val">УЧУСЬ</span></li>
-            <li><span class="key">Sub-GHz / NFC / BLE</span><span class="lead-dots"></span><span class="val">ХОББИ</span></li>
-          </ul>
+        <div class="readouts">
+          <div class="panel reveal">
+            <div class="panel-bar"><span>TIM://stack/build</span><span data-i18n="stack.build">РАЗРАБОТКА</span></div>
+            <ul class="readout">
+              <li><span class="key">Python</span><span class="lead-dots"></span><span class="val hot" data-i18n="lvl.main">ОСНОВНОЙ</span></li>
+              <li><span class="key">aiogram / Telethon</span><span class="lead-dots"></span><span class="val hot" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key">aiohttp / httpx</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key" data-i18n="rd.n8n">n8n / вебхуки</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key">Groq / Workers AI / vision</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key">SQLite / Sheets API</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key">pytest</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.always">ВСЕГДА</span></li>
+            </ul>
+          </div>
+          <div class="panel reveal">
+            <div class="panel-bar"><span>TIM://stack/ops</span><span data-i18n="stack.ops">ИНФРА И ИБ</span></div>
+            <ul class="readout">
+              <li><span class="key">Linux / systemd / nginx</span><span class="lead-dots"></span><span class="val hot" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key">Yandex Cloud / Cloudflare</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.prod">ПРОД</span></li>
+              <li><span class="key">Docker</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.conf">УВЕРЕННО</span></li>
+              <li><span class="key" data-i18n="rd.law">152-ФЗ / ГОСТ Р 57580</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.product">В ПРОДУКТЕ</span></li>
+              <li><span class="key">Prompt injection / CSP</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.product">В ПРОДУКТЕ</span></li>
+              <li><span class="key" data-i18n="rd.pentest">Пентест, основы</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.learn">УЧУСЬ</span></li>
+              <li><span class="key">Sub-GHz / NFC / BLE</span><span class="lead-dots"></span><span class="val" data-i18n="lvl.hobby">ХОББИ</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ЖУРНАЛ -->
+  <section id="log">
+    <div class="wrap">
+      <div class="label" data-i18n="log.label">// 05 — ЖУРНАЛ</div>
+      <h2 class="h2" data-i18n="log.title">Патчноуты</h2>
+      <p class="lead" data-i18n="log.lead">Что менялось в проектах и на этом сайте.</p>
+      <div class="log-grid">
+        <ul class="panel log reveal">
+          <li><div class="when"><b>PATCH 2.1</b>16.09.2026</div><div class="what"><strong><span data-i18n="log.21t">Погода, прогнозы и терминал</span><span class="latest">LATEST</span></strong><span data-i18n="log.21">Услуги и прогноз по проекту, погода Москвы управляет атмосферой сайта, радар стека, терминал, темы, английская версия, резюме в PDF.</span></div></li>
+          <li><div class="when"><b>OPEN SOURCE</b>16.09.2026</div><div class="what"><strong data-i18n="log.osst">Ядро расписания на GitHub</strong><span data-i18n="log.oss">Вынес парсер и рендер из бота CDB в открытый репозиторий с тестами. Попутно починил разбор адреса без скобок.</span></div></li>
+          <li><div class="when"><b>PATCH 2.0</b>16.09.2026</div><div class="what"><strong data-i18n="log.20t">Редизайн в стиле CDB</strong><span data-i18n="log.20">ЭЛТ-экран, экран загрузки, точечная сетка, дождь на карточках.</span></div></li>
+          <li><div class="when"><b>CDB</b>13.09.2026</div><div class="what"><strong data-i18n="log.commt">Сообщество CDB</strong><span data-i18n="log.comm">Своё сообщество с ролями и автомодерацией, настроено ботом через API.</span></div></li>
+          <li><div class="when"><b>CDB</b>31.08.2026</div><div class="what"><strong data-i18n="log.bott">Бот расписания в проде</strong><span data-i18n="log.bot">Картинки недели, напоминания о парах, подписка на календарь.</span></div></li>
+          <li><div class="when"><b>PATCH 1.0</b>08.06.2026</div><div class="what"><strong data-i18n="log.10t">Первая версия визитки</strong><span data-i18n="log.10">Сетка, терминал и полоски навыков. С чего-то надо было начинать.</span></div></li>
+        </ul>
+        <div class="panel cv reveal">
+          <div class="panel-bar" style="margin:-22px -22px 16px"><span>TIM://cv</span><span>PDF</span></div>
+          <div class="sub-title" data-i18n="cv.sub">ДЛЯ ОТКЛИКОВ И HR</div>
+          <h3 data-i18n="cv.title">Резюме</h3>
+          <p data-i18n="cv.lead">Всё то же, что на сайте, на одной странице A4. Без анимаций, зато печатается.</p>
+          <div class="btns">
+            <a class="btn btn-solid btn-sm" href="cv/tim-cv-ru.pdf" download>RU · PDF ↓</a>
+            <a class="btn btn-ghost btn-sm" href="cv/tim-cv-en.pdf" download>EN · PDF ↓</a>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- СВЯЗЬ -->
-  <section id="contact" class="contact">
-    <canvas id="rain" aria-hidden="true"></canvas>
+  <section id="contact">
     <div class="wrap">
-      <div class="label">// 04 — СВЯЗЬ</div>
-      <h2 class="h2">Написать</h2>
-      <p class="lead">Беру Telegram-ботов, автоматизацию процессов, интеграции с LLM и n8n, деплой на свой сервер или в облако. Быстрее всего ответ приходит в Telegram.</p>
+      <div class="label" data-i18n="ct.label">// 06 — СВЯЗЬ</div>
+      <h2 class="h2" data-i18n="ct.title">Написать</h2>
+      <p class="lead" data-i18n="ct.lead">Пиши с задачей, даже если её нет в услугах. Быстрее всего отвечаю в Telegram.</p>
 
       <div class="contact-grid">
         <div class="links">
-          <a class="panel hover link rain-target" href="https://t.me/becarefulx" target="_blank" rel="noopener">
-            <span class="ico">TG</span><span><span class="l">TELEGRAM</span><br><span class="v">@becarefulx</span></span><span class="arr">→</span>
-          </a>
-          <a class="panel hover link rain-target" href="mailto:titbob000@gmail.com">
-            <span class="ico">@</span><span><span class="l">EMAIL</span><br><span class="v">titbob000@gmail.com</span></span><span class="arr">→</span>
-          </a>
-          <a class="panel hover link rain-target" href="https://github.com/toyotii" target="_blank" rel="noopener">
-            <span class="ico">GH</span><span><span class="l">GITHUB</span><br><span class="v">toyotii</span></span><span class="arr">→</span>
-          </a>
+          <a class="panel hover link" href="https://t.me/becarefulx" target="_blank" rel="noopener"><span class="ico">TG</span><span><span class="l">TELEGRAM</span><br><span class="v">@becarefulx</span></span><span class="arr">→</span></a>
+          <a class="panel hover link" href="mailto:titbob000@gmail.com"><span class="ico">@</span><span><span class="l">EMAIL</span><br><span class="v">titbob000@gmail.com</span></span><span class="arr">→</span></a>
+          <a class="panel hover link" href="https://github.com/toyotii" target="_blank" rel="noopener"><span class="ico">GH</span><span><span class="l">GITHUB</span><br><span class="v">toyotii</span></span><span class="arr">→</span></a>
         </div>
 
-        <form class="panel form rain-target" id="form">
+        <form class="panel form" id="form">
           <div class="panel-bar"><span>&gt; CONTACT</span><span>[ MAIL ]</span></div>
           <div class="fields">
-            <div><label for="callsign">ПОЗЫВНОЙ:</label><input id="callsign" name="callsign" autocomplete="name" placeholder="Как к тебе обращаться" required></div>
-            <div><label for="msg">СООБЩЕНИЕ:</label><textarea id="msg" name="msg" rows="4" placeholder="Что нужно сделать и к какому сроку" required></textarea></div>
+            <div><label for="callsign" data-i18n="ct.name">ПОЗЫВНОЙ:</label><input id="callsign" name="callsign" autocomplete="name" data-i18n-ph="ct.nameph" placeholder="Как к тебе обращаться" required></div>
+            <div><label for="msg" data-i18n="ct.msg">СООБЩЕНИЕ:</label><textarea id="msg" name="msg" rows="4" data-i18n-ph="ct.msgph" placeholder="Что нужно сделать и к какому сроку" required></textarea></div>
           </div>
-          <button class="btn btn-solid" type="submit">Отправить →</button>
-          <p class="hint">Откроется твой почтовый клиент с готовым письмом.</p>
+          <button class="btn btn-solid" type="submit" data-i18n="ct.send">Отправить →</button>
+          <p class="hint" data-i18n="ct.hint">Откроется твой почтовый клиент с готовым письмом.</p>
         </form>
       </div>
     </div>
@@ -681,264 +507,33 @@
 <footer>
   <div class="wrap">
     <span class="brand">TIM//DEV</span>
-    <span>МОСКВА · ITHUB · ИБ · 2 КУРС</span>
-    <span>© <span id="year">2026</span> · БЕЗ ТРЕКЕРОВ · <span class="glow">CDB</span></span>
+    <div class="themes" role="radiogroup" aria-label="Тема">
+      <span data-i18n="ft.theme">ТЕМА:</span>
+      <button class="chip" type="button" role="radio" data-theme-set="cdb" aria-checked="true">CDB</button>
+      <button class="chip" type="button" role="radio" data-theme-set="phosphor" aria-checked="false" data-i18n="ft.phosphor">ФОСФОР</button>
+      <button class="chip" type="button" role="radio" data-theme-set="paper" aria-checked="false" data-i18n="ft.paper">БУМАГА</button>
+      <button class="chip" type="button" role="radio" data-theme-set="broadcast" aria-checked="false" data-i18n="ft.broadcast" hidden>ЭФИР-80</button>
+    </div>
+    <span><span data-i18n="ft.term">ТЕРМИНАЛ:</span> <span class="kbd">~</span> · © <span id="year">2026</span> · <span data-i18n="ft.notrack">БЕЗ ТРЕКЕРОВ</span></span>
   </div>
 </footer>
 
 </div>
 
-<script>
-(function () {
-  const doc = document.documentElement;
-  doc.classList.add('js');
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const finePointer = matchMedia('(pointer: fine)').matches;
+<dialog class="lightbox" id="lightbox">
+  <div class="panel-bar"><span data-i18n="lb.title">CDB // НЕДЕЛЯ ГРУППЫ 106 · НАСТОЯЩИЙ РЕНДЕР</span><button type="button" id="lb-close">[X]</button></div>
+  <img src="assets/cdb-week.webp" width="1384" height="1294" alt="Расписание недели, которое рисует бот CDB">
+</dialog>
 
-  document.getElementById('year').textContent = new Date().getFullYear();
+<div class="term" id="term" role="dialog" aria-label="Терминал" aria-hidden="true">
+  <div class="panel-bar"><span>TIM://terminal — help</span><button type="button" id="term-close" style="color:var(--accent-text)">[X]</button></div>
+  <div class="term-out" id="term-out"></div>
+  <form class="term-in" id="term-form" autocomplete="off"><span>guest@tim:~$</span><input id="term-input" spellcheck="false" aria-label="Команда"></form>
+</div>
 
-  /* ── Экран загрузки: один раз за сессию ── */
-  function seen() { try { return sessionStorage.getItem('booted') === '1'; } catch (e) { return false; } }
-  function markSeen() { try { sessionStorage.setItem('booted', '1'); } catch (e) {} }
+<div class="toast" id="toast" role="status"></div>
 
-  if (!reduced && !seen()) {
-    const lines = [
-      ['CDB BIOS v2.0 // TIM', 0],
-      ['Проверка памяти... 640K OK', 140],
-      ['Подключение Python runtime........ OK', 280],
-      ['Подключение aiogram / Telethon.... OK', 420],
-      ['Загрузка LLM-конвейеров........... OK', 560],
-      ['Калибровка паранойи ИБ............ OK', 700],
-      ['', 800],
-      ['TIM // SECURITY & DEV ENGINEER', 900, true],
-      ['ЗАГРУЗКА ЗАВЕРШЕНА. ВКЛЮЧАЮ ДИСПЛЕЙ...', 1050],
-    ];
-    const boot = document.createElement('div');
-    boot.className = 'boot';
-    boot.setAttribute('aria-hidden', 'true');
-    const cur = document.createElement('span');
-    cur.className = 'cur';
-    const skip = document.createElement('div');
-    skip.className = 'skip';
-    skip.textContent = 'НАЖМИ ЛЮБУЮ КЛАВИШУ, ЧТОБЫ ПРОПУСТИТЬ';
-    boot.append(cur, skip);
-    document.body.appendChild(boot);
-    document.querySelector('.screen').style.animationPlayState = 'paused';
-
-    const timers = [];
-    lines.forEach(([text, delay, hl]) => timers.push(setTimeout(() => {
-      const p = document.createElement('p');
-      p.textContent = text;
-      if (hl) p.className = 'hl';
-      boot.insertBefore(p, cur);
-    }, delay)));
-
-    const finish = () => {
-      timers.forEach(clearTimeout);
-      removeEventListener('keydown', finish);
-      boot.removeEventListener('click', finish);
-      markSeen();
-      boot.classList.add('done');
-      document.querySelector('.screen').style.animationPlayState = 'running';
-      setTimeout(() => boot.remove(), 500);
-    };
-    timers.push(setTimeout(finish, 1500));
-    addEventListener('keydown', finish);
-    boot.addEventListener('click', finish);
-  }
-
-  /* ── Часы по Москве ── */
-  const fmt = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit', second: '2-digit' });
-  const clock = document.getElementById('clock'), clock2 = document.getElementById('clock2');
-  function tick() {
-    const t = fmt.format(new Date());
-    clock.textContent = 'MSK ' + t;
-    clock2.textContent = t.slice(0, 5);
-  }
-  tick(); setInterval(tick, 1000);
-
-  /* ── Строка «сейчас» в панели статуса ── */
-  const phrases = ['сейчас: торговая система и CDB', 'учусь: ИБ, 2 курс', 'ищу: интересные заказы', 'пишу: тесты перед деплоем'];
-  const typed = document.getElementById('typed');
-  if (!reduced) {
-    let pi = 0;
-    setInterval(() => {
-      pi = (pi + 1) % phrases.length;
-      const s = phrases[pi]; let i = 0;
-      const step = setInterval(() => { typed.textContent = s.slice(0, ++i); if (i >= s.length) clearInterval(step); }, 28);
-    }, 4000);
-  }
-
-  /* ── Появление при скролле ── */
-  const io = new IntersectionObserver(es => es.forEach(e => {
-    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
-  }), { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-  /* ── Режимы «Обо мне» ── */
-  const modes = {
-    short: {
-      name: 'КОРОТКО', hint: 'Для тех, у кого 10 секунд.',
-      html: '<p><strong>Тим, 2 курс ИБ в ITHUB College, Москва.</strong></p><p>Делаю Telegram-ботов, автоматизацию на LLM и торговые системы. Всё из портфолио ниже работает у живых пользователей. Открыт к заказам.</p>'
-    },
-    tech: {
-      name: 'ДЛЯ ТЕХЛИДА', hint: 'Стек, подход, как я пишу код.',
-      html: document.getElementById('mode-body').innerHTML
-    },
-    raw: {
-      name: 'БЕЗ ФИЛЬТРА', hint: 'Как есть.',
-      html: '<p>Учусь на безопасника, но <strong>больше всего кайфую, когда то, что я написал в два ночи, утром спокойно работает у людей.</strong></p><p>Ковыряю радиоэфир на LilyGO T-Embed CC1101 с Bruce: Sub-GHz, NFC, BLE. Сам собрал ПК на Ryzen 7 7700 и RTX 5060 Ti. Отдыхаю в CS2 и PUBG.</p><p>Если в задаче есть подвох, скажу сразу, а не в день дедлайна.</p>'
-    }
-  };
-  const body = document.getElementById('mode-body'), mname = document.getElementById('mode-name'), mhint = document.getElementById('mode-hint');
-  document.querySelectorAll('.mode').forEach(btn => btn.addEventListener('click', () => {
-    const m = modes[btn.dataset.mode];
-    document.querySelectorAll('.mode').forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
-    mname.textContent = m.name; mhint.textContent = m.hint; body.innerHTML = m.html;
-  }));
-
-  /* ── Сигнал бежит по конвейеру ── */
-  const nodes = document.querySelectorAll('#pipe .node');
-  if (!reduced && nodes.length) {
-    let n = 0;
-    setInterval(() => {
-      nodes.forEach((el, i) => el.classList.toggle('on', i === n));
-      n = (n + 1) % (nodes.length + 2);
-    }, 650);
-  } else if (nodes.length) {
-    nodes[nodes.length - 1].classList.add('on');
-  }
-
-  /* ── Форма: собираем письмо ── */
-  document.getElementById('form').addEventListener('submit', e => {
-    e.preventDefault();
-    const who = document.getElementById('callsign').value.trim();
-    const msg = document.getElementById('msg').value.trim();
-    location.href = 'mailto:titbob000@gmail.com?subject=' + encodeURIComponent('Заказ с сайта от ' + who) + '&body=' + encodeURIComponent(msg + '\n\n— ' + who);
-  });
-
-  if (reduced) return;
-
-  /* ── Точечная сетка под курсором + волна по клику ── */
-  if (finePointer) {
-    const cv = document.getElementById('grid'), ctx = cv.getContext('2d');
-    const STEP = 36, R = 3, FADE = 550;
-    const mouse = { x: -1e4, y: -1e4, down: false };
-    const lit = new Map(), waves = [];
-    let dpr = 1, raf = 0;
-    const size = () => {
-      dpr = Math.min(devicePixelRatio || 1, 2);
-      cv.width = innerWidth * dpr; cv.height = innerHeight * dpr;
-      cv.style.width = innerWidth + 'px'; cv.style.height = innerHeight + 'px';
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    };
-    size(); addEventListener('resize', size);
-    const wake = () => { if (!raf) raf = requestAnimationFrame(draw); };
-    addEventListener('mousemove', e => { mouse.x = e.clientX; mouse.y = e.clientY; wake(); }, { passive: true });
-    addEventListener('mousedown', () => { mouse.down = true; wake(); });
-    addEventListener('mouseup', e => { mouse.down = false; waves.push({ x: e.clientX, y: e.clientY, t: performance.now() }); wake(); });
-
-    function draw(now) {
-      raf = 0;
-      ctx.clearRect(0, 0, innerWidth, innerHeight);
-      const cx = Math.round(mouse.x / STEP), cy = Math.round(mouse.y / STEP);
-      const r = mouse.down ? R + 2 : R;
-      for (let dx = -r; dx <= r; dx++) for (let dy = -r; dy <= r; dy++) {
-        if (Math.max(Math.abs(dx), Math.abs(dy)) + (Math.abs(dx) + Math.abs(dy)) * .15 <= r) lit.set((cx + dx) + ',' + (cy + dy), now);
-      }
-      for (let i = waves.length - 1; i >= 0; i--) if (now - waves[i].t > 700) waves.splice(i, 1);
-
-      const drawDot = (gx, gy, a) => {
-        if (a <= .01) return;
-        ctx.beginPath();
-        ctx.arc(gx * STEP, gy * STEP, 1.2 + a * 1.6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(232,106,26,${Math.min(a, 1) * .85})`;
-        ctx.fill();
-      };
-      const waveAt = (px, py) => {
-        let v = 0;
-        for (const w of waves) {
-          const p = (now - w.t) / 700, rad = p * 240, d = Math.abs(Math.hypot(px - w.x, py - w.y) - rad), band = 36 + p * 20;
-          if (d < band) v += (1 - p) * (1 - d / band);
-        }
-        return v;
-      };
-
-      const seenCells = new Set();
-      for (const [key, t] of lit) {
-        const age = now - t;
-        if (age > FADE) { lit.delete(key); continue; }
-        const [gx, gy] = key.split(',').map(Number);
-        const dist = Math.max(Math.abs(gx - cx), Math.abs(gy - cy));
-        const near = dist <= r ? Math.pow(1 - dist / (r + 1), 1.4) : 0;
-        drawDot(gx, gy, Math.max(near, (1 - age / FADE) * .5) + waveAt(gx * STEP, gy * STEP) * .6);
-        seenCells.add(key);
-      }
-      for (const w of waves) {
-        const rad = (now - w.t) / 700 * 240 + 60;
-        for (let gx = Math.floor((w.x - rad) / STEP); gx <= Math.ceil((w.x + rad) / STEP); gx++)
-          for (let gy = Math.floor((w.y - rad) / STEP); gy <= Math.ceil((w.y + rad) / STEP); gy++) {
-            if (seenCells.has(gx + ',' + gy)) continue;
-            drawDot(gx, gy, waveAt(gx * STEP, gy * STEP) * .7);
-          }
-      }
-      if (lit.size || waves.length) raf = requestAnimationFrame(draw);
-    }
-  }
-
-  /* ── Дождь, который падает на карточки контактов ── */
-  const section = document.getElementById('contact'), rain = document.getElementById('rain'), rc = rain.getContext('2d');
-  const drops = [], splashes = [];
-  let running = false, last = 0, rects = [], rectAge = 1, W = 0, H = 0;
-  const COUNT = innerWidth < 820 ? 22 : 48;
-  const spawn = (fresh) => ({ x: Math.random() * W, y: fresh ? -Math.random() * H : -10 - Math.random() * 60, vx: (Math.random() - .5) * 10, vy: 30 + Math.random() * 40, r: 1 + Math.random() * 1.4, o: .2 + Math.random() * .45 });
-  function sizeRain() {
-    const b = section.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2);
-    W = b.width; H = b.height;
-    rain.width = W * dpr; rain.height = H * dpr;
-    rc.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  function measure() {
-    const s = section.getBoundingClientRect();
-    rects = [...section.querySelectorAll('.rain-target')].map(el => {
-      const b = el.getBoundingClientRect();
-      return { l: b.left - s.left, t: b.top - s.top, r: b.right - s.left, b: b.bottom - s.top };
-    });
-  }
-  sizeRain(); measure();
-  for (let i = 0; i < COUNT; i++) drops.push(spawn(true));
-  addEventListener('resize', () => { sizeRain(); measure(); });
-
-  function rainFrame(now) {
-    if (!running) return;
-    const dt = Math.min((now - last) / 1000, .033); last = now;
-    if ((rectAge += dt) > .5) { measure(); rectAge = 0; }
-    rc.clearRect(0, 0, W, H);
-    for (const d of drops) {
-      d.vy += 80 * dt; d.x += d.vx * dt; d.y += d.vy * dt;
-      let hit = false;
-      for (const k of rects) {
-        if (d.x >= k.l && d.x <= k.r && d.y >= k.t && d.y <= k.t + 6) { splashes.push({ x: d.x, y: k.t, a: 0 }); hit = true; break; }
-      }
-      if (hit || d.y > H + 20) { Object.assign(d, spawn(false)); continue; }
-      if (d.x < -20) d.x = W + 20; else if (d.x > W + 20) d.x = -20;
-      rc.beginPath(); rc.arc(d.x, d.y, d.r, 0, Math.PI * 2); rc.fillStyle = `rgba(244,132,58,${d.o})`; rc.fill();
-      rc.beginPath(); rc.arc(d.x, d.y, d.r * 3, 0, Math.PI * 2); rc.fillStyle = `rgba(232,106,26,${d.o * .07})`; rc.fill();
-    }
-    for (let i = splashes.length - 1; i >= 0; i--) {
-      const s = splashes[i];
-      if ((s.a += dt) > .35) { splashes.splice(i, 1); continue; }
-      const p = s.a / .35;
-      rc.beginPath(); rc.ellipse(s.x, s.y, 10 * p, 3 * p, 0, Math.PI, 0);
-      rc.strokeStyle = `rgba(244,132,58,${(1 - p) * .55})`; rc.lineWidth = 1; rc.stroke();
-    }
-    requestAnimationFrame(rainFrame);
-  }
-  new IntersectionObserver(([e]) => {
-    if (e.isIntersecting && !running) { running = true; sizeRain(); measure(); last = performance.now(); requestAnimationFrame(rainFrame); }
-    else if (!e.isIntersecting) running = false;
-  }).observe(section);
-})();
-</script>
+<script src="assets/i18n.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>
