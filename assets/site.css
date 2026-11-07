@@ -321,6 +321,7 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
 .service { background: var(--pane-solid); padding: 24px 22px 22px; display: flex; flex-direction: column; gap: 10px; transition: background .25s; }
 .service:hover { background: var(--card); }
+.service-web { grid-column: 1 / -1; }
 .service .top { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
 .service .n { font-size: 11px; color: var(--accent-text); letter-spacing: .2em; text-shadow: var(--glow); }
 .service .eta { font-size: 10px; color: var(--muted); letter-spacing: .12em; border: 1px solid var(--line); padding: 2px 8px; border-radius: 2px; white-space: nowrap; }

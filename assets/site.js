@@ -488,7 +488,7 @@
   }
 
   /* ─────────────── Прогноз по проекту ─────────────── */
-  const FC_TYPES = { bot: [3, 7, 10], auto: [2, 6, 10], llm: [5, 10, 25], parser: [2, 5, 15], fix: [1, 4, 20], other: [3, 10, 30] };
+  const FC_TYPES = { web: [3, 10, 30], bot: [3, 7, 10], auto: [2, 6, 10], llm: [5, 10, 25], parser: [2, 5, 15], fix: [1, 4, 20], other: [3, 10, 30] };
   const FC_EXTRAS = { db: [2, 3, 5], pay: [2, 4, 15], api: [1, 3, 15], ai: [2, 4, 15], deploy: [1, 1, 3], pics: [1, 3, 5], rush: [0, 0, 20], fuzzy: [2, 4, 25] };
   const fc = { type: 'bot', extras: new Set(['db', 'deploy']), tone: 'honest', last: '' };
 
@@ -731,7 +731,7 @@
       case 'lang':
         applyLang(arg === 'en' ? 'en' : arg === 'ru' ? 'ru' : (lang === 'en' ? 'ru' : 'en'));
         return print(T().term.lang + lang, 'c');
-      case 'cv': case 'resume': print(t.cv, 'm'); location.href = lang === 'en' ? 'cv/tim-cv-en.pdf' : 'cv/tim-cv-ru.pdf'; return;
+      case 'cv': case 'resume': print(t.cv, 'm'); location.href = lang === 'en' ? 'cv/tim-cv-en.pdf?v=20261107-web' : 'cv/tim-cv-ru.pdf?v=20261107-web'; return;
       case 'hire': print(t.hire, 'c'); go('#contact'); setTimeout(() => $('#callsign').focus(), 1100); return;
       case 'sudo': return print(rich(args.join(' ').toLowerCase().includes('hire') ? t.sudo : t.sudo.split('\n')[0] + '\n' + t.unknown + esc(args.join(' '))));
       case 'rm': return print(t.rm, 'e');

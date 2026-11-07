@@ -6,7 +6,7 @@ window.I18N_EN = {
   'wx.loading': 'LOADING...', 'wx.atmo': 'SITE ATMOSPHERE', 'wx.auto': 'AUTO', 'wx.clear': 'CLEAR', 'wx.rain': 'RAIN', 'wx.snow': 'SNOW', 'wx.storm': 'STORM',
   'wx.src': 'Data: Open-Meteo. In auto mode the site mirrors the weather in Moscow.',
   'hero.tag': 'OPEN FOR PROJECTS', 'hero.sub': 'Tim. IT specialist at SET.',
-  'hero.desc': 'I build Telegram bots, Mini Apps and integrations in Python. At SET, I automate event registration and member support workflows.',
+  'hero.desc': 'I build websites, Telegram bots and Mini Apps. At SET, I automate event registration and member support workflows.',
   'hero.cta1': 'See projects →', 'hero.cta2': 'Project forecast',
   'st.status': 'STATUS', 'st.open': 'OPEN FOR PROJECTS', 'st.loc': 'LOCATION', 'st.msk': 'MOSCOW', 'st.wx': 'OUTSIDE', 'st.edu': 'STUDY', 'st.eduv': 'ITHUB · INFOSEC',
   'st.work': 'WORK', 'st.workv': 'SET · IT', 'st.reply': 'REPLY', 'st.replyv': '~ A FEW HOURS', 'st.conf': 'CONFIDENCE', 'st.confnote': 'The project cards show what I built and the tools I used.',
@@ -42,7 +42,7 @@ window.I18N_EN = {
   'set.status': 'WORK', 'set.badge': 'AUTOMATION', 'set.title': 'SET Leaders',
   'set.pitch': 'IT and automation for a business community. I connected Telegram, event registration and the tools the team uses.',
   'set.p1': 'The bot collects RSVPs, sends reminders and routes member questions to support.',
-  'set.p2': 'Forum registrations flow from the form into the team tracker, where staff manage the attendee list.',
+  'set.p2': 'I built the forum landing page and its registration form. Submissions go straight into the team tracker.',
   'cdb.badge': 'MY BRAND', 'cdb.pitch': 'The brand my bots and community live under. The flagship is a timetable bot for students at several universities.',
   'cdb.p1': 'Pulls the timetable from the university\'s public sources. Changes are picked up automatically.',
   'cdb.p2': 'Renders a day or a week as an image, sends a month as an album.', 'cdb.p3': 'Reminds you before class, sends tomorrow\'s plan in the evening, serves a calendar subscription.',
@@ -55,6 +55,7 @@ window.I18N_EN = {
   'rf.hobby': 'HOBBY', 'rf.pitch': 'Learning how wireless systems get attacked in practice, to understand how to defend them.',
   'rf.p1': 'LilyGO T-Embed CC1101 on Bruce firmware: Sub-GHz, NFC, BLE, BadUSB.', 'rf.p2': 'The Flipper Zero ecosystem, pentest concepts on Kali Linux and Parrot OS.', 'rf.talk': 'Let\'s talk →',
   'svc.label': '// 03 — SERVICES', 'svc.title': 'What I can build', 'svc.lead': 'Typical formats. Timeframes are for a typical task, I give exact ones after we talk.',
+  'svc.webe': 'DEPENDS ON SCOPE', 'svc.webt': 'Website development', 'svc.web': 'Landing pages, portfolios, event sites and web apps. Mobile layouts, forms, API integrations, notifications and deployment to your domain.',
   'svc.1e': '3–14 DAYS', 'svc.1t': 'Telegram bot, end to end', 'svc.1': 'Requests, bookings, broadcasts, access control, schedules. With a database, admin commands and server deploy.',
   'svc.2e': '2–10 DAYS', 'svc.2t': 'Automation & integrations', 'svc.2': 'Connect services that don\'t want to talk: n8n, webhooks, Google Sheets, APIs, scheduled reports.',
   'svc.3e': '5–14 DAYS', 'svc.3t': 'LLM inside your product', 'svc.3': 'Free text to structured data, classification, text from screenshots. With prompt injection defenses.',
@@ -93,8 +94,8 @@ window.TEXT = {
     bootSkip: 'НАЖМИ ЛЮБУЮ КЛАВИШУ, ЧТОБЫ ПРОПУСТИТЬ',
     typed: ['работаю: IT в СЕТИ', 'в проде: FitBro', 'ищу: интересные заказы', 'пишу: тесты перед деплоем', 'нажми ~ — откроется терминал'],
     modes: {
-      short: { name: 'КОРОТКО', hint: 'Для тех, у кого 10 секунд.', html: '<p><strong>Тим, IT-специалист в «СЕТИ».</strong> Учусь на информационной безопасности в ITHUB College, Москва.</p><p>Делаю Telegram-ботов, Mini Apps и интеграции. Из последних проектов: автоматизация мероприятий «СЕТИ» и трекер питания и тренировок FitBro.</p>' },
-      tech: { name: 'ДЛЯ ТЕХЛИДА', hint: 'Стек, подход, как я пишу код.', html: '<p>Основной язык <strong>Python</strong>. Для Telegram беру <strong>aiogram</strong> и <strong>Telethon</strong>, для сети aiohttp и httpx, фоновые задачи держу на APScheduler. Храню данные в SQLite и Google Sheets.</p><p><strong>LLM встраиваю как деталь с ограничениями</strong>, а не как магию: Groq, Cloudflare Workers AI, vision-модели. Машинный текст всегда помечен, чтобы его не спутали со словами человека.</p><p>Деплою на Linux: Docker, systemd, nginx, bash. Из облаков работал с Yandex Cloud и Cloudflare. Если логика трогает деньги, перед изменением гоняю офлайн-selftest и тесты с моками сети.</p>' },
+      short: { name: 'КОРОТКО', hint: 'Для тех, у кого 10 секунд.', html: '<p><strong>Тим, IT-специалист в «СЕТИ».</strong> Учусь на информационной безопасности в ITHUB College, Москва.</p><p>Делаю сайты, Telegram-ботов и Mini Apps. Из последних проектов: лендинг форума «СЕТИ» с регистрацией и трекер питания и тренировок FitBro.</p>' },
+      tech: { name: 'ДЛЯ ТЕХЛИДА', hint: 'Стек, подход, как я пишу код.', html: '<p>Основной язык <strong>Python</strong>. Для веба использую HTML, CSS и JavaScript, подключаю формы и API. Для Telegram беру <strong>aiogram</strong> и <strong>Telethon</strong>, для сети aiohttp и httpx, фоновые задачи держу на APScheduler. Храню данные в SQLite и Google Sheets.</p><p><strong>LLM встраиваю как деталь с ограничениями</strong>, а не как магию: Groq, Cloudflare Workers AI, vision-модели. Машинный текст всегда помечен, чтобы его не спутали со словами человека.</p><p>Деплою на Linux: Docker, systemd, nginx, bash. Из облаков работал с Yandex Cloud и Cloudflare. Если логика трогает деньги, перед изменением гоняю офлайн-selftest и тесты с моками сети.</p>' },
       raw: { name: 'БЕЗ ФИЛЬТРА', hint: 'Как есть.', html: '<p>Учусь на безопасника, но <strong>больше всего кайфую, когда то, что я написал в два ночи, утром спокойно работает у людей.</strong></p><p>Ковыряю радиоэфир на LilyGO T-Embed CC1101 с Bruce: Sub-GHz, NFC, BLE. Сам собрал ПК на Ryzen 7 7700 и RTX 5060 Ti. Отдыхаю в CS2 и PUBG.</p><p>Если в задаче есть подвох, скажу сразу, а не в день дедлайна.</p>' }
     },
     shotCap: 'НАСТОЯЩАЯ КАРТИНКА ИЗ БОТА · НАЖМИ, ЧТОБЫ ОТКРЫТЬ',
@@ -113,7 +114,7 @@ window.TEXT = {
       }
     },
     fc: {
-      types: { bot: 'Telegram-бот', auto: 'Автоматизация', llm: 'LLM в продукт', parser: 'Парсер', fix: 'Доработка', other: 'Что-то другое' },
+      types: { web: 'Сайт', bot: 'Telegram-бот', auto: 'Автоматизация', llm: 'LLM в продукт', parser: 'Парсер', fix: 'Доработка', other: 'Что-то другое' },
       extras: { db: 'База / админка', pay: 'Оплата', api: 'Чужой API', ai: 'Нейросеть внутри', deploy: 'Деплой на сервер', pics: 'Картинки / отчёты', rush: 'Срочно', fuzzy: 'ТЗ пока в голове' },
       cond: ['ЯСНО', 'ПЕРЕМЕННАЯ ОБЛАЧНОСТЬ', 'ДОЖДЬ', 'ГРОЗА'],
       days: (a, b) => `срок: <b>${a}–${b}</b> ${b % 10 >= 2 && b % 10 <= 4 && (b % 100 < 12 || b % 100 > 14) ? 'дня' : b % 10 === 1 && b % 100 !== 11 ? 'день' : 'дней'}`,
@@ -157,9 +158,9 @@ window.TEXT = {
     term: {
       hello: 'TIM terminal v2.1. Напиши <c>help</c>, чтобы увидеть команды.',
       help: 'Команды:\n  <c>whoami</c>          кто я\n  <c>projects</c>        проекты\n  <c>services</c>        что могу сделать\n  <c>stack</c>           стек\n  <c>weather</c>         погода в Москве\n  <c>rain</c> | <c>snow</c> | <c>storm</c> | <c>sun</c> | <c>auto</c>   атмосфера сайта\n  <c>theme</c> [cdb|phosphor|paper]   тема\n  <c>lang</c> [ru|en]    язык\n  <c>cv</c>              резюме\n  <c>contact</c>         как связаться\n  <c>hire</c>            нанять\n  <c>clear</c>           очистить экран\n  <c>exit</c>            закрыть',
-      whoami: 'Тим. IT-специалист в «СЕТИ», Москва.\nTelegram-боты, Mini Apps и интеграции. Учусь на ИБ в ITHUB College.',
+      whoami: 'Тим. IT-специалист в «СЕТИ», Москва.\nСайты, Telegram-боты, Mini Apps и интеграции. Учусь на ИБ в ITHUB College.',
       projects: '01  Торговая система сигналов   коммерческий\n02  FitBro                      Telegram Mini App\n03  СЕТЬ Лидеров                IT и автоматизация\n04  CDB                         бот расписания, LIVE\n05  ScrewSec                    SaaS, LIVE\n06  yandex-calendar-timetable   open source\n07  RF / Hardware               хобби',
-      services: 'Telegram-боты · автоматизация · LLM · парсеры · доработка · деплой.\nНет в списке? Пиши, обсудим. Берусь почти за всё на своём уровне.',
+      services: 'Сайты · Telegram-боты · автоматизация · LLM · парсеры · доработка · деплой.\nНет в списке? Пиши, обсудим. Берусь почти за всё на своём уровне.',
       stack: 'Python, aiogram, Telethon, httpx, n8n, Groq, Workers AI, SQLite,\nGoogle Sheets API, Linux, systemd, nginx, Docker, Yandex Cloud.',
       contact: 'Telegram: <a href="https://t.me/becarefulx" target="_blank" rel="noopener">@becarefulx</a>\nEmail:    <a href="mailto:titbob000@gmail.com">titbob000@gmail.com</a>',
       hire: 'Отличное решение. Открываю форму...', sudo: '[sudo] пароль для guest: ********\nДоступ выдан. Тим нанят. Осталось только написать ему: <a href="https://t.me/becarefulx" target="_blank" rel="noopener">@becarefulx</a>',
@@ -179,8 +180,8 @@ window.TEXT = {
     bootSkip: 'PRESS ANY KEY TO SKIP',
     typed: ['working: IT at SET', 'shipped: FitBro', 'looking for: interesting projects', 'writing: tests before deploy', 'press ~ to open the terminal'],
     modes: {
-      short: { name: 'SHORT', hint: 'For those with 10 seconds.', html: '<p><strong>Tim, IT specialist at SET.</strong> I study information security at ITHUB College in Moscow.</p><p>I build Telegram bots, Mini Apps and integrations. Recent work includes event automation at SET and FitBro, a nutrition and workout tracker.</p>' },
-      tech: { name: 'FOR A TECH LEAD', hint: 'Stack, approach, how I write code.', html: '<p>Primary language: <strong>Python</strong>. For Telegram I use <strong>aiogram</strong> and <strong>Telethon</strong>, aiohttp and httpx for networking, APScheduler for background jobs. Data lives in SQLite and Google Sheets.</p><p><strong>I treat LLMs as a constrained component</strong>, not magic: Groq, Cloudflare Workers AI, vision models. Machine-generated text is always labeled so it never gets confused with a human\'s words.</p><p>I deploy on Linux: Docker, systemd, nginx, bash. Clouds: Yandex Cloud and Cloudflare. When logic touches money, I run offline self-tests and network-mocked tests before any change.</p>' },
+      short: { name: 'SHORT', hint: 'For those with 10 seconds.', html: '<p><strong>Tim, IT specialist at SET.</strong> I study information security at ITHUB College in Moscow.</p><p>I build websites, Telegram bots and Mini Apps. Recent work includes a forum website with registration for SET and FitBro, a nutrition and workout tracker.</p>' },
+      tech: { name: 'FOR A TECH LEAD', hint: 'Stack, approach, how I write code.', html: '<p>Primary language: <strong>Python</strong>. For the web I use HTML, CSS and JavaScript, and integrate forms and APIs. For Telegram I use <strong>aiogram</strong> and <strong>Telethon</strong>, aiohttp and httpx for networking, APScheduler for background jobs. Data lives in SQLite and Google Sheets.</p><p><strong>I treat LLMs as a constrained component</strong>, not magic: Groq, Cloudflare Workers AI, vision models. Machine-generated text is always labeled so it never gets confused with a human\'s words.</p><p>I deploy on Linux: Docker, systemd, nginx, bash. Clouds: Yandex Cloud and Cloudflare. When logic touches money, I run offline self-tests and network-mocked tests before any change.</p>' },
       raw: { name: 'UNFILTERED', hint: 'As is.', html: '<p>I study security, but <strong>what I love most is when something I wrote at 2 a.m. is quietly working for people by morning.</strong></p><p>I tinker with radio on a LilyGO T-Embed CC1101 running Bruce: Sub-GHz, NFC, BLE. Built my own PC on a Ryzen 7 7700 and an RTX 5060 Ti. I unwind with CS2 and PUBG.</p><p>If a task has a catch, I\'ll tell you right away, not on deadline day.</p>' }
     },
     shotCap: 'A REAL IMAGE FROM THE BOT · CLICK TO OPEN',
@@ -199,7 +200,7 @@ window.TEXT = {
       }
     },
     fc: {
-      types: { bot: 'Telegram bot', auto: 'Automation', llm: 'LLM in product', parser: 'Scraper', fix: 'Fix / extend', other: 'Something else' },
+      types: { web: 'Website', bot: 'Telegram bot', auto: 'Automation', llm: 'LLM in product', parser: 'Scraper', fix: 'Fix / extend', other: 'Something else' },
       extras: { db: 'Database / admin', pay: 'Payments', api: 'Third-party API', ai: 'AI inside', deploy: 'Server deploy', pics: 'Images / reports', rush: 'Urgent', fuzzy: 'Spec is still in my head' },
       cond: ['CLEAR', 'PARTLY CLOUDY', 'RAIN', 'THUNDERSTORM'],
       days: (a, b) => `timeframe: <b>${a}–${b}</b> days`,
@@ -243,9 +244,9 @@ window.TEXT = {
     term: {
       hello: 'TIM terminal v2.1. Type <c>help</c> to see commands.',
       help: 'Commands:\n  <c>whoami</c>          who I am\n  <c>projects</c>        projects\n  <c>services</c>        what I can build\n  <c>stack</c>           stack\n  <c>weather</c>         Moscow weather\n  <c>rain</c> | <c>snow</c> | <c>storm</c> | <c>sun</c> | <c>auto</c>   site atmosphere\n  <c>theme</c> [cdb|phosphor|paper]   theme\n  <c>lang</c> [ru|en]    language\n  <c>cv</c>              résumé\n  <c>contact</c>         how to reach me\n  <c>hire</c>            hire me\n  <c>clear</c>           clear screen\n  <c>exit</c>            close',
-      whoami: 'Tim. IT specialist at SET, Moscow.\nTelegram bots, Mini Apps and integrations. I study information security at ITHUB College.',
+      whoami: 'Tim. IT specialist at SET, Moscow.\nWebsites, Telegram bots, Mini Apps and integrations. I study information security at ITHUB College.',
       projects: '01  Trading signal system       commercial\n02  FitBro                      Telegram Mini App\n03  SET Leaders                 IT and automation\n04  CDB                         timetable bot, LIVE\n05  ScrewSec                    SaaS, LIVE\n06  yandex-calendar-timetable   open source\n07  RF / Hardware               hobby',
-      services: 'Telegram bots · automation · LLM · scrapers · fixes · deploy.\nNot on the list? Message me. I take on almost anything at my level.',
+      services: 'Websites · Telegram bots · automation · LLM · scrapers · fixes · deploy.\nNot on the list? Message me. I take on almost anything at my level.',
       stack: 'Python, aiogram, Telethon, httpx, n8n, Groq, Workers AI, SQLite,\nGoogle Sheets API, Linux, systemd, nginx, Docker, Yandex Cloud.',
       contact: 'Telegram: <a href="https://t.me/becarefulx" target="_blank" rel="noopener">@becarefulx</a>\nEmail:    <a href="mailto:titbob000@gmail.com">titbob000@gmail.com</a>',
       hire: 'Excellent decision. Opening the form...', sudo: '[sudo] password for guest: ********\nAccess granted. Tim is hired. Now just message him: <a href="https://t.me/becarefulx" target="_blank" rel="noopener">@becarefulx</a>',
