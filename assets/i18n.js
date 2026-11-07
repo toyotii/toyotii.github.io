@@ -43,6 +43,7 @@ window.I18N_EN = {
   'set.pitch': 'IT and automation for a business community. I connected Telegram, event registration and the tools the team uses.',
   'set.p1': 'The bot collects RSVPs, sends reminders and routes member questions to support.',
   'set.p2': 'I built the forum landing page and its registration form. Submissions go straight into the team tracker.',
+  'set.open': 'Community website ↗',
   'cdb.badge': 'MY BRAND', 'cdb.pitch': 'The brand my bots and community live under. The flagship is a timetable bot for students at several universities.',
   'cdb.p1': 'Pulls the timetable from the university\'s public sources. Changes are picked up automatically.',
   'cdb.p2': 'Renders a day or a week as an image, sends a month as an album.', 'cdb.p3': 'Reminds you before class, sends tomorrow\'s plan in the evening, serves a calendar subscription.',
