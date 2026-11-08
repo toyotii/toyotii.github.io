@@ -1,29 +1,27 @@
 <!DOCTYPE html>
-<html lang="ru" data-theme="cdb">
+<html lang="ru" data-theme="cdb" class="field-site">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TIM // IT & Dev</title>
-<meta name="description" content="Тим, IT-специалист в «СЕТИ». Разрабатываю сайты, Telegram-ботов и Mini Apps. Подключаю формы, API и автоматизацию.">
+<title>Тимофей · Веб-дизайн и разработка</title>
+<meta name="description" content="Тимофей, IT-специалист в «СЕТИ». Разрабатываю сайты, Telegram-ботов и Mini Apps. Подключаю формы, API и автоматизацию.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://toyotii.github.io/">
-<meta property="og:title" content="TIM // IT & Dev Engineer">
-<meta property="og:description" content="IT в «СЕТИ», разработка сайтов, Telegram-боты, Mini Apps и интеграции.">
-<meta property="og:image" content="https://toyotii.github.io/assets/og.png?v=20261107-web">
+<meta property="og:title" content="Тимофей · Веб-дизайн и разработка">
+<meta property="og:description" content="Тимофей, веб-дизайн и разработка. Интерфейсы, моушн, сайты, Telegram-боты и Mini Apps.">
+<meta property="og:image" content="https://toyotii.github.io/assets/og.png?v=20261108-scenes">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://toyotii.github.io/assets/og.png?v=20261107-web">
-<meta name="theme-color" content="#0E3020">
+<meta name="twitter:image" content="https://toyotii.github.io/assets/og.png?v=20261108-scenes">
+<meta name="theme-color" content="#101813">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <script>
   document.documentElement.classList.add('js');
   try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/site.css?v=20261107-web">
+<link rel="stylesheet" href="assets/site.css?v=20261108-scenes">
+<link rel="stylesheet" href="assets/field.css?v=20261108-scenes">
 </head>
 <body>
 <div class="vignette" aria-hidden="true"></div>
@@ -33,11 +31,12 @@
 <canvas id="sky" aria-hidden="true"></canvas>
 <canvas id="grid" aria-hidden="true"></canvas>
 
+<a class="field-skip" href="#top" data-i18n="field.skip">К содержанию</a>
 <div class="screen">
 
 <nav>
   <div class="wrap">
-    <a class="logo" href="#top" id="logo" aria-label="TIM//DEV">
+    <a class="logo" href="#top" id="logo">
       <svg viewBox="438 98 404 404" aria-hidden="true">
         <g class="petals"><g transform="rotate(15 640 300)" fill="currentColor" style="color:var(--cream)">
           <rect x="624" y="112" width="32" height="70" rx="16"/>
@@ -50,14 +49,14 @@
         <circle cx="640" cy="300" r="96" fill="none" stroke="var(--accent)" stroke-width="26"/>
         <circle cx="640" cy="300" r="34" fill="var(--accent)"/>
       </svg>
-      TIM<span class="full">//DEV</span>
+      <span class="logo-name" data-i18n="field.wordmark">ТИМОФЕЙ</span>
     </a>
     <ul class="nav-links">
       <li><a href="#about" data-i18n="nav.about">ОБО МНЕ</a></li>
       <li><a href="#projects" data-i18n="nav.projects">ПРОЕКТЫ</a></li>
       <li><a href="#services" data-i18n="nav.services">УСЛУГИ</a></li>
       <li><a href="#stack" data-i18n="nav.stack">СТЕК</a></li>
-      <li><a href="#log" data-i18n="nav.log">ЖУРНАЛ</a></li>
+      <li><a href="#resume" data-i18n="field.cv">Резюме ↓</a></li>
       <li><a href="#contact" data-i18n="nav.contact">СВЯЗЬ</a></li>
     </ul>
     <div class="nav-tools">
@@ -65,7 +64,7 @@
         <span class="wx-icon" id="wx-icon" aria-hidden="true"></span><span id="wx-temp">MSK</span><span class="wx-temp-label" id="clock">--:--</span>
       </button>
       <button class="tool" id="theme-btn" type="button" aria-expanded="false" aria-controls="theme-pop" title="Тема" aria-label="Тема"><span class="swatch" aria-hidden="true"></span></button>
-      <button class="tool" id="lang-btn" type="button" title="Language">EN</button>
+      <button class="tool" id="lang-btn" type="button" aria-label="Переключить на английский">EN</button>
       <button class="tool" id="term-btn" type="button" title="Терминал (~)" aria-label="Терминал">&gt;_</button>
     </div>
   </div>
@@ -101,101 +100,118 @@
         <button class="chip" type="button" role="radio" data-atmo="snow" aria-checked="false" data-i18n="wx.snow">СНЕГ</button>
         <button class="chip" type="button" role="radio" data-atmo="storm" aria-checked="false" data-i18n="wx.storm">ГРОЗА</button>
       </div>
-      <div class="src" data-i18n="wx.src">Данные: Open-Meteo. В режиме «авто» сайт повторяет погоду в Москве.</div>
+      <div class="src" data-i18n="wx.src">Данные: Open-Meteo. Эффекты можно включить вручную.</div>
     </div>
   </div>
 </nav>
 
 <main id="top">
-
-  <!-- HERO -->
-  <div class="wrap hero">
-    <div>
-      <div class="hero-tag"><span class="pip"></span><span data-i18n="hero.tag">ОТКРЫТ К ЗАКАЗАМ</span></div>
-      <h1>IT<br><span class="outline">&amp; Dev</span><br><span class="hot">Engineer</span></h1>
-      <p class="hero-sub" data-i18n="hero.sub">Тим. IT-специалист в «СЕТИ».</p>
-      <p class="hero-desc" data-i18n="hero.desc">Делаю сайты, Telegram-ботов и Mini Apps. В «СЕТИ» автоматизирую регистрацию на события и работу с обращениями резидентов.</p>
-      <div class="cta">
-        <a href="#projects" class="btn btn-solid" data-i18n="hero.cta1">Смотреть проекты →</a>
-        <a href="#services" class="btn btn-ghost" data-i18n="hero.cta2">Прогноз по проекту</a>
+  <header class="field-hero wrap" aria-labelledby="hero-name">
+    <div class="field-frame">
+      <img class="field-landscape" src="assets/forest.webp" width="1536" height="1024" fetchpriority="high" alt="">
+      <div class="field-shade" aria-hidden="true"></div>
+      <div class="field-entry" aria-hidden="true"></div>
+      <div class="field-portrait">
+        <img src="assets/tim-ascii.svg" width="624" height="596" alt="Портрет Тимофея, собранный из ASCII-символов" data-i18n-alt="field.portraitAlt">
       </div>
-    </div>
-
-    <aside class="panel status">
-      <div class="panel-bar"><span>TIM://system-status</span><span class="live"><span class="pip"></span>LIVE</span></div>
-      <dl>
-        <div class="row"><dt data-i18n="st.status">СТАТУС</dt><dd class="glow" data-i18n="st.open">ОТКРЫТ К ЗАКАЗАМ</dd></div>
-        <div class="row"><dt data-i18n="st.loc">ЛОКАЦИЯ</dt><dd><span data-i18n="st.msk">МОСКВА</span> · <span id="clock2">--:--</span></dd></div>
-        <div class="row"><dt data-i18n="st.wx">ЗА ОКНОМ</dt><dd id="st-wx">—</dd></div>
-        <div class="row"><dt data-i18n="st.edu">УЧЁБА</dt><dd data-i18n="st.eduv">ITHUB · ИБ</dd></div>
-        <div class="row"><dt data-i18n="st.work">РАБОТА</dt><dd data-i18n="st.workv">СЕТЬ · IT</dd></div>
-        <div class="row"><dt data-i18n="st.reply">ОТВЕТ</dt><dd data-i18n="st.replyv">~ НЕСКОЛЬКО ЧАСОВ</dd></div>
-      </dl>
-      <div class="conf">
-        <div class="conf-head"><span data-i18n="st.conf">ДОСТОВЕРНОСТЬ</span><span class="glow">100%</span></div>
-        <div class="conf-bar" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-        <div class="conf-note" data-i18n="st.confnote">В карточках проектов видно, что я сделал и на чём это работает.</div>
-      </div>
-      <div class="typed"><b>&gt;</b> <span id="typed"></span><span class="cur"></span></div>
-    </aside>
-  </div>
-
-  <!-- ПРИНЦИПЫ + ЦИФРЫ -->
-  <div class="wrap">
-    <div class="principles reveal">
-      <div class="principle"><div class="n">01</div><h3 data-i18n="pr.1t">До прода, а не «у меня работает»</h3><p data-i18n="pr.1">Сервисы под systemd, боты 24/7, деплой одним скриптом. Работает на сервере, а не только на ноутбуке.</p></div>
-      <div class="principle"><div class="n">02</div><h3 data-i18n="pr.2t">Честные сроки</h3><p data-i18n="pr.2">Называю реальный срок и сразу говорю, где будет сложно. Без сюрпризов в последний день.</p></div>
-      <div class="principle"><div class="n">03</div><h3 data-i18n="pr.3t">Безопасность по умолчанию</h3><p data-i18n="pr.3">Секреты не в коде, защита от prompt injection, реальные деньги только по явному включению.</p></div>
-      <div class="principle"><div class="n">04</div><h3 data-i18n="pr.4t">Тесты, а не надежда</h3><p data-i18n="pr.4">Где в логике есть деньги, сначала офлайн-проверки и тесты с моками сети. Потом деплой.</p></div>
-    </div>
-
-    <div class="panel numbers reveal" id="numbers">
-      <div class="num"><div class="v" data-count="121">121</div><div class="k" data-i18n="num.1">учебная группа в парсере расписания</div></div>
-      <div class="num"><div class="v">LIVE</div><div class="k" data-i18n="num.2">FitBro доступен в Telegram</div></div>
-      <div class="num"><div class="v" data-count="7">7</div><div class="k" data-i18n="num.3">звеньев в конвейере торговой системы</div></div>
-      <div class="num"><div class="v" data-count="34">34</div><div class="k" data-i18n="num.4">модуля тестов в торговой системе</div></div>
-      <div class="num"><div class="v" data-count="24" data-suffix="/7">24/7</div><div class="k" data-i18n="num.5">сервисы под systemd, без ручных перезапусков</div></div>
-    </div>
-  </div>
-
-  <!-- ОБО МНЕ -->
-  <section id="about">
-    <div class="wrap">
-      <div class="label" data-i18n="about.label">// 01 — ОБО МНЕ</div>
-      <h2 class="h2" data-i18n="about.title">Кто я</h2>
-      <p class="lead" data-i18n="about.lead">Выбери, насколько подробно рассказать.</p>
-
-      <div class="about reveal">
-        <div class="panel">
-          <div class="panel-bar"><span>TIM://about</span><span id="mode-name"></span></div>
-          <div class="modes" role="group">
-            <button class="chip" type="button" data-mode="short" aria-pressed="false" data-i18n="mode.short">КОРОТКО</button>
-            <button class="chip" type="button" data-mode="tech" aria-pressed="true" data-i18n="mode.tech">ДЛЯ ТЕХЛИДА</button>
-            <button class="chip" type="button" data-mode="raw" aria-pressed="false" data-i18n="mode.raw">БЕЗ ФИЛЬТРА</button>
-            <div class="mode-hint" id="mode-hint"></div>
-          </div>
-          <div class="mode-body" id="mode-body" aria-live="polite"></div>
+      <div class="field-copy">
+        <div class="field-index"><span class="pip"></span><span data-i18n="hero.tag">Открыт к проектам</span></div>
+        <h1 id="hero-name" data-i18n="field.name">Тимофей</h1>
+        <p class="field-role" data-i18n="field.role">Веб-дизайн и разработка</p>
+        <p class="field-intro" data-i18n="field.intro">Проектирую интерфейсы и анимацию. Разрабатываю и запускаю сайты, ботов и Mini Apps.</p>
+        <div class="field-actions">
+          <a class="field-button" href="#projects"><span data-i18n="field.workCta">Смотреть работы</span><span aria-hidden="true">↓</span></a>
+          <a class="field-text-link" href="#contact" data-i18n="field.contactCta">Обсудить проект</a>
         </div>
-
-        <ul class="panel facts">
-          <li><div class="k" data-i18n="fact.edu">УЧЁБА</div><div><div class="t" data-i18n="fact.edut">ITHUB College, Москва</div><div class="s" data-i18n="fact.edus">Информационная безопасность</div></div></li>
-          <li><div class="k" data-i18n="fact.work">РАБОТА</div><div><div class="t" data-i18n="fact.workt">IT-специалист в «СЕТИ»</div><div class="s" data-i18n="fact.works">Telegram-боты, интеграции и автоматизация работы с мероприятиями и обращениями резидентов</div></div></li>
-          <li><div class="k" data-i18n="fact.brand">БРЕНД</div><div><div class="t">CDB</div><div class="s" data-i18n="fact.brands">Мои боты и сообщество под одним знаком</div></div></li>
-          <li><div class="k" data-i18n="fact.oss">OPEN SOURCE</div><div><div class="t">yandex-calendar-timetable</div><div class="s" data-i18n="fact.osss">Ядро бота расписания, открытый код и тесты</div></div></li>
-          <li><div class="k" data-i18n="fact.hobby">ХОББИ</div><div><div class="t" data-i18n="fact.hobbyt">Радиоэфир и железо</div><div class="s" data-i18n="fact.hobbys">LilyGO T-Embed CC1101, Bruce firmware: Sub-GHz, NFC, BLE</div></div></li>
-        </ul>
       </div>
+      <div class="field-caption" aria-hidden="true"><span>01 / FIELD STUDY</span></div>
     </div>
-  </section>
+    <div class="field-strip">
+      <span data-i18n="hero.sub">IT-специалист в «СЕТИ».</span>
+      <a class="field-services-link" href="#services"><span data-i18n="field.services">Услуги</span><span aria-hidden="true">↓</span></a>
+      <a href="#resume" data-i18n="field.cv">Резюме ↓</a>
+    </div>
+  </header>
 
-  <!-- ПРОЕКТЫ -->
   <section id="projects">
     <div class="wrap">
-      <div class="label" data-i18n="proj.label">// 02 — ПОРТФОЛИО</div>
-      <h2 class="h2" data-i18n="proj.title">Проекты</h2>
-      <p class="lead" data-i18n="proj.lead">Рабочие сервисы, открытый код и эксперименты с железом. В карточках - что я сделал и какой стек использовал.</p>
+      <div class="field-chapter field-chapter-work">
+        <div class="field-chapter-media" aria-hidden="true"><img src="assets/forest-gate.webp" width="1536" height="1024" loading="lazy" decoding="async" alt=""></div>
+        <div class="field-chapter-copy">
+          <div class="label" data-i18n="proj.label">Портфолио</div>
+          <h2 class="h2" data-i18n="proj.title">Выбранные работы</h2>
+          <p class="lead" data-i18n="proj.lead">Два проекта, где видно, что я сделал и как это работает.</p>
+        </div>
+        <div class="field-work-index">
+          <p data-i18n="field.chapterIndex">В этом разделе</p>
+          <a href="#set-leaders"><span data-i18n="set.title">СЕТЬ Лидеров</span><span aria-hidden="true">↘</span></a>
+          <a href="#fitbro"><span>FitBro</span><span aria-hidden="true">↘</span></a>
+        </div>
+      </div>
 
-      <div class="projects">
+      <div class="field-cases">
+        <article class="project field-case" id="set-leaders">
+          <figure class="field-case-visual field-case-set">
+            <div class="field-aperture">
+              <img class="field-case-image" src="assets/set-community.webp" width="1440" height="900" loading="lazy" alt="Первый экран официального сайта «СЕТЬ Лидеров»" data-i18n-alt="field.setAlt">
+            </div>
+            <figcaption><span>01 / WEB</span><span data-i18n="field.setCaption">Официальный сайт сообщества</span></figcaption>
+          </figure>
+          <div class="project-body">
+            <div><span class="badge" data-i18n="set.badge">АВТОМАТИЗАЦИЯ</span></div>
+            <h3 data-i18n="set.title">СЕТЬ Лидеров</h3>
+            <p class="pitch" data-i18n="set.pitch">В «СЕТИ» отвечаю за IT-задачи вокруг мероприятий и общения с резидентами. Связываю регистрацию, Telegram и инструменты команды.</p>
+            <ul class="points">
+              <li data-i18n="set.p1">Настроил бота для приглашений, напоминаний и передачи обращений в поддержку.</li>
+              <li data-i18n="set.p2">Связал регистрацию на форум с трекером участников. Работал с валидацией файлов и ошибками API в админке.</li>
+            </ul>
+            <details class="field-case-note">
+              <summary data-i18n="field.caseDetails">Как это работает</summary>
+              <p data-i18n="field.setFlow">Админка проверяет тип и размер изображения перед отправкой. При ошибке API показывает понятное сообщение, в том числе если сервер вернул HTML вместо JSON.</p>
+            </details>
+            <div class="project-foot">
+              <div class="tags"><span class="tag">Python</span><span class="tag">Telegram Bot API</span><span class="tag">SQLite</span><span class="tag">Docker</span></div>
+              <a class="plink" href="https://xn----9sbdlc3cadvedif3g9b.xn--p1ai/" target="_blank" rel="noopener" data-i18n="set.open">Сайт сообщества ↗</a>
+            </div>
+          </div>
+        </article>
+        <article class="project field-case" id="fitbro">
+          <figure class="field-case-visual field-case-fit">
+            <div class="field-fit-stage">
+              <img src="assets/fitbro-demo.webp" width="390" height="780" loading="lazy" alt="Интерфейс трекера FitBro" data-i18n-alt="field.fitAlt">
+            </div>
+            <figcaption><span>02 / MINI APP</span><span data-i18n="field.fitCaption">Интерфейс · демоданные</span></figcaption>
+          </figure>
+          <div class="project-body">
+            <div><span class="badge">TELEGRAM MINI APP</span></div>
+            <h3>FitBro</h3>
+            <p class="pitch" data-i18n="fit.pitch">Спроектировал и собрал FitBro, трекер питания и тренировок внутри Telegram. Дневник еды, подходы и цели доступны в одном интерфейсе.</p>
+            <ul class="points">
+              <li data-i18n="fit.p1">Поиск продуктов и сканирование штрихкодов через Open Food Facts, учёт порций и КБЖУ.</li>
+              <li data-i18n="fit.p2">Свои программы тренировок, цели по весу, командный прогресс и напоминания.</li>
+              <li data-i18n="fit.p3">Бэкенд на aiohttp и SQLite, вход с серверной проверкой подписи Telegram initData.</li>
+            </ul>
+            <details class="field-case-note">
+              <summary data-i18n="field.caseDetails">Как это работает</summary>
+              <p data-i18n="field.fitFlow">Интерфейс работает на JavaScript и Canvas. API проверяет подпись Telegram, SQLite хранит дневник и цели, а офлайн-очередь досылает записи после восстановления сети.</p>
+            </details>
+            <div class="project-foot">
+              <div class="tags"><span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">aiogram</span><span class="tag">SQLite</span><span class="tag">JavaScript</span></div>
+              <a class="plink" href="https://t.me/your_fitbro_bot" target="_blank" rel="noopener" data-i18n="fit.open">Открыть бота ↗</a>
+            </div>
+          </div>
+        </article>
+      </div>
+      <details class="field-archive">
+        <summary class="field-archive-toggle">
+          <span class="field-archive-label">
+            <span class="field-archive-closed" data-i18n="field.archive">Показать ещё проекты и эксперименты</span>
+            <span class="field-archive-open" data-i18n="field.archiveClose">Свернуть проекты и эксперименты</span>
+            <small data-i18n="field.archiveHint">Боты, открытый код и личные проекты</small>
+          </span>
+          <span class="field-archive-icon" aria-hidden="true"></span>
+        </summary>
+        <div class="projects">
 
         <!-- Торговая система -->
         <article class="panel project wide reveal">
@@ -245,42 +261,7 @@
           </div>
         </article>
 
-        <!-- FitBro -->
-        <article class="panel hover project reveal">
-          <div class="panel-bar"><span>TIM://projects/fitbro</span><span class="live"><span class="pip"></span>LIVE</span></div>
-          <div class="project-body">
-            <div><span class="badge">TELEGRAM MINI APP</span></div>
-            <h3>FitBro</h3>
-            <p class="pitch" data-i18n="fit.pitch">Трекер питания и тренировок в Telegram. В одном приложении можно вести дневник еды, записывать подходы и следить за прогрессом.</p>
-            <ul class="points">
-              <li data-i18n="fit.p1">Поиск продуктов и сканирование штрихкодов через Open Food Facts, учёт порций и КБЖУ.</li>
-              <li data-i18n="fit.p2">Свои программы тренировок, цели по весу, командный прогресс и напоминания.</li>
-              <li data-i18n="fit.p3">Бэкенд на aiohttp и SQLite, вход с серверной проверкой подписи Telegram initData.</li>
-            </ul>
-            <div class="project-foot">
-              <div class="tags"><span class="tag">Python</span><span class="tag">aiohttp</span><span class="tag">aiogram</span><span class="tag">SQLite</span><span class="tag">JavaScript</span></div>
-              <a class="plink" href="https://t.me/your_fitbro_bot" target="_blank" rel="noopener" data-i18n="fit.open">Открыть бота ↗</a>
-            </div>
-          </div>
-        </article>
 
-        <!-- СЕТЬ -->
-        <article class="panel hover project reveal" id="set-leaders">
-          <div class="panel-bar"><span>TIM://projects/set</span><span class="live"><span class="pip"></span><span data-i18n="set.status">РАБОТА</span></span></div>
-          <div class="project-body">
-            <div><span class="badge" data-i18n="set.badge">АВТОМАТИЗАЦИЯ</span></div>
-            <h3 data-i18n="set.title">СЕТЬ Лидеров</h3>
-            <p class="pitch" data-i18n="set.pitch">IT и автоматизация для сообщества предпринимателей. Связал Telegram, регистрацию на мероприятия и внутренние инструменты команды.</p>
-            <ul class="points">
-              <li data-i18n="set.p1">Бот собирает ответы на приглашения, отправляет напоминания и передаёт обращения резидентов в поддержку.</li>
-              <li data-i18n="set.p2">Собрал лендинг форума с формой регистрации. Заявки автоматически попадают в трекер команды.</li>
-            </ul>
-            <div class="project-foot">
-              <div class="tags"><span class="tag">Python</span><span class="tag">Telegram Bot API</span><span class="tag">SQLite</span><span class="tag">Docker</span></div>
-              <a class="plink" href="https://xn----9sbdlc3cadvedif3g9b.xn--p1ai/" target="_blank" rel="noopener" data-i18n="set.open">Сайт сообщества ↗</a>
-            </div>
-          </div>
-        </article>
 
         <!-- CDB -->
         <article class="panel hover project reveal">
@@ -359,6 +340,17 @@
           </div>
         </article>
 
+        <article class="panel project reveal">
+          <div class="panel-bar"><span>PLANTS / WEB & IOS</span></div>
+          <div class="project-body">
+            <div><span class="badge quiet" data-i18n="field.plantsBadge">ЛИЧНЫЙ ПРОЕКТ</span></div>
+            <h3 data-i18n="field.plantsTitle">Подоконник</h3>
+            <p class="pitch" data-i18n="field.plantsPitch">Общий трекер ухода за растениями с 3D-моделями и виджетом для iPhone.</p>
+            <ul class="points"><li data-i18n="field.plants1">Один каталог задач для веб-интерфейса и виджета Scriptable.</li><li data-i18n="field.plants2">Отметки можно ставить без сети. Синхронизация догоняет при подключении.</li></ul>
+            <div class="project-foot"><div class="tags"><span class="tag">Three.js</span><span class="tag">JavaScript</span><span class="tag">Scriptable</span></div></div>
+          </div>
+        </article>
+
         <!-- RF -->
         <article class="panel hover project reveal">
           <div class="panel-bar"><span>TIM://projects/rf-lab</span><span class="live" style="color:var(--dim)" data-i18n="rf.hobby">ХОББИ</span></div>
@@ -377,11 +369,12 @@
           </div>
         </article>
 
-      </div>
+        </div>
+      </details>
     </div>
   </section>
 
-  <!-- УСЛУГИ -->
+
   <section id="services">
     <div class="wrap">
       <div class="label" data-i18n="svc.label">// 03 — УСЛУГИ</div>
@@ -389,13 +382,18 @@
       <p class="lead" data-i18n="svc.lead">Основные форматы работы. Сроки указаны для типичной задачи, точные назову после разговора.</p>
 
       <div class="services reveal">
-        <div class="service service-web"><div class="top"><span class="n">01</span><span class="eta" data-i18n="svc.webe">ПО ЗАДАЧЕ</span></div><h3 data-i18n="svc.webt">Разработка сайтов</h3><p data-i18n="svc.web">Лендинги, сайты-визитки, страницы мероприятий и веб-приложения. Адаптирую под телефон, подключаю формы, API и уведомления, разворачиваю сайт на домене.</p></div>
-        <div class="service"><div class="top"><span class="n">02</span><span class="eta" data-i18n="svc.1e">3–14 ДНЕЙ</span></div><h3 data-i18n="svc.1t">Telegram-бот под ключ</h3><p data-i18n="svc.1">Заявки, запись, рассылки, выдача доступа, расписание. С базой, админ-командами и деплоем на сервер.</p></div>
-        <div class="service"><div class="top"><span class="n">03</span><span class="eta" data-i18n="svc.2e">2–10 ДНЕЙ</span></div><h3 data-i18n="svc.2t">Автоматизация и интеграции</h3><p data-i18n="svc.2">Связать сервисы, которые не хотят дружить: n8n, вебхуки, Google Sheets, API, отчёты по расписанию.</p></div>
-        <div class="service"><div class="top"><span class="n">04</span><span class="eta" data-i18n="svc.3e">5–14 ДНЕЙ</span></div><h3 data-i18n="svc.3t">LLM внутри продукта</h3><p data-i18n="svc.3">Разбор свободного текста в структуру, классификация, текст со скриншотов. С защитой от prompt injection.</p></div>
-        <div class="service"><div class="top"><span class="n">05</span><span class="eta" data-i18n="svc.4e">2–7 ДНЕЙ</span></div><h3 data-i18n="svc.4t">Парсеры и сбор данных</h3><p data-i18n="svc.4">Забрать данные с сайта, из Telegram-каналов или закрытого виджета и сложить туда, где с ними удобно работать.</p></div>
-        <div class="service"><div class="top"><span class="n">06</span><span class="eta" data-i18n="svc.5e">ОТ 1 ДНЯ</span></div><h3 data-i18n="svc.5t">Доработка чужого кода</h3><p data-i18n="svc.5">Бот упал, скрипт делает не то, прошлый разработчик пропал. Разберусь, починю, объясню, что было не так.</p></div>
-        <div class="service"><div class="top"><span class="n">07</span><span class="eta" data-i18n="svc.6e">1–3 ДНЯ</span></div><h3 data-i18n="svc.6t">Сервер и деплой</h3><p data-i18n="svc.6">Поднять Linux-сервер, настроить systemd, nginx и TLS, закрыть лишнее наружу. Чтобы работало без тебя.</p></div>
+        <div class="service service-web service-design">
+          <div class="top"><span class="eta" data-i18n="svc.webe">ПО ЗАДАЧЕ</span></div>
+          <h3 data-i18n="field.designTitle">Веб-дизайн и моушн</h3>
+          <p data-i18n="field.designCopy">Разрабатываю визуальную концепцию, проектирую экраны для компьютера и телефона, продумываю переходы и анимацию интерфейса.</p>
+        </div>
+        <div class="service service-web"><div class="top"><span class="eta" data-i18n="svc.webe">ПО ЗАДАЧЕ</span></div><h3 data-i18n="svc.webt">Разработка сайтов</h3><p data-i18n="svc.web">Лендинги, сайты-визитки, страницы мероприятий и веб-приложения. Адаптирую под телефон, подключаю формы, API и уведомления, разворачиваю сайт на домене.</p></div>
+        <div class="service"><div class="top"><span class="eta" data-i18n="svc.1e">3–14 ДНЕЙ</span></div><h3 data-i18n="svc.1t">Telegram-бот под ключ</h3><p data-i18n="svc.1">Заявки, запись, рассылки, выдача доступа, расписание. С базой, админ-командами и деплоем на сервер.</p></div>
+        <div class="service"><div class="top"><span class="eta" data-i18n="svc.2e">2–10 ДНЕЙ</span></div><h3 data-i18n="svc.2t">Автоматизация и интеграции</h3><p data-i18n="svc.2">Связать сервисы, которые не хотят дружить: n8n, вебхуки, Google Sheets, API, отчёты по расписанию.</p></div>
+        <div class="service"><div class="top"><span class="eta" data-i18n="svc.3e">5–14 ДНЕЙ</span></div><h3 data-i18n="svc.3t">LLM внутри продукта</h3><p data-i18n="svc.3">Разбор свободного текста в структуру, классификация, текст со скриншотов. С защитой от prompt injection.</p></div>
+        <div class="service"><div class="top"><span class="eta" data-i18n="svc.4e">2–7 ДНЕЙ</span></div><h3 data-i18n="svc.4t">Парсеры и сбор данных</h3><p data-i18n="svc.4">Забрать данные с сайта, из Telegram-каналов или закрытого виджета и сложить туда, где с ними удобно работать.</p></div>
+        <div class="service"><div class="top"><span class="eta" data-i18n="svc.5e">ОТ 1 ДНЯ</span></div><h3 data-i18n="svc.5t">Доработка чужого кода</h3><p data-i18n="svc.5">Бот упал, скрипт делает не то, прошлый разработчик пропал. Разберусь, починю, объясню, что было не так.</p></div>
+        <div class="service"><div class="top"><span class="eta" data-i18n="svc.6e">1–3 ДНЯ</span></div><h3 data-i18n="svc.6t">Сервер и деплой</h3><p data-i18n="svc.6">Поднять Linux-сервер, настроить systemd, nginx и TLS, закрыть лишнее наружу. Чтобы работало без тебя.</p></div>
       </div>
 
       <div class="panel anything reveal">
@@ -412,44 +410,109 @@
       </ol>
       <p class="price-note" data-i18n="svc.price">Цена считается под задачу: от объёма, сроков и того, что уже есть.</p>
 
-      <!-- Прогноз -->
-      <div class="panel forecast reveal" id="forecast">
-        <div class="fc-form">
-          <div class="sub-title" style="color:var(--accent-text)" data-i18n="fc.title">TIM://forecast // ПРОГНОЗ ПО ПРОЕКТУ</div>
-          <p style="color:var(--muted);font-size:12.5px;margin-bottom:18px" data-i18n="fc.lead">Отметь, что нужно, и посмотри прогноз погоды на свой проект.</p>
-          <div class="fc-group">
-            <div class="sub-title" data-i18n="fc.type">ЧТО ДЕЛАЕМ</div>
-            <div class="fc-opts" id="fc-type" role="radiogroup"></div>
-          </div>
-          <div class="fc-group">
-            <div class="sub-title" data-i18n="fc.extra">ЧТО ВНУТРИ</div>
-            <div class="fc-opts" id="fc-extra"></div>
-          </div>
-        </div>
-        <div class="fc-out" aria-live="polite">
-          <div class="tone" role="radiogroup">
-            <button class="chip" type="button" role="radio" data-tone="honest" aria-checked="true" data-i18n="fc.honest">ЧЕСТНО</button>
-            <button class="chip" type="button" role="radio" data-tone="raw" aria-checked="false" data-i18n="fc.raw">БЕЗ ФИЛЬТРА</button>
-          </div>
-          <div class="fc-sky"><span id="fc-icon" class="wx"></span><div><div class="cond" id="fc-cond"></div><div class="eta" id="fc-eta"></div></div></div>
-          <ul class="fc-rows">
-            <li><span data-i18n="fc.conf">УВЕРЕННОСТЬ</span><span id="fc-conf"></span></li>
-            <li><span data-i18n="fc.rain">ОСАДКИ (ПРАВКИ)</span><span id="fc-rain"></span></li>
-            <li><span data-i18n="fc.wind">ВЕТЕР (ВНЕШНИЕ API)</span><span id="fc-wind"></span></li>
-            <li><span data-i18n="fc.vis">ВИДИМОСТЬ (ТЗ)</span><span id="fc-vis"></span></li>
-          </ul>
-          <p class="fc-comment" id="fc-comment"></p>
-          <div class="fc-actions">
-            <button class="btn btn-solid btn-sm" type="button" id="fc-send" data-i18n="fc.send">Отправить прогноз →</button>
-            <button class="btn btn-ghost btn-sm" type="button" id="fc-copy" data-i18n="fc.copy">Скопировать</button>
-          </div>
-          <p class="fc-disclaimer" data-i18n="fc.disc">Это оценка на глаз по опыту. Точный срок и цену назову после разговора.</p>
-        </div>
+      <div class="field-launch reveal">
+        <h3 data-i18n="field.launchTitle">Что получишь на запуске</h3>
+        <dl>
+          <div><dt data-i18n="field.launch1Title">Дизайн</dt><dd data-i18n="field.launch1">Экраны для компьютера и телефона, состояния интерфейса и сценарии анимации.</dd></div>
+          <div><dt data-i18n="field.launch2Title">Рабочая сборка</dt><dd data-i18n="field.launch2">Подключённые формы, интеграции и проверка ключевых действий перед публикацией.</dd></div>
+          <div><dt data-i18n="field.launch3Title">Передача проекта</dt><dd data-i18n="field.launch3">Исходники, рабочая ссылка и инструкция, как обновлять контент.</dd></div>
+        </dl>
       </div>
     </div>
   </section>
 
-  <!-- СТЕК -->
+
+  <section id="about">
+    <div class="wrap">
+      <div class="label" data-i18n="about.label">// 01 — ОБО МНЕ</div>
+      <h2 class="h2" data-i18n="about.title">Кто я</h2>
+      <p class="lead" data-i18n="about.lead">Дизайн, разработка и эксплуатация. Ниже конкретные задачи, с которыми работаю.</p>
+
+      <div class="about reveal">
+        <div class="panel field-about-main">
+          <div class="panel-bar"><span>TIM://about</span><span id="mode-name">Технически</span></div>
+          <div class="modes" role="tablist" aria-label="Как рассказать о себе" data-i18n-label="field.aboutTabs">
+            <button class="chip" type="button" role="tab" id="mode-tab-short" data-mode="short" aria-controls="mode-panel-short" aria-selected="false" tabindex="-1" data-i18n="mode.short">Коротко</button>
+            <button class="chip" type="button" role="tab" id="mode-tab-tech" data-mode="tech" aria-controls="mode-panel-tech" aria-selected="true" tabindex="0" data-i18n="mode.tech">Технически</button>
+            <button class="chip" type="button" role="tab" id="mode-tab-raw" data-mode="raw" aria-controls="mode-panel-raw" aria-selected="false" tabindex="-1" data-i18n="mode.raw">Вне работы</button>
+          </div>
+          <div class="mode-body">
+            <div class="field-mode-panel" id="mode-panel-short" role="tabpanel" aria-labelledby="mode-tab-short" tabindex="-1" aria-hidden="true" inert>
+              <p class="mode-hint">Роль и проекты</p>
+              <div class="field-mode-copy"><p><strong>Тимофей, IT-специалист в «СЕТИ».</strong> Проектирую веб-интерфейсы и моушн, разрабатываю сайты, ботов и Mini Apps.</p><p>В «СЕТИ» связал регистрацию на форум с трекером команды. FitBro спроектировал и собрал как отдельный продукт внутри Telegram.</p></div>
+            </div>
+            <div class="field-mode-panel" id="mode-panel-tech" role="tabpanel" aria-labelledby="mode-tab-tech" tabindex="0" data-active>
+              <p class="mode-hint">Стек и подход</p>
+              <div class="field-mode-copy"><p><strong>Веб и API.</strong> HTML, CSS, JavaScript и Next.js для интерфейсов. Python, aiohttp и SQLite для серверной части.</p><p><strong>Telegram и автоматизация.</strong> aiogram, Telethon, вебхуки и фоновые задачи. В проектах с LLM отделяю машинный вывод от пользовательских данных.</p><p><strong>Эксплуатация.</strong> Linux, Docker, systemd, nginx и TLS. Перед изменениями в торговой системе прогоняю офлайн-тесты и моки сети.</p></div>
+            </div>
+            <div class="field-mode-panel" id="mode-panel-raw" role="tabpanel" aria-labelledby="mode-tab-raw" tabindex="-1" aria-hidden="true" inert>
+              <p class="mode-hint">Что изучаю и пробую</p>
+              <div class="field-mode-copy"><p><strong>Радио и железо.</strong> Экспериментирую с Sub-GHz, NFC и BLE на LilyGO T-Embed CC1101 с Bruce.</p><p><strong>Личные проекты.</strong> Сделал «Подоконник», 3D-трекер ухода за растениями с виджетом для iPhone. Изучаю информационную безопасность в ITHUB College.</p></div>
+            </div>
+          </div>
+          <div class="field-about-foot"><a href="#stack"><span data-i18n="field.aboutStack">Смотреть стек</span><span aria-hidden="true">↓</span></a></div>
+        </div>
+
+        <ul class="panel facts">
+          <li><div class="k" data-i18n="fact.edu">УЧЁБА</div><div><div class="t" data-i18n="fact.edut">ITHUB College, Москва</div><div class="s" data-i18n="fact.edus">Информационная безопасность</div></div></li>
+          <li><div class="k" data-i18n="fact.work">РАБОТА</div><div><div class="t" data-i18n="fact.workt">IT-специалист в «СЕТИ»</div><div class="s" data-i18n="fact.works">Telegram-боты, интеграции и автоматизация работы с мероприятиями и обращениями резидентов</div></div></li>
+          <li><div class="k" data-i18n="fact.brand">БРЕНД</div><div><div class="t">CDB</div><div class="s" data-i18n="fact.brands">Мои боты и сообщество под одним знаком</div></div></li>
+          <li><div class="k" data-i18n="fact.oss">OPEN SOURCE</div><div><div class="t">yandex-calendar-timetable</div><div class="s" data-i18n="fact.osss">Ядро бота расписания, открытый код и тесты</div></div></li>
+          <li><div class="k" data-i18n="fact.hobby">ХОББИ</div><div><div class="t" data-i18n="fact.hobbyt">Радиоэфир и железо</div><div class="s" data-i18n="fact.hobbys">LilyGO T-Embed CC1101, Bruce firmware: Sub-GHz, NFC, BLE</div></div></li>
+        </ul>
+      </div>
+      <div class="field-experience reveal">
+        <h3 data-i18n="field.experienceTitle">Опыт на практике</h3>
+        <dl>
+          <div><dt data-i18n="field.expSetTitle">IT в «СЕТИ»</dt><dd data-i18n="field.expSet">Связываю регистрацию на события, Telegram и внутренние инструменты команды. Работал с формами админки на Next.js: проверкой файлов и обработкой ошибок API.</dd></div>
+          <div><dt data-i18n="field.expOpsTitle">Запуск и эксплуатация</dt><dd data-i18n="field.expOps">Разворачиваю свои проекты на Linux. Настраиваю nginx, TLS, Docker и systemd, чтобы сервисы запускались и обновлялись предсказуемо.</dd></div>
+        </dl>
+      </div>
+      <div class="panel cv reveal" id="resume">
+        <div class="panel-bar" style="margin:-22px -22px 16px"><span>TIM://cv</span><span>PDF</span></div>
+        <div class="sub-title" data-i18n="cv.sub">ДЛЯ ОТКЛИКОВ И HR</div>
+        <h3 data-i18n="cv.title">Резюме</h3>
+        <p data-i18n="cv.lead">Опыт, проекты и стек на одной странице A4.</p>
+        <div class="btns">
+          <a class="btn btn-solid btn-sm" href="cv/tim-cv-ru.pdf?v=20261108-name" download>RU · PDF ↓</a>
+          <a class="btn btn-ghost btn-sm" href="cv/tim-cv-en.pdf?v=20261108-name" download>EN · PDF ↓</a>
+        </div>
+      </div>
+      <details class="field-archive field-tech">
+        <summary data-i18n="field.tech">Технические детали</summary>
+    <aside class="panel status">
+      <div class="panel-bar"><span>TIM://system-status</span><span class="live"><span class="pip"></span>LIVE</span></div>
+      <dl>
+        <div class="row"><dt data-i18n="st.status">СТАТУС</dt><dd class="glow" data-i18n="st.open">ОТКРЫТ К ЗАКАЗАМ</dd></div>
+        <div class="row"><dt data-i18n="st.loc">ЛОКАЦИЯ</dt><dd><span data-i18n="st.msk">МОСКВА</span> · <span id="clock2">--:--</span></dd></div>
+        <div class="row"><dt data-i18n="st.wx">ЗА ОКНОМ</dt><dd id="st-wx">—</dd></div>
+        <div class="row"><dt data-i18n="st.edu">УЧЁБА</dt><dd data-i18n="st.eduv">ITHUB · ИБ</dd></div>
+        <div class="row"><dt data-i18n="st.work">РАБОТА</dt><dd data-i18n="st.workv">СЕТЬ · IT</dd></div>
+        <div class="row"><dt data-i18n="st.reply">ОТВЕТ</dt><dd data-i18n="st.replyv">~ НЕСКОЛЬКО ЧАСОВ</dd></div>
+      </dl>
+      <div class="typed"><b>&gt;</b> <span id="typed"></span><span class="cur"></span></div>
+    </aside>
+  <div class="wrap">
+    <div class="principles reveal">
+      <div class="principle"><div class="n">01</div><h3 data-i18n="pr.1t">До прода, а не «у меня работает»</h3><p data-i18n="pr.1">Сервисы под systemd, боты 24/7, деплой одним скриптом. Работает на сервере, а не только на ноутбуке.</p></div>
+      <div class="principle"><div class="n">02</div><h3 data-i18n="pr.2t">Честные сроки</h3><p data-i18n="pr.2">Называю реальный срок и сразу говорю, где будет сложно. Без сюрпризов в последний день.</p></div>
+      <div class="principle"><div class="n">03</div><h3 data-i18n="pr.3t">Безопасность по умолчанию</h3><p data-i18n="pr.3">Секреты не в коде, защита от prompt injection, реальные деньги только по явному включению.</p></div>
+      <div class="principle"><div class="n">04</div><h3 data-i18n="pr.4t">Тесты, а не надежда</h3><p data-i18n="pr.4">Где в логике есть деньги, сначала офлайн-проверки и тесты с моками сети. Потом деплой.</p></div>
+    </div>
+
+    <div class="panel numbers reveal" id="numbers">
+      <div class="num"><div class="v" data-count="121">121</div><div class="k" data-i18n="num.1">учебная группа в парсере расписания</div></div>
+      <div class="num"><div class="v">LIVE</div><div class="k" data-i18n="num.2">FitBro доступен в Telegram</div></div>
+      <div class="num"><div class="v" data-count="7">7</div><div class="k" data-i18n="num.3">звеньев в конвейере торговой системы</div></div>
+      <div class="num"><div class="v" data-count="34">34</div><div class="k" data-i18n="num.4">модуля тестов в торговой системе</div></div>
+      <div class="num"><div class="v" data-count="24" data-suffix="/7">24/7</div><div class="k" data-i18n="num.5">сервисы под systemd, без ручных перезапусков</div></div>
+    </div>
+  </div>
+      </details>
+    </div>
+  </section>
+
+
   <section id="stack">
     <div class="wrap">
       <div class="label" data-i18n="stack.label">// 04 — СТЕК</div>
@@ -495,7 +558,7 @@
     </div>
   </section>
 
-  <!-- ЖУРНАЛ -->
+
   <section id="log">
     <div class="wrap">
       <div class="label" data-i18n="log.label">// 05 — ЖУРНАЛ</div>
@@ -504,33 +567,29 @@
       <div class="log-grid">
         <ul class="panel log reveal">
           <li><div class="when"><b>CV</b>07.11.2026</div><div class="what"><strong><span data-i18n="log.cvt">Обновил опыт и проекты</span><span class="latest">LATEST</span></strong><span data-i18n="log.cv">Добавил работу в «СЕТИ» и FitBro. Обновил резюме на русском и английском.</span></div></li>
-          <li><div class="when"><b>PATCH 2.1</b>16.09.2026</div><div class="what"><strong><span data-i18n="log.21t">Погода, прогнозы и терминал</span></strong><span data-i18n="log.21">Услуги и прогноз по проекту, погода Москвы управляет атмосферой сайта, радар стека, терминал, темы, английская версия, резюме в PDF.</span></div></li>
+          <li><div class="when"><b>PATCH 2.1</b>16.09.2026</div><div class="what"><strong><span data-i18n="log.21t">Погода и терминал</span></strong><span data-i18n="log.21">Атмосфера сайта, радар стека, терминал, темы, английская версия и резюме в PDF.</span></div></li>
           <li><div class="when"><b>OPEN SOURCE</b>16.09.2026</div><div class="what"><strong data-i18n="log.osst">Ядро расписания на GitHub</strong><span data-i18n="log.oss">Вынес парсер и рендер из бота CDB в открытый репозиторий с тестами. Попутно починил разбор адреса без скобок.</span></div></li>
           <li><div class="when"><b>PATCH 2.0</b>16.09.2026</div><div class="what"><strong data-i18n="log.20t">Редизайн в стиле CDB</strong><span data-i18n="log.20">ЭЛТ-экран, экран загрузки, точечная сетка, дождь на карточках.</span></div></li>
           <li><div class="when"><b>CDB</b>13.09.2026</div><div class="what"><strong data-i18n="log.commt">Сообщество CDB</strong><span data-i18n="log.comm">Своё сообщество с ролями и автомодерацией, настроено ботом через API.</span></div></li>
           <li><div class="when"><b>CDB</b>31.08.2026</div><div class="what"><strong data-i18n="log.bott">Бот расписания в проде</strong><span data-i18n="log.bot">Картинки недели, напоминания о парах, подписка на календарь.</span></div></li>
           <li><div class="when"><b>PATCH 1.0</b>08.06.2026</div><div class="what"><strong data-i18n="log.10t">Первая версия визитки</strong><span data-i18n="log.10">Сетка, терминал и полоски навыков. С чего-то надо было начинать.</span></div></li>
         </ul>
-        <div class="panel cv reveal">
-          <div class="panel-bar" style="margin:-22px -22px 16px"><span>TIM://cv</span><span>PDF</span></div>
-          <div class="sub-title" data-i18n="cv.sub">ДЛЯ ОТКЛИКОВ И HR</div>
-          <h3 data-i18n="cv.title">Резюме</h3>
-          <p data-i18n="cv.lead">Опыт, проекты и стек на одной странице A4.</p>
-          <div class="btns">
-            <a class="btn btn-solid btn-sm" href="cv/tim-cv-ru.pdf?v=20261107-web" download>RU · PDF ↓</a>
-            <a class="btn btn-ghost btn-sm" href="cv/tim-cv-en.pdf?v=20261107-web" download>EN · PDF ↓</a>
-          </div>
-        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- СВЯЗЬ -->
+
   <section id="contact">
     <div class="wrap">
-      <div class="label" data-i18n="ct.label">// 06 — СВЯЗЬ</div>
-      <h2 class="h2" data-i18n="ct.title">Написать</h2>
-      <p class="lead" data-i18n="ct.lead">Пиши с задачей, даже если её нет в услугах. Быстрее всего отвечаю в Telegram.</p>
+      <div class="field-chapter field-chapter-contact">
+        <div class="field-chapter-media" aria-hidden="true"><img src="assets/forest-stream.webp" width="1536" height="508" loading="lazy" decoding="async" alt=""></div>
+        <div class="field-chapter-copy">
+          <div class="label" data-i18n="ct.label">Контакт</div>
+          <h2 class="h2" data-i18n="ct.title">Написать</h2>
+          <p class="lead" data-i18n="field.contactNote">Можно начать с идеи, макета или ссылки на то, что нужно переделать.</p>
+        </div>
+      </div>
 
       <div class="contact-grid">
         <div class="links">
@@ -556,7 +615,7 @@
 
 <footer>
   <div class="wrap">
-    <span class="brand">TIM//DEV</span>
+    <span class="brand" data-i18n="field.wordmark">ТИМОФЕЙ</span>
     <span><span data-i18n="ft.term">ТЕРМИНАЛ:</span> <span class="kbd">~</span> · © <span id="year">2026</span> · <span data-i18n="ft.notrack">БЕЗ ТРЕКЕРОВ</span></span>
   </div>
 </footer>
@@ -576,7 +635,7 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="assets/i18n.js?v=20261107-set"></script>
-<script src="assets/site.js?v=20261107-web"></script>
+<script src="assets/i18n.js?v=20261108-scenes"></script>
+<script src="assets/site.js?v=20261108-scenes"></script>
 </body>
 </html>

@@ -35,6 +35,8 @@
     lang = next;
     store.set('lang', lang);
     root.lang = lang;
+    if (root.classList.contains("field-site")) document.title = lang === "en"
+      ? "Timofey · Web design and development" : "Тимофей · Веб-дизайн и разработка";
     const en = window.I18N_EN;
     $$('[data-i18n]').forEach(el => {
       if (el.dataset.ru === undefined) el.dataset.ru = el.textContent;
@@ -46,12 +48,24 @@
       const v = lang === 'en' ? en[el.dataset.i18nHtml] : el.dataset.ruHtml;
       if (v !== undefined) el.innerHTML = v;
     });
+    $$('[data-i18n-label]').forEach(el => {
+      if (el.dataset.ruLabel === undefined) el.dataset.ruLabel = el.getAttribute('aria-label');
+      const label = lang === 'en' ? en[el.dataset.i18nLabel] : el.dataset.ruLabel;
+      if (label !== undefined) el.setAttribute('aria-label', label);
+    });
+    $$('[data-i18n-alt]').forEach(el => {
+      if (el.dataset.ruAlt === undefined) el.dataset.ruAlt = el.alt;
+      const v = lang === 'en' ? en[el.dataset.i18nAlt] : el.dataset.ruAlt;
+      if (v !== undefined) el.alt = v;
+    });
     $$('[data-i18n-ph]').forEach(el => {
       if (el.dataset.ruPh === undefined) el.dataset.ruPh = el.placeholder;
       const v = lang === 'en' ? en[el.dataset.i18nPh] : el.dataset.ruPh;
       if (v !== undefined) el.placeholder = v;
     });
-    $('#lang-btn').textContent = lang === 'en' ? 'RU' : 'EN';
+    const languageButton = $('#lang-btn');
+    languageButton.textContent = lang === 'en' ? 'RU' : 'EN';
+    languageButton.setAttribute('aria-label', lang === 'en' ? 'Switch to Russian' : 'Переключить на английский');
     listeners.forEach(fn => fn());
   }
   $('#lang-btn').addEventListener('click', () => applyLang(lang === 'en' ? 'ru' : 'en'));
@@ -88,43 +102,6 @@
     kpos = key === konami[kpos] ? kpos + 1 : (key === konami[0] ? 1 : 0);
     if (kpos === konami.length) { kpos = 0; unlockBroadcast(); }
   });
-
-  /* ─────────────── Экран загрузки: один раз за сессию ─────────────── */
-  if (!reduced && store.sget('booted') !== '1') {
-    const boot = document.createElement('div');
-    boot.className = 'boot';
-    boot.setAttribute('aria-hidden', 'true');
-    const cur = document.createElement('span');
-    cur.className = 'cur';
-    const skip = document.createElement('div');
-    skip.className = 'skip';
-    skip.textContent = T().bootSkip;
-    boot.append(cur, skip);
-    document.body.appendChild(boot);
-    const screen = $('.screen');
-    screen.style.animationPlayState = 'paused';
-
-    const timers = [];
-    T().boot.forEach((text, i) => timers.push(setTimeout(() => {
-      const p = document.createElement('p');
-      p.textContent = text;
-      if (i === T().boot.length - 2) p.className = 'hl';
-      boot.insertBefore(p, cur);
-    }, i * 130)));
-
-    const finish = () => {
-      timers.forEach(clearTimeout);
-      removeEventListener('keydown', finish);
-      boot.removeEventListener('click', finish);
-      store.sset('booted', '1');
-      boot.classList.add('done');
-      screen.style.animationPlayState = 'running';
-      setTimeout(() => boot.remove(), 500);
-    };
-    timers.push(setTimeout(finish, 1550));
-    addEventListener('keydown', finish);
-    boot.addEventListener('click', finish);
-  }
 
   /* ─────────────── Часы ─────────────── */
   const fmt = new Intl.DateTimeFormat('ru-RU', { timeZone: 'Europe/Moscow', hour: '2-digit', minute: '2-digit' });
@@ -164,16 +141,44 @@
   $$('.reveal').forEach(el => io.observe(el));
 
   /* ─────────────── Обо мне ─────────────── */
+  const aboutPanel = $('.field-about-main');
+  const modeTabs = $$('[data-mode]', aboutPanel);
+  const modePanels = $$('[role=tabpanel]', aboutPanel);
   let mode = 'tech';
-  function renderMode() {
-    const m = T().modes[mode];
-    $('#mode-name').textContent = m.name;
-    $('#mode-hint').textContent = m.hint;
-    $('#mode-body').innerHTML = m.html;
-    $$('[data-mode]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.mode === mode)));
+  function selectMode(next, animated = false) {
+    mode = next;
+    aboutPanel.classList.toggle('mode-animated', animated && !reduced);
+    $('#mode-name').textContent = T().modes[mode].name;
+    modeTabs.forEach((tab, i) => {
+      const active = tab.dataset.mode === mode;
+      tab.setAttribute('aria-selected', String(active));
+      tab.tabIndex = active ? 0 : -1;
+      const panel = modePanels[i];
+      panel.toggleAttribute('data-active', active);
+      panel.setAttribute('aria-hidden', String(!active));
+      panel.tabIndex = active ? 0 : -1;
+      panel.inert = !active;
+    });
   }
-  $$('[data-mode]').forEach(b => b.addEventListener('click', () => { mode = b.dataset.mode; renderMode(); }));
-  onLang(renderMode);
+  modeTabs.forEach((tab, i) => {
+    tab.addEventListener('click', e => selectMode(tab.dataset.mode, e.detail > 0));
+    tab.addEventListener('keydown', e => {
+      const targets = { ArrowLeft: i - 1, ArrowRight: i + 1, Home: 0, End: modeTabs.length - 1 };
+      if (!Object.hasOwn(targets, e.key)) return;
+      e.preventDefault();
+      const next = modeTabs[(targets[e.key] + modeTabs.length) % modeTabs.length];
+      selectMode(next.dataset.mode);
+      next.focus();
+    });
+  });
+  onLang(() => {
+    modeTabs.forEach((tab, i) => {
+      const entry = T().modes[tab.dataset.mode];
+      $('.mode-hint', modePanels[i]).textContent = entry.hint;
+      $('.field-mode-copy', modePanels[i]).innerHTML = entry.html;
+    });
+    selectMode(mode);
+  });
 
   /* ─────────────── Конвейер ─────────────── */
   const nodes = $$('#pipe .node');
@@ -326,6 +331,14 @@
     const kind = effectiveKind();
     night = weather ? !weather.current.is_day : (new Date().getUTCHours() + 3) % 24 < 6 || (new Date().getUTCHours() + 3) % 24 >= 21;
     $$('[data-atmo]').forEach(b => b.setAttribute('aria-checked', String(b.dataset.atmo === atmo)));
+    if (root.classList.contains('field-site') && atmo === 'auto') {
+      cancelAnimationFrame(skyRaf);
+      skyRaf = 0;
+      sctx.clearRect(0, 0, SW, SH);
+      $('.sun-glow').classList.remove('on');
+      $('.fog').classList.remove('on');
+      return;
+    }
     $('.sun-glow').classList.toggle('on', kind === 'clear' && !night);
     $('.fog').classList.toggle('on', kind === 'fog' || kind === 'cloudy');
     const k = small ? .45 : 1;
@@ -428,7 +441,7 @@
   loadWeather().then(d => { weather = d; renderWeather(); setSky(); }).catch(() => { weather = false; renderWeather(); });
 
   /* ─────────────── Точечная сетка под курсором ─────────────── */
-  if (finePointer && !reduced) {
+  if (finePointer && !reduced && !root.classList.contains("field-site")) {
     const cv = $('#grid'), ctx = cv.getContext('2d');
     const STEP = 36, R = 3, FADE = 550;
     const mouse = { x: -1e4, y: -1e4, down: false };
@@ -486,70 +499,6 @@
       if (lit.size || waves.length) raf = requestAnimationFrame(draw);
     }
   }
-
-  /* ─────────────── Прогноз по проекту ─────────────── */
-  const FC_TYPES = { web: [3, 10, 30], bot: [3, 7, 10], auto: [2, 6, 10], llm: [5, 10, 25], parser: [2, 5, 15], fix: [1, 4, 20], other: [3, 10, 30] };
-  const FC_EXTRAS = { db: [2, 3, 5], pay: [2, 4, 15], api: [1, 3, 15], ai: [2, 4, 15], deploy: [1, 1, 3], pics: [1, 3, 5], rush: [0, 0, 20], fuzzy: [2, 4, 25] };
-  const fc = { type: 'bot', extras: new Set(['db', 'deploy']), tone: 'honest', last: '' };
-
-  function buildForecastForm() {
-    const F = T().fc;
-    $('#fc-type').innerHTML = Object.keys(FC_TYPES).map(k => `<button class="chip" type="button" role="radio" data-fc-type="${k}" aria-checked="${k === fc.type}">${F.types[k]}</button>`).join('');
-    $('#fc-extra').innerHTML = Object.keys(FC_EXTRAS).map(k => `<button class="chip" type="button" data-fc-extra="${k}" aria-pressed="${fc.extras.has(k)}">${F.extras[k]}</button>`).join('');
-  }
-  function forecast() {
-    const F = T().fc;
-    let [lo, hi, risk] = FC_TYPES[fc.type];
-    let wind = fc.type === 'parser' ? 1 : 0;
-    for (const k of fc.extras) {
-      let [a, b, r] = FC_EXTRAS[k];
-      if (k === 'ai' && fc.type === 'llm') { a = 1; b = 2; r = 5; }
-      lo += a; hi += b; risk += r;
-      if (k === 'api') wind += 1;
-    }
-    if (fc.extras.has('rush')) { lo = Math.max(1, Math.ceil(lo * .7)); hi = Math.max(lo + 1, Math.ceil(hi * .7)); }
-    const level = risk < 25 ? 0 : risk < 45 ? 1 : risk < 65 ? 2 : 3;
-    const conf = Math.max(40, Math.min(95, Math.round((95 - risk * .6) / 5) * 5));
-    const kinds = ['clear', 'mostly', 'rain', 'storm'];
-    $('#fc-icon').innerHTML = icon(kinds[level]);
-    $('#fc-cond').textContent = F.cond[level];
-    $('#fc-eta').innerHTML = F.days(lo, hi);
-    $('#fc-conf').textContent = conf + '%';
-    $('#fc-rain').textContent = F.rain[level];
-    $('#fc-wind').textContent = F.wind[Math.min(wind, 2)];
-    $('#fc-vis').textContent = F.vis[fc.extras.has('fuzzy') ? 1 : 0];
-    $('#fc-comment').textContent = F[fc.tone][level] + (fc.extras.has('rush') ? ` (${F.rush})` : '');
-    fc.last = [
-      `${F.types[fc.type]}${fc.extras.size ? ': ' + [...fc.extras].map(k => F.extras[k]).join(', ') : ''}`,
-      `${F.cond[level]} · ${F.days(lo, hi).replace(/<\/?b>/g, '')} · ${F.conf} ${conf}%`
-    ].join('\n');
-  }
-  $('#fc-type').addEventListener('click', e => {
-    const b = e.target.closest('[data-fc-type]'); if (!b) return;
-    fc.type = b.dataset.fcType;
-    $$('[data-fc-type]').forEach(x => x.setAttribute('aria-checked', String(x === b)));
-    forecast();
-  });
-  $('#fc-extra').addEventListener('click', e => {
-    const b = e.target.closest('[data-fc-extra]'); if (!b) return;
-    const k = b.dataset.fcExtra;
-    fc.extras.has(k) ? fc.extras.delete(k) : fc.extras.add(k);
-    b.setAttribute('aria-pressed', String(fc.extras.has(k)));
-    forecast();
-  });
-  $$('[data-tone]').forEach(b => b.addEventListener('click', () => {
-    fc.tone = b.dataset.tone;
-    $$('[data-tone]').forEach(x => x.setAttribute('aria-checked', String(x === b)));
-    forecast();
-  }));
-  $('#fc-send').addEventListener('click', () => {
-    const F = T().fc;
-    location.href = 'mailto:titbob000@gmail.com?subject=' + encodeURIComponent(F.mailSubj) + '&body=' + encodeURIComponent(`${F.mailIntro}\n\n${fc.last}\n\n`);
-  });
-  $('#fc-copy').addEventListener('click', async () => {
-    try { await navigator.clipboard.writeText(fc.last); toast(T().fc.copied); } catch (e) { toast(fc.last); }
-  });
-  onLang(() => { buildForecastForm(); forecast(); });
 
   /* ─────────────── Радар стека ─────────────── */
   const BLIPS = [
@@ -731,7 +680,7 @@
       case 'lang':
         applyLang(arg === 'en' ? 'en' : arg === 'ru' ? 'ru' : (lang === 'en' ? 'ru' : 'en'));
         return print(T().term.lang + lang, 'c');
-      case 'cv': case 'resume': print(t.cv, 'm'); location.href = lang === 'en' ? 'cv/tim-cv-en.pdf?v=20261107-web' : 'cv/tim-cv-ru.pdf?v=20261107-web'; return;
+      case 'cv': case 'resume': print(t.cv, 'm'); location.href = lang === 'en' ? 'cv/tim-cv-en.pdf?v=20261108-name' : 'cv/tim-cv-ru.pdf?v=20261108-name'; return;
       case 'hire': print(t.hire, 'c'); go('#contact'); setTimeout(() => $('#callsign').focus(), 1100); return;
       case 'sudo': return print(rich(args.join(' ').toLowerCase().includes('hire') ? t.sudo : t.sudo.split('\n')[0] + '\n' + t.unknown + esc(args.join(' '))));
       case 'rm': return print(t.rm, 'e');
