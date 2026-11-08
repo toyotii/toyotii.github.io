@@ -723,21 +723,26 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: url("forest-foreground.webp") right center / auto 116% no-repeat;
 }
 .field-frame::after {
+  background: url("forest-foreground.webp") right center / auto 116% no-repeat;
   opacity: .74;
   mask-image: linear-gradient(#000 77%, transparent);
 }
-.field-chapter::after { mask-image: linear-gradient(transparent, #000 16% 80%, transparent); }
-.field-chapter::after { z-index: -1; }
+.field-chapter::after {
+  z-index: -1;
+  background: var(--field-leaf) left top / min(52%, 620px) auto no-repeat;
+  rotate: 180deg;
+  mask-image: linear-gradient(135deg, #000, transparent 57%);
+  opacity: .48;
+}
 .field-bough, .field-air, .field-air::before, .field-air::after {
   position: absolute;
   inset: 0;
   pointer-events: none;
 }
 .field-bough {
-  background: url("forest-bough.webp") left top / min(72%, 850px) auto no-repeat;
+  background: var(--field-leaf, url("forest-bough.webp")) left top / min(72%, 850px) auto no-repeat;
   opacity: .83;
 }
 .field-chapter .field-bough {
@@ -746,6 +751,13 @@
   opacity: .72;
 }
 .field-chapter-contact .field-bough { background-size: min(48%, 580px) auto; }
+
+#projects { --field-leaf: url("leaf-cedar.webp"); }
+#services { --field-leaf: url("leaf-fern.webp"); }
+#about { --field-leaf: url("leaf-ginkgo.webp"); }
+#stack { --field-leaf: url("leaf-bamboo.webp"); }
+#log { --field-leaf: url("leaf-beech.webp"); }
+#contact { --field-leaf: url("leaf-willow.webp"); }
 .field-air::before, .field-air::after { content: ""; }
 .field-air::before {
   inset: -15%;
@@ -932,8 +944,9 @@
   height: clamp(210px, 35svh, 420px);
   z-index: -1;
   pointer-events: none;
-  background: url("forest-foreground.webp") right bottom / auto 116% no-repeat;
-  mask-image: linear-gradient(135deg, transparent 37%, #000 94%);
+  background: var(--field-leaf) left top / 100% auto no-repeat;
+  rotate: 180deg;
+  mask-image: linear-gradient(135deg, #000, transparent 65%);
   opacity: .72;
 }
 .field-deck-marker {
