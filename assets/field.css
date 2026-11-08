@@ -726,15 +726,14 @@
 }
 .field-frame::after {
   background: url("forest-foreground.webp") right center / auto 116% no-repeat;
-  opacity: .74;
-  mask-image: linear-gradient(#000 77%, transparent);
 }
 .field-chapter::after {
+  inset: auto 0 0 auto;
   z-index: -1;
-  background: var(--field-leaf) left top / min(52%, 620px) auto no-repeat;
+  width: min(44%, 560px);
+  aspect-ratio: 3 / 2;
+  background: var(--field-leaf) left top / contain no-repeat;
   rotate: 180deg;
-  mask-image: linear-gradient(135deg, #000, transparent 57%);
-  opacity: .48;
 }
 .field-bough, .field-air, .field-air::before, .field-air::after {
   position: absolute;
@@ -815,14 +814,13 @@
   .field-chapter-contact { min-height: clamp(250px, 38svh, 340px); }
   .field-bough { background-size: min(92%, 520px) auto; opacity: .68; }
   .field-chapter .field-bough { background-size: min(76%, 440px) auto; }
-  .field-frame::after { opacity: .45; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) and (animation-range: entry 0% cover 55%) {
     .field-hero { view-timeline: --field-opening block; view-timeline-inset: var(--field-deck-nav) 0; }
     .field-landscape, .field-frame .field-air::before, .field-frame .field-air::after,
-    .field-frame .field-bough, .field-frame::after, .field-portrait img {
+    .field-frame .field-bough, .field-portrait img {
       animation: auto linear both;
       animation-timeline: --field-opening;
       animation-range: exit 0% exit 76%;
@@ -831,7 +829,6 @@
     .field-frame .field-air::before { animation-name: field-opening-mist; }
     .field-frame .field-air::after { animation-name: field-opening-motes; }
     .field-frame .field-bough { animation-name: field-opening-bough; }
-    .field-frame::after { animation-name: field-opening-canopy; }
     .field-portrait img { animation-name: field-opening-portrait; }
 
     .field-chapter { view-timeline: --field-arrival block; }
@@ -847,7 +844,7 @@
     }
     .field-chapter-copy, .field-work-index { z-index: 1; }
     .field-chapter-media img, .field-chapter .field-air::before, .field-chapter .field-air::after,
-    .field-chapter .field-bough, .field-chapter::after {
+    .field-chapter .field-bough {
       animation: auto linear both;
       animation-timeline: --field-arrival;
       animation-range: entry 0% exit 100%;
@@ -856,7 +853,6 @@
     .field-chapter .field-air::before { animation-name: field-arrival-mist; }
     .field-chapter .field-air::after { animation-name: field-arrival-motes; }
     .field-chapter .field-bough { animation-name: field-arrival-bough; }
-    .field-chapter::after { animation-name: field-arrival-canopy; }
     .field-chapter-copy, .field-work-index {
       animation: field-arrival-title linear both;
       animation-timeline: --field-arrival;
@@ -871,7 +867,6 @@
 @keyframes field-opening-motes { to { transform: translate(8%, -16%); opacity: .32; } }
 @keyframes field-opening-bough { to { transform: translate(-9%, -46%) scale(1.12); } }
 @keyframes field-opening-portrait { to { transform: translateY(12%); } }
-@keyframes field-opening-canopy { to { transform: translate(-7%, -33%) scale(1.21); } }
 @keyframes field-arrival-landscape {
   from { transform: translateY(-16%) scale(1.34); }
   to { transform: translateY(16%) scale(1.34); }
@@ -887,10 +882,6 @@
 @keyframes field-arrival-bough {
   from { transform: translate(-11%, 11%) scale(1.12); }
   to { transform: translate(1%, -34%) scale(1.16); }
-}
-@keyframes field-arrival-canopy {
-  from { transform: translate(9%, 31%) scale(1.28); }
-  to { transform: translateY(-36%) scale(1.22); }
 }
 @keyframes field-arrival-title { from { transform: translateY(clamp(17px, 5svh, 50px)); } }
 
@@ -935,19 +926,6 @@
               url("terrain-lines.svg") left 25% / 286px auto repeat-y;
   mask-image: linear-gradient(90deg, #000, transparent 14%, transparent 83%, #000);
   opacity: .88;
-}
-.field-deck-step:not(.field-hero) > .field-deck-card::after {
-  content: "";
-  position: absolute;
-  inset: auto 0 0 auto;
-  width: min(48%, 620px);
-  height: clamp(210px, 35svh, 420px);
-  z-index: -1;
-  pointer-events: none;
-  background: var(--field-leaf) left top / 100% auto no-repeat;
-  rotate: 180deg;
-  mask-image: linear-gradient(135deg, #000, transparent 65%);
-  opacity: .72;
 }
 .field-deck-marker {
   position: absolute;
@@ -1000,16 +978,4 @@
     box-shadow: 0 -12px 26px #050a0770;
   }
   .field-deck-step:has(:focus-visible) { z-index: 1; }
-  @supports (animation-timeline: view()) {
-    .field-deck-step:not(.field-hero) { view-timeline: --field-deck-passage block; }
-    .field-deck-step:not(.field-hero) > .field-deck-card::after {
-      animation: field-deck-edges linear both;
-      animation-timeline: --field-deck-passage;
-      animation-range: entry 0% exit 100%;
-    }
-  }
-}
-@keyframes field-deck-edges {
-  from { transform: translate(22%, 24%) scale(1.08); }
-  to { transform: translate(-9%, -14%) scale(1.16); }
 }
