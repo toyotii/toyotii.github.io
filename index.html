@@ -21,7 +21,7 @@
   try { const t = localStorage.getItem('theme'); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
 </script>
 <link rel="stylesheet" href="assets/site.css?v=20261108-scenes">
-<link rel="stylesheet" href="assets/field.css?v=20261109-canopy">
+<link rel="stylesheet" href="assets/field.css?v=20261109-deck">
 </head>
 <body>
 <div class="vignette" aria-hidden="true"></div>
@@ -106,37 +106,41 @@
 </nav>
 
 <main id="top">
-  <header class="field-hero wrap" aria-labelledby="hero-name">
-    <div class="field-frame">
-      <img class="field-landscape" src="assets/forest.webp" width="1536" height="1024" fetchpriority="high" alt="">
-      <div class="field-air" aria-hidden="true"></div>
-      <div class="field-shade" aria-hidden="true"></div>
-      <div class="field-bough" aria-hidden="true"></div>
-      <div class="field-entry" aria-hidden="true"></div>
-      <div class="field-portrait">
-        <img src="assets/tim-ascii.svg" width="624" height="596" alt="Портрет Тимофея, собранный из ASCII-символов" data-i18n-alt="field.portraitAlt">
-      </div>
-      <div class="field-copy">
-        <div class="field-index"><span class="pip"></span><span data-i18n="hero.tag">Открыт к проектам</span></div>
-        <h1 id="hero-name" data-i18n="field.name">Тимофей</h1>
-        <p class="field-role" data-i18n="field.role">Веб-дизайн и разработка</p>
-        <p class="field-intro" data-i18n="field.intro">Проектирую интерфейсы и анимацию. Разрабатываю и запускаю сайты, ботов и Mini Apps.</p>
-        <div class="field-actions">
-          <a class="field-button" href="#projects"><span data-i18n="field.workCta">Смотреть работы</span><span aria-hidden="true">↓</span></a>
-          <a class="field-text-link" href="#contact" data-i18n="field.contactCta">Обсудить проект</a>
+  <header class="field-hero field-deck-step" aria-labelledby="hero-name">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">01 / 07</span>
+      <div class="field-frame">
+        <img class="field-landscape" src="assets/forest.webp" width="1536" height="1024" fetchpriority="high" alt="">
+        <div class="field-air" aria-hidden="true"></div>
+        <div class="field-shade" aria-hidden="true"></div>
+        <div class="field-bough" aria-hidden="true"></div>
+        <div class="field-entry" aria-hidden="true"></div>
+        <div class="field-portrait">
+          <img src="assets/tim-ascii.svg" width="624" height="596" alt="Портрет Тимофея, собранный из ASCII-символов" data-i18n-alt="field.portraitAlt">
         </div>
+        <div class="field-copy">
+          <div class="field-index"><span class="pip"></span><span data-i18n="hero.tag">Открыт к проектам</span></div>
+          <h1 id="hero-name" data-i18n="field.name">Тимофей</h1>
+          <p class="field-role" data-i18n="field.role">Веб-дизайн и разработка</p>
+          <p class="field-intro" data-i18n="field.intro">Проектирую интерфейсы и анимацию. Разрабатываю и запускаю сайты, ботов и Mini Apps.</p>
+          <div class="field-actions">
+            <a class="field-button" href="#projects"><span data-i18n="field.workCta">Смотреть работы</span><span aria-hidden="true">↓</span></a>
+            <a class="field-text-link" href="#contact" data-i18n="field.contactCta">Обсудить проект</a>
+          </div>
+        </div>
+        <div class="field-caption" aria-hidden="true"><span>FIELD STUDY</span></div>
       </div>
-      <div class="field-caption" aria-hidden="true"><span>01 / FIELD STUDY</span></div>
-    </div>
-    <div class="field-strip">
-      <span data-i18n="hero.sub">IT-специалист в «СЕТИ».</span>
-      <a class="field-services-link" href="#services"><span data-i18n="field.services">Услуги</span><span aria-hidden="true">↓</span></a>
-      <a href="#resume" data-i18n="field.cv">Резюме ↓</a>
+      <div class="field-strip">
+        <span data-i18n="hero.sub">IT-специалист в «СЕТИ».</span>
+        <a class="field-services-link" href="#services"><span data-i18n="field.services">Услуги</span><span aria-hidden="true">↓</span></a>
+        <a href="#resume" data-i18n="field.cv">Резюме ↓</a>
+      </div>
     </div>
   </header>
 
-  <section id="projects">
-    <div class="wrap">
+  <section id="projects" class="field-deck-step">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">02 / 07</span>
       <div class="field-chapter field-chapter-work">
         <div class="field-chapter-media" aria-hidden="true">
           <img src="assets/forest-gate.webp" width="1536" height="1024" loading="lazy" decoding="async" alt="">
@@ -381,17 +385,23 @@
   </section>
 
 
-  <section id="services">
-    <div class="wrap">
-      <div class="field-threshold">
-        <div class="field-threshold-copy">
-          <div class="label" data-i18n="svc.label">// 03 — УСЛУГИ</div>
+  <section id="services" class="field-deck-step">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">03 / 07</span>
+      <div class="field-chapter field-chapter-services field-chapter-compact">
+        <div class="field-chapter-media" aria-hidden="true">
+          <img src="assets/forest-services.webp" width="1440" height="960" loading="lazy" decoding="async" alt="">
+          <div class="field-air"></div>
+        </div>
+        <div class="field-bough" aria-hidden="true"></div>
+        <div class="field-chapter-copy">
+          <div class="label" data-i18n="svc.label">УСЛУГИ</div>
           <h2 class="h2" data-i18n="svc.title">Что могу сделать</h2>
           <p class="lead" data-i18n="svc.lead">Основные форматы работы. Сроки указаны для типичной задачи, точные назову после разговора.</p>
         </div>
       </div>
 
-      <div class="services reveal">
+      <div class="services">
         <div class="service service-web service-design">
           <div class="top"><span class="eta" data-i18n="svc.webe">ПО ЗАДАЧЕ</span></div>
           <h3 data-i18n="field.designTitle">Веб-дизайн и моушн</h3>
@@ -432,17 +442,23 @@
   </section>
 
 
-  <section id="about">
-    <div class="wrap">
-      <div class="field-threshold">
-        <div class="field-threshold-copy">
-          <div class="label" data-i18n="about.label">// 01 — ОБО МНЕ</div>
+  <section id="about" class="field-deck-step">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">04 / 07</span>
+      <div class="field-chapter field-chapter-about field-chapter-compact">
+        <div class="field-chapter-media" aria-hidden="true">
+          <img src="assets/forest-about.webp" width="1440" height="960" loading="lazy" decoding="async" alt="">
+          <div class="field-air"></div>
+        </div>
+        <div class="field-bough" aria-hidden="true"></div>
+        <div class="field-chapter-copy">
+          <div class="label" data-i18n="about.label">ОБО МНЕ</div>
           <h2 class="h2" data-i18n="about.title">Кто я</h2>
           <p class="lead" data-i18n="about.lead">Дизайн, разработка и эксплуатация. Ниже конкретные задачи, с которыми работаю.</p>
         </div>
       </div>
 
-      <div class="about reveal">
+      <div class="about">
         <div class="panel field-about-main">
           <div class="panel-bar"><span>TIM://about</span><span id="mode-name">Технически</span></div>
           <div class="modes" role="tablist" aria-label="Как рассказать о себе" data-i18n-label="field.aboutTabs">
@@ -527,17 +543,23 @@
   </section>
 
 
-  <section id="stack">
-    <div class="wrap">
-      <div class="field-threshold">
-        <div class="field-threshold-copy">
-          <div class="label" data-i18n="stack.label">// 04 — СТЕК</div>
+  <section id="stack" class="field-deck-step">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">05 / 07</span>
+      <div class="field-chapter field-chapter-stack field-chapter-compact">
+        <div class="field-chapter-media" aria-hidden="true">
+          <img src="assets/forest-stack.webp" width="1440" height="960" loading="lazy" decoding="async" alt="">
+          <div class="field-air"></div>
+        </div>
+        <div class="field-bough" aria-hidden="true"></div>
+        <div class="field-chapter-copy">
+          <div class="label" data-i18n="stack.label">СТЕК</div>
           <h2 class="h2" data-i18n="stack.title">Чем работаю</h2>
           <p class="lead" data-i18n="stack.lead">Инструменты, которые уже были в проде, а не просто в резюме. Наведи на точку на радаре.</p>
         </div>
       </div>
 
-      <div class="stack reveal">
+      <div class="stack">
         <div class="panel radar-wrap">
           <div class="radar" id="radar">
             <canvas id="radar-cv" aria-hidden="true"></canvas>
@@ -577,11 +599,17 @@
   </section>
 
 
-  <section id="log">
-    <div class="wrap">
-      <div class="field-threshold">
-        <div class="field-threshold-copy">
-          <div class="label" data-i18n="log.label">// 05 — ЖУРНАЛ</div>
+  <section id="log" class="field-deck-step">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">06 / 07</span>
+      <div class="field-chapter field-chapter-log field-chapter-compact">
+        <div class="field-chapter-media" aria-hidden="true">
+          <img src="assets/forest-log.webp" width="1440" height="960" loading="lazy" decoding="async" alt="">
+          <div class="field-air"></div>
+        </div>
+        <div class="field-bough" aria-hidden="true"></div>
+        <div class="field-chapter-copy">
+          <div class="label" data-i18n="log.label">ЖУРНАЛ</div>
           <h2 class="h2" data-i18n="log.title">Патчноуты</h2>
           <p class="lead" data-i18n="log.lead">Что менялось в проектах и на этом сайте.</p>
         </div>
@@ -602,8 +630,9 @@
   </section>
 
 
-  <section id="contact">
-    <div class="wrap">
+  <section id="contact" class="field-deck-step">
+    <div class="wrap field-deck-card">
+      <span class="field-deck-marker" aria-hidden="true">07 / 07</span>
       <div class="field-chapter field-chapter-contact">
         <div class="field-chapter-media" aria-hidden="true">
           <img src="assets/forest-stream.webp" width="1536" height="508" loading="lazy" decoding="async" alt="">
@@ -661,7 +690,7 @@
 
 <div class="toast" id="toast" role="status"></div>
 
-<script src="assets/i18n.js?v=20261108-scenes"></script>
-<script src="assets/site.js?v=20261108-scenes"></script>
+<script src="assets/i18n.js?v=20261109-deck"></script>
+<script src="assets/site.js?v=20261109-deck"></script>
 </body>
 </html>

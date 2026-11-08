@@ -20,6 +20,19 @@
 
   $('#year').textContent = new Date().getFullYear();
 
+  if ('ResizeObserver' in window) {
+    const deckObserver = new ResizeObserver(entries => {
+      for (const { target, borderBoxSize } of entries) {
+        const height = borderBoxSize?.[0]?.blockSize ?? target.offsetHeight;
+        target.style.setProperty('--field-card-height', `${height}px`);
+        target.parentElement.dataset.deckReady = '';
+      }
+    });
+    $$('.field-deck-step:not(:last-child) > .field-deck-card').forEach(card => {
+      deckObserver.observe(card, { box: 'border-box' });
+    });
+  }
+
   /* ─────────────── Тост ─────────────── */
   const toastEl = $('#toast');
   let toastTimer = 0;
