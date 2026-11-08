@@ -544,14 +544,14 @@
   display: grid;
   align-items: end;
   gap: clamp(20px, 5vw, 72px);
-  min-height: clamp(260px, 28vw, 420px);
+  min-height: clamp(350px, 56svh, 590px);
   padding: clamp(24px, 4.7vw, 70px);
   margin-bottom: clamp(32px, 5vw, 72px);
   color: var(--field-ink);
   background: #17231a;
 }
 .field-chapter-work { grid-template-columns: minmax(0, 1fr) minmax(185px, 28%); }
-.field-chapter-contact { min-height: clamp(230px, 24vw, 350px); align-items: center; }
+.field-chapter-contact { min-height: clamp(290px, 48svh, 470px); align-items: center; }
 .field-chapter-media, .field-chapter-media::after { position: absolute; inset: 0; }
 .field-chapter-media { z-index: -1; overflow: hidden; }
 .field-chapter-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 53%; }
@@ -608,7 +608,9 @@
 }
 .field-strip .field-services-link:hover { background: var(--cream); color: var(--bg-deep); }
 .field-site #fitbro { scroll-margin-top: 86px; }
-.field-site #projects, .field-site #contact { padding-top: clamp(58px, 6.8vw, 100px); }
+.field-site #projects { padding-top: clamp(24px, 4vw, 54px); }
+.field-site #contact { padding-top: clamp(34px, 5vw, 72px); }
+.field-site #log { padding-top: clamp(24px, 3vw, 48px); }
 .field-site .field-case .pitch { font-size: clamp(17px, 1.45vw, 21px); }
 .field-site .field-case .points, .field-site .field-case-note p { font-size: 16px; }
 
@@ -711,16 +713,198 @@
     transform: none;
     transition-delay: 0s;
   }
-  @supports (animation-timeline: view()) and (animation-range: entry 0% exit 100%) {
-    .field-chapter { view-timeline-name: --field-chapter-view; }
-    .field-chapter-media img {
-      animation: field-scene-drift linear both;
-      animation-timeline: --field-chapter-view;
+}
+
+/* Separate distance planes, clipped to their own scene so anchors and text stay in flow. */
+.field-frame::after, .field-chapter::after, .field-threshold::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: url("forest-foreground.webp") right center / auto 116% no-repeat;
+}
+.field-frame::after {
+  opacity: .74;
+  mask-image: linear-gradient(#000 77%, transparent);
+}
+.field-chapter::after { mask-image: linear-gradient(transparent, #000 16% 80%, transparent); }
+.field-chapter::after, .field-threshold::after { z-index: -1; }
+.field-bough, .field-air, .field-air::before, .field-air::after {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.field-bough {
+  background: url("forest-bough.webp") left top / min(72%, 850px) auto no-repeat;
+  opacity: .83;
+}
+.field-chapter .field-bough {
+  z-index: -1;
+  background-size: min(61%, 700px) auto;
+  opacity: .72;
+}
+.field-chapter-contact .field-bough { background-size: min(48%, 580px) auto; }
+.field-air::before, .field-air::after { content: ""; }
+.field-air::before {
+  background:
+    radial-gradient(ellipse at 69% 27%, #c4ccad40, transparent 61%),
+    radial-gradient(ellipse at 81% 77%, #829d7832, transparent 48%);
+}
+.field-air::after {
+  background:
+    radial-gradient(circle at 61% 37%, #dddcb393 0 1px, transparent 2px),
+    radial-gradient(circle at 65% 65%, #cbd0a45c 0 1px, transparent 2px),
+    radial-gradient(circle at 71% 23%, #dedab471 0 1.4px, transparent 2.5px),
+    radial-gradient(circle at 73% 49%, #bbcfae50 0 1px, transparent 2px),
+    radial-gradient(circle at 79% 74%, #e7ddb782 0 1.2px, transparent 2.4px),
+    radial-gradient(circle at 82% 32%, #e3e1b76a 0 1px, transparent 2px),
+    radial-gradient(circle at 87% 56%, #d5dfb258 0 1px, transparent 2px),
+    radial-gradient(circle at 91% 42%, #d9dca76b 0 1.3px, transparent 2.4px);
+  opacity: .55;
+}
+.field-chapter-contact .field-air::after { scale: -1 1; }
+.field-threshold {
+  position: relative;
+  isolation: isolate;
+  overflow: clip;
+  padding: clamp(18px, 2.8vw, 38px) 0;
+  margin-bottom: clamp(18px, 3vw, 42px);
+  border-block: 1px solid var(--line);
+}
+.field-threshold::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 0 33%;
+  pointer-events: none;
+  z-index: -2;
+  background: radial-gradient(ellipse at 94% 50%, #77967e28, transparent 72%);
+}
+.field-threshold::after {
+  opacity: .55;
+  mask-image: linear-gradient(90deg, transparent 50%, #000 78%);
+}
+.field-site .field-threshold .lead { margin-bottom: 0; }
+#log .field-threshold { padding-block-start: clamp(14px, 1.55vw, 22px); }
+.field-threshold-copy { --field-title-shift: clamp(10px, 2svh, 18px); }
+
+.field-site .stack {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(12px, 1.35vw, 20px);
+}
+.field-site .radar-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+  padding: clamp(12px, 1.4vw, 22px);
+}
+.field-site .radar { max-width: 520px; }
+.field-site .readouts {
+  grid-template-rows: repeat(2, minmax(min-content, 1fr));
+  min-width: 0;
+  gap: inherit;
+}
+.field-site .readouts .panel { display: flex; flex-direction: column; min-width: 0; }
+.field-site .readout {
+  display: grid;
+  align-content: space-evenly;
+  flex: 1;
+  padding: 6px clamp(12px, 1.5vw, 22px);
+}
+.field-site .readout li { gap: clamp(5px, .85vw, 12px); padding-block: 6px; font-size: clamp(13px, 1.13vw, 16px); }
+.field-site .readout .key { min-width: 0; white-space: normal; }
+.field-site .readout .lead-dots { min-width: 4px; }
+.field-site .readout .val { font-size: clamp(11px, .9vw, 13px); }
+
+@media (max-width: 820px) {
+  .field-site .stack { grid-template-columns: minmax(0, 1fr); }
+  .field-site .readouts { grid-template-rows: auto; }
+  .field-chapter { min-height: clamp(300px, 55svh, 490px); }
+  .field-chapter-contact { min-height: clamp(250px, 38svh, 340px); }
+  .field-bough { background-size: min(92%, 520px) auto; opacity: .68; }
+  .field-chapter .field-bough { background-size: min(76%, 440px) auto; }
+  .field-frame::after { opacity: .45; }
+  .field-threshold::after { opacity: .38; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) and (animation-range: entry 0% cover 55%) {
+    .field-frame { view-timeline: --field-opening block; view-timeline-inset: 68px 0; }
+    .field-landscape, .field-frame .field-air::before, .field-frame .field-air::after,
+    .field-frame .field-bough, .field-frame::after, .field-portrait img {
+      animation: auto linear both;
+      animation-timeline: --field-opening;
+      animation-range: exit 0% exit 100%;
+    }
+    .field-landscape { animation-name: field-opening-landscape; }
+    .field-frame .field-air::before { animation-name: field-opening-mist; }
+    .field-frame .field-air::after { animation-name: field-opening-motes; }
+    .field-frame .field-bough { animation-name: field-opening-bough; }
+    .field-frame::after { animation-name: field-opening-canopy; }
+    .field-portrait img { animation-name: field-opening-portrait; }
+
+    .field-chapter, .field-threshold { view-timeline: --field-arrival block; }
+    .field-chapter::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(180deg, var(--bg) 7%, transparent 82%);
+      animation: field-arrival-veil linear both;
+      animation-timeline: --field-arrival;
+      animation-range: entry 0% cover 48%;
+    }
+    .field-chapter-copy, .field-work-index { z-index: 1; }
+    .field-chapter-media img, .field-chapter .field-air::before, .field-chapter .field-air::after,
+    .field-chapter .field-bough, .field-chapter::after, .field-threshold::before, .field-threshold::after {
+      animation: auto linear both;
+      animation-timeline: --field-arrival;
       animation-range: entry 0% exit 100%;
     }
+    .field-chapter-media img { animation-name: field-arrival-landscape; }
+    .field-chapter .field-air::before, .field-threshold::before { animation-name: field-arrival-mist; }
+    .field-chapter .field-air::after { animation-name: field-arrival-motes; }
+    .field-chapter .field-bough { animation-name: field-arrival-bough; }
+    .field-chapter::after, .field-threshold::after { animation-name: field-arrival-canopy; }
+    .field-chapter-copy, .field-work-index, .field-threshold-copy {
+      animation: field-arrival-title linear both;
+      animation-timeline: --field-arrival;
+      animation-range: entry 0% cover 55%;
+    }
+    .field-work-index { animation-range: entry 18% cover 57%; }
   }
 }
-@keyframes field-scene-drift {
-  from { transform: translateY(-3%) scale(1.1); }
-  to { transform: translateY(3%) scale(1.1); }
+
+@keyframes field-opening-landscape { to { transform: translateY(34%) scale(1.14); } }
+@keyframes field-opening-mist { to { transform: translateY(22%); opacity: .35; } }
+@keyframes field-opening-motes { to { transform: translate(8%, -16%); opacity: .32; } }
+@keyframes field-opening-bough { to { transform: translate(-8%, -42%); } }
+@keyframes field-opening-portrait { to { transform: translateY(12%); } }
+@keyframes field-opening-canopy { to { transform: translate(-4%, -30%) scale(1.15); } }
+@keyframes field-arrival-landscape {
+  from { transform: translateY(-16%) scale(1.34); }
+  to { transform: translateY(16%) scale(1.34); }
+}
+@keyframes field-arrival-mist {
+  from { transform: translate(5%, 23%); opacity: .3; }
+  to { transform: translate(-6%, -28%); opacity: .9; }
+}
+@keyframes field-arrival-motes {
+  from { transform: translate(-8%, 14%); opacity: .32; }
+  to { transform: translate(10%, -21%); opacity: .72; }
+}
+@keyframes field-arrival-bough {
+  from { transform: translate(-10%, 0); }
+  to { transform: translate(4%, -33%); }
+}
+@keyframes field-arrival-canopy {
+  from { transform: translateY(28%) scale(1.12); }
+  to { transform: translateY(-34%) scale(1.12); }
+}
+@keyframes field-arrival-title { from { transform: translateY(var(--field-title-shift, clamp(17px, 5svh, 50px))); } }
+
+@keyframes field-arrival-veil {
+  from { transform: translateY(0); opacity: .96; }
+  to { transform: translateY(-76%); opacity: 0; }
 }
