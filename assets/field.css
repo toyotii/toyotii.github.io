@@ -576,6 +576,7 @@
     linear-gradient(0deg, #0a130ed6, transparent 52%);
 }
 .field-chapter-contact .field-chapter-media img { object-position: center 56%; }
+.field-chapter-copy, .field-work-index { z-index: 2; }
 .field-site .field-chapter .label { color: var(--field-orange); }
 .field-site .field-chapter .h2 { font-size: clamp(43px, 6.8vw, 104px); }
 .field-site .field-chapter .lead { margin: 0; max-width: 44ch; color: var(--field-ink); }
@@ -739,7 +740,7 @@
 }
 .field-chapter::after {
   inset: auto 0 0 auto;
-  z-index: -1;
+  z-index: 0;
   width: min(44%, 560px);
   aspect-ratio: 3 / 2;
   background: var(--field-leaf) left top / contain no-repeat;
@@ -751,11 +752,11 @@
   pointer-events: none;
 }
 .field-bough {
+  z-index: 0;
   background: var(--field-leaf, url("forest-bough.webp")) left top / min(72%, 850px) auto no-repeat;
   opacity: .83;
 }
 .field-chapter .field-bough {
-  z-index: -1;
   background-size: min(61%, 700px) auto;
   opacity: .72;
 }
@@ -793,10 +794,26 @@
 }
 .field-air::before, .field-air::after { content: ""; }
 .field-air::before {
-  inset: -18%;
+  inset: -17% -15% -12%;
   background:
-    radial-gradient(ellipse at 72% 27%, color-mix(in srgb, var(--field-scene-air) 35%, transparent), transparent 57%),
-    radial-gradient(ellipse at 64% 79%, color-mix(in srgb, var(--field-scene-air) 21%, transparent), transparent 52%);
+    url("trail-mist.webp") center / 100% 100% no-repeat,
+    radial-gradient(ellipse at 76% 55%, color-mix(in srgb, var(--field-scene-air) 19%, transparent), transparent 58%);
+  mask-image: linear-gradient(90deg, #0001 9%, #0006 41%, #000 76%);
+  opacity: .77;
+}
+.field-island {
+  position: absolute;
+  z-index: 0;
+  height: auto;
+  pointer-events: none;
+}
+.field-island-spire {
+  inset: 13% 31% auto auto;
+  width: min(20%, 286px);
+}
+.field-island-slab {
+  inset: auto 10% 29% auto;
+  width: min(40%, 640px);
 }
 .field-air::after {
   background:
@@ -848,13 +865,17 @@
   .field-chapter-contact { min-height: clamp(250px, 38svh, 340px); }
   .field-bough { background-size: min(92%, 520px) auto; opacity: .68; }
   .field-chapter .field-bough { background-size: min(76%, 440px) auto; }
+  .field-island-slab { inset: 4% -4% auto auto; width: min(53%, 420px); }
+}
+@media (max-width: 760px) {
+  .field-island-spire { inset: 12% auto auto -4%; width: 35%; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
   @supports (animation-timeline: view()) and (animation-range: entry 0% cover 55%) {
     .field-hero { view-timeline: --field-opening block; view-timeline-inset: var(--field-deck-nav) 0; }
     .field-landscape, .field-frame .field-air::before, .field-frame .field-air::after,
-    .field-frame .field-bough, .field-portrait img {
+    .field-frame .field-bough, .field-portrait img, .field-island-spire {
       animation: auto linear both;
       animation-timeline: --field-opening;
       animation-range: exit 0% exit 76%;
@@ -864,23 +885,24 @@
     .field-frame .field-air::after { animation-name: field-opening-motes; }
     .field-frame .field-bough { animation-name: field-opening-bough; }
     .field-portrait img { animation-name: field-opening-portrait; }
+    .field-island-spire { animation-name: field-opening-spire; }
 
     .field-chapter { view-timeline: --field-arrival block; }
     .field-chapter::before {
       content: "";
       position: absolute;
       inset: 0;
+      z-index: 1;
       pointer-events: none;
       background:
         radial-gradient(ellipse at 77% 95%, color-mix(in srgb, var(--field-scene-air) 20%, transparent), transparent 60%),
         linear-gradient(160deg, #080e0c 18%, var(--field-scene-shadow) 56%, #0a120e95);
-      animation: field-arrival-veil var(--ease-out) both;
+      animation: field-arrival-veil linear both;
       animation-timeline: --field-arrival;
-      animation-range: entry 0% entry 93%;
+      animation-range: entry 0% cover 48%;
     }
-    .field-chapter-copy, .field-work-index { z-index: 1; }
     .field-chapter-media img, .field-chapter .field-air::before, .field-chapter .field-air::after,
-    .field-chapter .field-bough {
+    .field-chapter .field-bough, .field-island-slab {
       animation: auto linear both;
       animation-timeline: --field-arrival;
       animation-range: entry 0% exit 100%;
@@ -889,21 +911,27 @@
     .field-chapter .field-air::before { animation-name: field-arrival-mist; }
     .field-chapter .field-air::after { animation-name: field-arrival-motes; }
     .field-chapter .field-bough { animation-name: field-arrival-bough; }
+    .field-island-slab { animation-name: field-arrival-slab; }
   }
 }
 
 @keyframes field-opening-landscape { to { transform: translateY(34%) scale(1.14); } }
-@keyframes field-opening-mist { to { transform: translate(-7%, -14%); opacity: .45; } }
+@keyframes field-opening-mist { to { transform: translate(-22%, -15%) scale(1.12); opacity: .58; } }
 @keyframes field-opening-motes { to { transform: translate(8%, -16%); opacity: .32; } }
 @keyframes field-opening-bough { to { transform: translate(-9%, -46%) scale(1.12); } }
 @keyframes field-opening-portrait { to { transform: translateY(12%); } }
+@keyframes field-opening-spire {
+  from { transform: rotate(8deg); }
+  to { transform: translate(24%, -49%) rotate(-9deg) scale(1.18); }
+}
 @keyframes field-arrival-landscape {
-  from { transform: translateY(-16%) scale(1.34); }
-  to { transform: translateY(16%) scale(1.34); }
+  from { transform: translateY(-18%) scale(1.38); }
+  to { transform: translateY(18%) scale(1.38); }
 }
 @keyframes field-arrival-mist {
-  from { transform: translate(8%, 11%); opacity: .55; }
-  to { transform: translate(-9%, -12%); opacity: .9; }
+  0% { transform: translate(19%, 9%) scale(1.06); opacity: .92; }
+  48% { opacity: .88; }
+  100% { transform: translate(-23%, -14%) scale(1.13); opacity: .5; }
 }
 @keyframes field-arrival-motes {
   from { transform: translate(-8%, 14%); opacity: .32; }
@@ -913,9 +941,15 @@
   from { transform: translate(-11%, 11%) scale(1.12); }
   to { transform: translate(1%, -34%) scale(1.16); }
 }
+@keyframes field-arrival-slab {
+  from { transform: translate(19%, 28%) rotate(-8deg) scale(.86); }
+  to { transform: translate(-19%, -43%) rotate(5deg) scale(1.13); }
+}
 @keyframes field-arrival-veil {
-  from { transform: translateY(0); opacity: 1; }
-  to { transform: translateY(-42%); opacity: 0; }
+  0% { transform: translateY(0); opacity: .92; }
+  28% { opacity: .76; }
+  72% { opacity: .24; }
+  100% { transform: translateY(-33%); opacity: 0; }
 }
 
 /* The chapters share the document scroll and keep their own clipped parallax. */
