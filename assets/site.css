@@ -369,16 +369,6 @@ nav .wrap { display: flex; align-items: center; justify-content: space-between; 
 .readout .val { color: var(--muted); text-align: right; font-size: 12px; white-space: nowrap; }
 .readout .val.hot { color: var(--accent-text); text-shadow: var(--glow); }
 
-/* ─────────────── Журнал ─────────────── */
-.log-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 20px; align-items: start; }
-.log { list-style: none; }
-.log li { display: grid; grid-template-columns: 150px 1fr; gap: 18px; padding: 18px 22px; border-bottom: 1px solid var(--line); }
-.log li:last-child { border-bottom: 0; }
-.log .when { font-size: 11px; color: var(--dim); letter-spacing: .1em; }
-.log .when b { display: block; color: var(--accent-text); font-weight: 700; letter-spacing: .12em; text-shadow: var(--glow); }
-.log .what { font-size: 13px; color: var(--muted); }
-.log .what strong { color: var(--cream); font-weight: 500; display: block; margin-bottom: 2px; }
-.log .latest { font-size: 9px; letter-spacing: .2em; margin-left: 8px; padding: 1px 6px; border: 1px solid var(--accent); color: var(--accent-text); border-radius: 2px; vertical-align: 2px; }
 .cv { padding: 22px; }
 .cv h3 { font-family: var(--display); font-weight: 700; font-size: 20px; text-transform: uppercase; margin: 6px 0 10px; }
 .cv p { color: var(--muted); font-size: 13px; margin-bottom: 18px; }
@@ -433,7 +423,7 @@ footer .brand { color: var(--cream); font-weight: 800; letter-spacing: .14em; }
   .numbers { grid-template-columns: repeat(3, 1fr); }
   .num:nth-child(3) { border-right: 0; }
   .num:nth-child(n+4) { border-top: 1px solid var(--line); }
-  .about, .wide-grid, .stack, .log-grid { grid-template-columns: 1fr; }
+  .about, .wide-grid, .stack { grid-template-columns: 1fr; }
   .services { grid-template-columns: repeat(2, 1fr); }
   .anything { grid-template-columns: 1fr; gap: 12px; }
   .steps { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
@@ -444,7 +434,6 @@ footer .brand { color: var(--cream); font-weight: 800; letter-spacing: .14em; }
   .projects, .contact-grid, .services { grid-template-columns: 1fr; }
   .project.wide { grid-column: auto; }
   .points.cols { columns: 1; }
-  .log li { grid-template-columns: 1fr; gap: 4px; }
   .numbers { grid-template-columns: repeat(2, 1fr); }
   .num { border-right: 0; border-top: 1px solid var(--line); }
   .num:nth-child(odd) { border-right: 1px solid var(--line); }
