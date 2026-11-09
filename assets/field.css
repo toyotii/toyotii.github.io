@@ -43,6 +43,8 @@
   --field-ink: #f0efe1;
   --field-muted: #c2cbba;
   --field-orange: #e4a673;
+  --field-scene-shadow: #0b1614;
+  --field-scene-air: #9bb9b2;
   --ease-out: cubic-bezier(.23, 1, .32, 1);
   --ease-in-out: cubic-bezier(.77, 0, .175, 1);
 }
@@ -139,9 +141,9 @@
 .field-landscape { object-fit: cover; object-position: center 57%; }
 .field-shade {
   background:
-    radial-gradient(ellipse at 74% 64%, #101b14bb 0%, transparent 60%),
-    linear-gradient(90deg, #0b120edd, #0b120e85 43%, #0b120e14 76%),
-    linear-gradient(0deg, #0b120ed9, transparent 33%);
+    radial-gradient(ellipse at 74% 64%, #10221f9e, transparent 60%),
+    linear-gradient(90deg, #0b1511ef, #0b151199 39%, #10292813 76%),
+    linear-gradient(0deg, #0b1511e6, transparent 38%);
 }
 .field-copy, .field-portrait, .field-caption { z-index: 1; }
 .field-copy {
@@ -332,6 +334,10 @@
 .field-case-note p { margin: 4px 0 8px; font-size: 15px; }
 .field-site #resume { margin-top: 20px; }
 .field-site #log .log-grid { grid-template-columns: minmax(0, 1fr); }
+.field-site .log .what { font-size: 15px; }
+.field-site .log .when { font-size: 13px; }
+.field-site .tg-status, .field-site .tg-time { color: #9aabba; }
+.field-site .term-snippet { white-space: pre-wrap; overflow-wrap: anywhere; }
 .field-archive {
   margin-top: clamp(42px, 6vw, 82px);
   border-block: 1px solid var(--line);
@@ -562,8 +568,12 @@
 .field-chapter-media img { width: 100%; height: 100%; object-fit: cover; object-position: center 53%; }
 .field-chapter-media::after {
   content: "";
-  background: linear-gradient(90deg, #0a130eea 0%, #0a130eab 41%, #0a130e34 100%),
-              linear-gradient(0deg, #0a130eb0, transparent 55%);
+  background:
+    linear-gradient(90deg,
+      color-mix(in srgb, var(--field-scene-shadow) 96%, transparent),
+      color-mix(in srgb, var(--field-scene-shadow) 76%, transparent) 36%,
+      color-mix(in srgb, var(--field-scene-shadow) 18%, transparent) 78%),
+    linear-gradient(0deg, #0a130ed6, transparent 52%);
 }
 .field-chapter-contact .field-chapter-media img { object-position: center 56%; }
 .field-site .field-chapter .label { color: var(--field-orange); }
@@ -751,18 +761,42 @@
 }
 .field-chapter-contact .field-bough { background-size: min(48%, 580px) auto; }
 
-#projects { --field-leaf: url("leaf-cedar.webp"); }
-#services { --field-leaf: url("leaf-fern.webp"); }
-#about { --field-leaf: url("leaf-ginkgo.webp"); }
-#stack { --field-leaf: url("leaf-bamboo.webp"); }
-#log { --field-leaf: url("leaf-beech.webp"); }
-#contact { --field-leaf: url("leaf-willow.webp"); }
+#projects {
+  --field-leaf: url("leaf-cedar.webp");
+  --field-scene-shadow: #0d1815;
+  --field-scene-air: #adbaac;
+}
+#services {
+  --field-leaf: url("leaf-fern.webp");
+  --field-scene-shadow: #141b11;
+  --field-scene-air: #a7b89a;
+}
+#about {
+  --field-leaf: url("leaf-ginkgo.webp");
+  --field-scene-shadow: #171c14;
+  --field-scene-air: #bcbf9c;
+}
+#stack {
+  --field-leaf: url("leaf-bamboo.webp");
+  --field-scene-shadow: #0c1717;
+  --field-scene-air: #8fb3b0;
+}
+#log {
+  --field-leaf: url("leaf-beech.webp");
+  --field-scene-shadow: #1a1711;
+  --field-scene-air: #c8aa88;
+}
+#contact {
+  --field-leaf: url("leaf-willow.webp");
+  --field-scene-shadow: #0c171a;
+  --field-scene-air: #96b5bd;
+}
 .field-air::before, .field-air::after { content: ""; }
 .field-air::before {
-  inset: -15%;
+  inset: -18%;
   background:
-    radial-gradient(ellipse at 69% 27%, #c4ccad40, transparent 61%),
-    radial-gradient(ellipse at 81% 77%, #829d7832, transparent 48%);
+    radial-gradient(ellipse at 72% 27%, color-mix(in srgb, var(--field-scene-air) 35%, transparent), transparent 57%),
+    radial-gradient(ellipse at 64% 79%, color-mix(in srgb, var(--field-scene-air) 21%, transparent), transparent 52%);
 }
 .field-air::after {
   background:
@@ -837,10 +871,12 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(180deg, var(--bg) 7%, transparent 82%);
-      animation: field-arrival-veil linear both;
+      background:
+        radial-gradient(ellipse at 77% 95%, color-mix(in srgb, var(--field-scene-air) 20%, transparent), transparent 60%),
+        linear-gradient(160deg, #080e0c 18%, var(--field-scene-shadow) 56%, #0a120e95);
+      animation: field-arrival-veil var(--ease-out) both;
       animation-timeline: --field-arrival;
-      animation-range: entry 0% cover 48%;
+      animation-range: entry 0% entry 93%;
     }
     .field-chapter-copy, .field-work-index { z-index: 1; }
     .field-chapter-media img, .field-chapter .field-air::before, .field-chapter .field-air::after,
@@ -853,17 +889,11 @@
     .field-chapter .field-air::before { animation-name: field-arrival-mist; }
     .field-chapter .field-air::after { animation-name: field-arrival-motes; }
     .field-chapter .field-bough { animation-name: field-arrival-bough; }
-    .field-chapter-copy, .field-work-index {
-      animation: field-arrival-title linear both;
-      animation-timeline: --field-arrival;
-      animation-range: entry 0% cover 55%;
-    }
-    .field-work-index { animation-range: entry 18% cover 57%; }
   }
 }
 
 @keyframes field-opening-landscape { to { transform: translateY(34%) scale(1.14); } }
-@keyframes field-opening-mist { to { transform: translateY(22%); opacity: .35; } }
+@keyframes field-opening-mist { to { transform: translate(-7%, -14%); opacity: .45; } }
 @keyframes field-opening-motes { to { transform: translate(8%, -16%); opacity: .32; } }
 @keyframes field-opening-bough { to { transform: translate(-9%, -46%) scale(1.12); } }
 @keyframes field-opening-portrait { to { transform: translateY(12%); } }
@@ -872,8 +902,8 @@
   to { transform: translateY(16%) scale(1.34); }
 }
 @keyframes field-arrival-mist {
-  from { transform: translate(5%, 23%); opacity: .3; }
-  to { transform: translate(-6%, -28%); opacity: .9; }
+  from { transform: translate(8%, 11%); opacity: .55; }
+  to { transform: translate(-9%, -12%); opacity: .9; }
 }
 @keyframes field-arrival-motes {
   from { transform: translate(-8%, 14%); opacity: .32; }
@@ -883,17 +913,14 @@
   from { transform: translate(-11%, 11%) scale(1.12); }
   to { transform: translate(1%, -34%) scale(1.16); }
 }
-@keyframes field-arrival-title { from { transform: translateY(clamp(17px, 5svh, 50px)); } }
-
 @keyframes field-arrival-veil {
-  from { transform: translateY(0); opacity: .96; }
-  to { transform: translateY(-76%); opacity: 0; }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-42%); opacity: 0; }
 }
 
-/* The wrapper stays in flow as a stable anchor while its card overlaps the next stop. */
+/* The chapters share the document scroll and keep their own clipped parallax. */
 .field-site main {
   --field-deck-nav: 69px;
-  --field-deck-overlap: clamp(144px, 31svh, 320px);
   isolation: isolate;
   scroll-margin-top: var(--field-deck-nav);
 }
@@ -903,7 +930,7 @@
   padding: 0;
   scroll-margin-top: calc(var(--field-deck-nav) + 8px);
 }
-.field-deck-step + .field-deck-step { margin-block-start: clamp(12px, 2vw, 28px); }
+.field-deck-step + .field-deck-step { margin-block-start: clamp(14px, 2.9svh, 34px); }
 .field-deck-card.wrap {
   --field-card-bottom: clamp(20px, 4vw, 62px);
   position: relative;
@@ -912,7 +939,7 @@
   max-width: 1880px;
   padding: 0 var(--field-card-pad) var(--field-card-bottom);
   overflow: clip;
-  border: 1px solid color-mix(in srgb, var(--line) 75%, var(--accent) 25%);
+  border: 1px solid color-mix(in srgb, var(--line) 86%, var(--accent) 14%);
   border-radius: 7px;
   background: var(--bg);
 }
@@ -958,24 +985,8 @@
 @media (max-width: 760px) {
   .field-site main {
     --field-deck-nav: 59px;
-    --field-deck-overlap: clamp(108px, 25svh, 210px);
   }
   .field-deck-card.wrap { border-radius: 5px; }
   .field-deck-card .field-chapter-compact { min-height: clamp(220px, 34svh, 320px); }
   .field-deck-marker { font-size: 9px; padding: 5px 7px; }
-}
-@media (prefers-reduced-motion: no-preference) {
-  .field-deck-step[data-deck-ready] { margin-bottom: calc(-1 * var(--field-deck-overlap)); }
-  .field-deck-step[data-deck-ready]::after {
-    content: "";
-    display: block;
-    height: var(--field-deck-overlap);
-    pointer-events: none;
-  }
-  .field-deck-step[data-deck-ready] > .field-deck-card {
-    position: sticky;
-    top: min(var(--field-deck-nav), calc(100svh - var(--field-card-height) - var(--field-deck-edge)));
-    box-shadow: 0 -12px 26px #050a0770;
-  }
-  .field-deck-step:has(:focus-visible) { z-index: 1; }
 }
